@@ -1756,3 +1756,96 @@ export function mapVehicle(v, brand = 'bmw') {
       : `${origin}/?retailer_site=${encodeURIComponent(v?.retailer_site?.id ?? defaultRetailer)}`,
   };
 }
+
+/* ====================================================================== *
+ * Rolls-Royce -- fixtures-backed for now; this mapper is wired for when  *
+ * the Approved feed becomes reachable. Fixtures are already in engine    *
+ * schema (same shape mapRRMCRaw would produce).                          *
+ * ====================================================================== */
+
+const MODEL_SPECS_RRMC = {
+  Ghost:      { boot: 490, seats: 5, zeroTo62: 4.8, sizeClass: 4, mpg: 19, cc: 6749 },
+  'Ghost EWB': { boot: 490, seats: 5, zeroTo62: 4.8, sizeClass: 5, mpg: 19, cc: 6749 },
+  Phantom:    { boot: 548, seats: 5, zeroTo62: 5.3, sizeClass: 5, mpg: 17, cc: 6749 },
+  'Phantom EWB': { boot: 548, seats: 5, zeroTo62: 5.3, sizeClass: 5, mpg: 17, cc: 6749 },
+  Cullinan:   { boot: 560, seats: 5, zeroTo62: 5.2, sizeClass: 5, mpg: 17, cc: 6749 },
+  Wraith:     { boot: 470, seats: 4, zeroTo62: 4.7, sizeClass: 4, mpg: 19, cc: 6592 },
+  Dawn:       { boot: 295, seats: 4, zeroTo62: 4.9, sizeClass: 4, mpg: 18, cc: 6592 },
+  Spectre:    { boot: 249, seats: 4, zeroTo62: 4.5, sizeClass: 4, mpg: 0, cc: 0, fuel: 'ev', evRange: 260 },
+  'Silver Shadow': { boot: 340, seats: 5, zeroTo62: 10.0, sizeClass: 4, mpg: 15, cc: 6750 },
+  'Silver Ghost': { boot: 200, seats: 4, zeroTo62: 20.0, sizeClass: 3, mpg: 10, cc: 7428 },
+};
+const DEFAULT_SPEC_RRMC = { boot: 450, seats: 5, zeroTo62: 5.0, sizeClass: 4, mpg: 18 };
+const RRMC_RETAILER_ID = 'rrmc-approved';
+
+function rrmcLine(name = '') {
+  const s = String(name).replace(/^rolls-royce\s+/i, '').trim();
+  if (/silver\s+ghost/i.test(s)) return 'Silver Ghost';
+  if (/silver\s+shadow/i.test(s)) return 'Silver Shadow';
+  if (/ghost.*ewb|ghost.*extended/i.test(s)) return 'Ghost EWB';
+  if (/phantom.*ewb|phantom.*extended/i.test(s)) return 'Phantom EWB';
+  if (/ghost/i.test(s)) return 'Ghost';
+  if (/phantom/i.test(s)) return 'Phantom';
+  if (/cullinan/i.test(s)) return 'Cullinan';
+  if (/wraith/i.test(s)) return 'Wraith';
+  if (/dawn/i.test(s)) return 'Dawn';
+  if (/spectre/i.test(s)) return 'Spectre';
+  return null;
+}
+
+function rrmcBody(line) {
+  if (!line) return 'saloon';
+  if (/cullinan/i.test(line)) return 'suv';
+  if (/wraith|spectre/i.test(line)) return 'coupe';
+  if (/dawn/i.test(line)) return 'convertible';
+  return 'saloon';
+}
+
+function rrmcTags(line, body, fuel) {
+  const tags = ['cruiser', 'image'];
+  if (body === 'convertible') { tags.push('lifestyle'); tags.push('drivers-car'); }
+  if (body === 'coupe') { tags.push('drivers-car'); if (fuel === 'ev') tags.push('tech'); }
+  if (body === 'suv') { tags.push('practical'); tags.push('family'); }
+  if (line === 'Phantom' || line === 'Phantom EWB') { tags.push('practical'); tags.push('family'); }
+  return [...new Set(tags)];
+}
+
+export function mapRRMCRaw(raw) {
+  const rawName = raw?.name || raw?.title || '';
+  const line = rrmcLine(rawName);
+  const spec = (line && MODEL_SPECS_RRMC[line]) || DEFAULT_SPEC_RRMC;
+  const fuel = spec.fuel || (raw?.fuel === 'electric' || raw?.fuel === 'ev' || (spec.cc === 0) ? 'ev' : 'petrol');
+  const body = rrmcBody(line);
+  const displayName = /^rolls-royce\s+/i.test(rawName)
+    ? rawName.trim()
+    : `Rolls-Royce ${rawName}`.trim();
+  return {
+    id: raw?.id || String(Math.random()),
+    name: displayName,
+    line: line || rawName,
+    body,
+    fuel,
+    priceMin: raw?.price || raw?.priceMin || 0,
+    priceMax: raw?.price || raw?.priceMax || 0,
+    sizeClass: spec.sizeClass,
+    seats: spec.seats,
+    boot: spec.boot,
+    zeroTo62: spec.zeroTo62,
+    styleLine: null,
+    doors: null,
+    features: [],
+    mpg: spec.mpg || 0,
+    evRange: spec.evRange || (fuel === 'ev' ? spec.evRange : undefined),
+    tags: rrmcTags(line, body, fuel),
+    blurb: `Rolls-Royce Approved ${line || rawName}, sold with the official warranty.`,
+    mileage: raw?.mileage || 0,
+    year: raw?.year || 0,
+    photo: raw?.photo || undefined,
+    cc: raw?.cc || spec.cc || 0,
+    power: raw?.power || 0,
+    colour: raw?.colour || '',
+    retailerName: raw?.dealerName || raw?.retailerName || 'Rolls-Royce Approved',
+    retailerId: RRMC_RETAILER_ID,
+    link: raw?.link || 'https://approved.rolls-roycemotorcars.com/',
+  };
+}

@@ -523,6 +523,59 @@ const FERRARI_TUNING = {
   },
 };
 
+/*
+ * Rolls-Royce overrides. The mirror of Ferrari in spirit: nobody cross-shops on
+ * running cost. But where Ferrari weights performance first, Rolls-Royce weights
+ * character and comfort: these are the world's finest touring cars. The 0-62
+ * curve is recalibrated -- every Rolls is effortlessly fast; the spread is 4.5s
+ * (Spectre/Wraith) to 5.3s (Phantom), so BMW's curve would cluster them all.
+ * Hard filters dropped: the Dawn and Wraith are 4-seaters, not a disqualification.
+ */
+const RRMC_TUNING = {
+  weights: {
+    budget: 3.0, body: 4.5, fuel: 0.8, practicality: 1.5,
+    performance: 1.8, economy: 0.5, size: 1.2, character: 3.0,
+  },
+  priorityBoosts: {
+    economy: { economy: 0.8, budget: 0.5 },
+    performance: { performance: 1.8, character: 0.6 },
+    comfort: { character: 1.2, size: 0.6 },
+    tech: { character: 1.0 },
+    image: { character: 1.4 },
+  },
+  // 0-62: re-point for the narrow Rolls-Royce spread. 4.5s is the Spectre/Wraith
+  // at the top; 5.3s is the stately Phantom at the bottom. BMW's curve
+  // (10.5s->0, 4.5s->1) pegs every Rolls at 1.0 and carries no signal.
+  performance: { zeroBase: 6.0, span: 2.0 },
+  practicality: {
+    // Boot range: 249L (Spectre) to 560L (Cullinan). A Phantom at 548L is the
+    // practical touring choice; a Spectre at 249L is the driver's car. Scale so
+    // the Cullinan/Phantom satisfy "big" and a Wraith/Dawn read as moderate.
+    bootNeed: { small: 0, medium: 300, big: 500 },
+    // Dawn and Wraith are 4-seaters; Phantom/Ghost/Cullinan seat 5. Floor at 4.
+    seatsFloor: 4,
+    crewBonusSeats: 99, // no 7-seaters in this range
+  },
+  crewSeatShortfall: 1,
+  size: { roadtripMinClass: 4, cityDivisor: 5 },
+  // Never hard-exclude a Rolls on seats/boot: the 4-seat cars are the driver's
+  // choices, not a disqualification. Floors near the range floor.
+  hardFilter: { crewBoot: 200, crewSeats: 4, familySeats: 4 },
+  reasons: {
+    roadtrip: () => 'A touring car built to cover a continent in silence',
+    city: () => 'A presence on any street, and quieter than you would believe',
+    tags: {
+      'drivers-car': "The driver's end of the range: more power, more focus",
+      cruiser: 'Built to devour miles in complete, unhurried composure',
+      image: 'A car that stops the street, which is rather the point of it',
+      practical: 'Room for four in genuine comfort, with luggage to match',
+      family: 'Four or five seats, and the space for everything they bring',
+      tech: 'The current electric drivetrain, silent and immediate',
+      lifestyle: 'Roof down, V12 behind you, no finer way to travel',
+    },
+  },
+};
+
 /** Deep-merge a brand's overrides onto the BMW base so partial tuning works. */
 function mergeTuning(overrides) {
   const out = { ...BMW_TUNING };
@@ -852,6 +905,19 @@ export const BRANDS = {
     questions: {
       drop: ['charging'],
     },
+  },
+  rrmc: {
+    label: 'Rolls-Royce',
+    origin: 'https://approved.rolls-roycemotorcars.com',
+    defaultRetailer: 'rrmc-approved',
+    // Rolls-Royce Approved feed is not yet reachable from this environment,
+    // so the brand runs from a curated fixtures/rrmc-cars.json. The real adapter
+    // will replace this when the feed is accessible. See DECISIONS.md.
+    source: 'fixtures',
+    // Rolls-Royce used stock runs £160k (Wraith) to £430k+ (Phantom).
+    // Cap at £500k with a default bracket around the Ghost/Cullinan range.
+    budget: { max: 500000, default: [180000, 320000] },
+    tuning: mergeTuning(RRMC_TUNING),
   },
 };
 

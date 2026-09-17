@@ -344,3 +344,12 @@
   --vm-ease: cubic-bezier(0.22, 0.61, 0.24, 1);
   --vm-pop: 0.46s;
 }
+
+.vm.vm-rrmc {
+  --vm-font-heading: 'Gill Sans', 'Gill Sans MT', var(--heading-font-family, 'Helvetica Neue'), arial, sans-serif;
+  --vm-font-body: 'Gill Sans', 'Gill Sans MT', var(--body-font-family, 'Helvetica Neue'), arial, sans-serif;
+  --vm-font-bold: 'Gill Sans', 'Gill Sans MT', var(--body-font-family, 'Helvetica Neue'), arial, sans-serif;
+  --vm-accent: #281432;
+  --vm-accent-spot: var(--vm-accent);
+  --vm-accent-soft: rgba(40, 20, 50, 0.06);
+}

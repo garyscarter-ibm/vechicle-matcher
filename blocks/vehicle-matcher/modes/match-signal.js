@@ -427,6 +427,10 @@ const BRAND_CELEBRATION = {
   // confetti-cannon exuberance — the sparkle comes from the red spot and the
   // composed --vm-ease, so the count stays dignified.
   ferrari: { count: 30 },
+  // Rolls-Royce: measured and dignified, a touch above Ferrari's. Finding one
+  // is a genuine occasion but the brand moves calmly, never with confetti-cannon
+  // energy. Count sits between Ferrari's 30 and MINI's 40.
+  rrmc: { count: 32 },
 };
 const DEFAULT_CELEBRATION = { count: 26 };
 

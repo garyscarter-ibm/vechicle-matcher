@@ -488,6 +488,79 @@ BRAND_COPY.ferrari = {
 };
 
 /*
+ * Rolls-Royce voice: unhurried, understated and deeply assured. The brand never
+ * shouts, never sells -- it states. The register is warm but formal: second person
+ * singular ("you"), long unhurried sentences, no exclamation marks, no urgency.
+ * No em dashes anywhere. The approved programme is "Rolls-Royce Approved".
+ */
+BRAND_COPY.rrmc = {
+  ...BRAND_COPY.bmw,
+  name: 'Rolls-Royce',
+  title: 'Find the Rolls-Royce that is yours.',
+  cta: 'Begin your journey',
+  lede: ({ questions, retailer }) => `${questions} questions about how you travel, `
+    + 'where you go and what you value. We will find the '
+    + `vehicles at ${retailer} built for the way you choose to live.`,
+  unmet: ({ list, retailer }) => `No ${list} at ${retailer} or nearby right now. `
+    + 'These are the closest to everything else you told us.',
+  tiedTitle: ({ count }) => `${cardinal(count)} of these suit you equally well.`,
+  tiedTitleHere: ({ count, retailer }) => `At ${retailer}, ${cardinal(count)} of these `
+    + 'suit you equally well.',
+  tasteTitle: ({ model }) => `The one for you is the ${model}.`,
+  tasteTitleHere: ({ model, retailer }) => `The one for you at ${retailer} is the ${model}.`,
+  tasteLede: () => 'A few of these suit your answers equally. This one aligns most '
+    + 'closely with what you said matters.',
+  tiedLede: () => 'On your answers we cannot separate them: each suits you as well as '
+    + 'the next. The choice now is simply which one moves you.',
+  refineLabel: ({ count }) => (count > 1 ? `Refine these ${count}` : 'Refine this one'),
+  refineStatus: ({ shown, wants }) => (shown === 1
+    ? `One car still matches, with ${wants}.`
+    : `${shown} cars still match, with ${wants}.`),
+  refineStatusPlain: ({ shown }) => (shown === 1
+    ? 'One car still matches.'
+    : `${shown} cars still match.`),
+  refineEmpty: ({ wants }) => `Nothing here has ${wants} together. `
+    + 'Remove one of those and we will show you what remains.',
+  refineEmptyHidden: 'That is all of them considered. Bring one back, or begin again.',
+  tiedEmptyTitle: 'Nothing left to show.',
+  rejectOpen: 'Not this one',
+  rejectPrompt: 'What gave you pause?',
+  rejectJust: 'Simply not this one',
+  pickLabel: 'Make it yours',
+  kitLabel: 'What is fitted',
+  kitMore: ({ count }) => `, and ${count} more`,
+  briefLabel: 'What we have learned',
+  hiddenChip: ({ count }) => `${count} set aside`,
+  closestTitle: ({ retailer }) => `The closest matches at ${retailer}.`,
+  closestLede: () => 'None of these answers every question you gave us. Each card '
+    + 'is honest about what it gets right and what it does not.',
+  closestSettled: ({ model }) => `Your closest match here is the ${model}.`,
+  closestSettledHere: ({ model, retailer }) => `Your closest match at ${retailer} is the ${model}.`,
+  weakTitle: ({ retailer }) => `Nothing at ${retailer} is close to what you described.`,
+  weakLede: () => 'These are the nearest we hold, and each one misses something you '
+    + 'said mattered. If none of them speaks to you, nothing here does.',
+  rescueNote: ({ list, retailer, miles, where }) => `No ${list} at ${retailer} right now. `
+    + `The nearest is ${miles} away at ${where}, and it is in the list below.`,
+  driveLede: {
+    empty: ({ retailer }) => `Nothing at ${retailer} fits those answers, so these are the `
+      + 'closest matches at other retailers instead.',
+  },
+  hereHeading: ({ retailer }) => `AT ${retailer.toUpperCase()}`,
+  awayHeading: 'AT OTHER RETAILERS',
+  rejectHint: 'Set aside? We will bring the next one forward.',
+  searchingNearby: 'Still checking other retailers within reach',
+  workingLabel: 'HOW WE FOUND THIS',
+  working: ({ total, eligible }) => `We considered all ${total} Rolls-Royce vehicles in stock here. `
+    + `${eligible} were within your budget and suited to your needs.`,
+  workingMargin: ({ margin }) => ` Nothing else here came within ${margin} points.`,
+  workingWeak: ({ top }) => ` The best of them reached ${top}%.`,
+  workingScore: ' A match score reflects how well a car answers your questions, nothing more, '
+    + 'so cars that suit you equally share one.',
+  searchedWider: ({ model, miles, where }) => 'We looked further afield. '
+    + `The ${model} at ${where} scores higher, and it is ${miles}.`,
+};
+
+/*
  * How an unmet want is named in the results note, per brand — plural noun
  * phrases that drop into "No ___ at <retailer>…". Per-brand because MINI
  * names its own shapes (a Countryman, not an SUV) and calls its EVs
