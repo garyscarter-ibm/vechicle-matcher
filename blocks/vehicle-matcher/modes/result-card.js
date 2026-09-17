@@ -548,6 +548,12 @@ export function matchCard(match, {
   return card;
 }
 
+// Capitalise the first visible letter of a reason phrase, skipping any leading
+// tag (e.g. "<strong>plug-in..." -> "<strong>Plug-in...", not "<Strong>...").
+function capFirstReason(html) {
+  return html.replace(/^(\s*(?:<[^>]+>\s*)*)([a-z])/, (_, lead, c) => lead + c.toUpperCase());
+}
+
 /**
  * BMW podium card — the redesigned tile matching the BMW Approved Used style.
  * Used only by the podium mode when brand === 'bmw'.
@@ -614,18 +620,24 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
   renderSpecBar(car.transmission, car.year, car.plate, car.mileage);
   if (specBar.textContent) body.append(specBar);
 
-  // Listing picker for clustered cars (multiple listings at different prices)
+  // Listing picker for clustered cars (multiple listings at different prices).
+  // Built here but appended lower down, below Features and above the CTAs.
+  let pickerBlock = null;
   if (match.listings?.length > 1) {
+    const pickWrap = el('div', 'vm-pick-wrap');
+    pickWrap.append(el('p', 'vm-pick-caption', 'Available options:'));
     const picker = el('div', 'vm-pick');
     match.listings.forEach((listing, i) => {
       const opt = el('button', `vm-pick-opt${i === 0 ? ' is-on' : ''}`);
       opt.type = 'button';
       opt.setAttribute('aria-pressed', String(i === 0));
+      opt.title = [listing.colour, gbp(listing.priceMin)].filter(Boolean).join(' · ');
       const hex = (listing.colour || '').toLowerCase().split(/[^a-z]+/).map((w) => SWATCH_HEX[w]).find(Boolean);
-      if (hex) { const dot = el('span', 'vm-swatch'); dot.style.background = hex; opt.append(dot); }
-      const label = listing.colour || (listing.mileage != null ? `${listing.mileage.toLocaleString('en-GB')} miles` : `Option ${i + 1}`);
-      opt.append(el('span', 'vm-pick-colour', label));
-      opt.append(el('span', 'vm-pick-meta', [gbp(listing.priceMin), listing.mileage != null ? `${listing.mileage.toLocaleString('en-GB')} mi` : null].filter(Boolean).join(' · ')));
+      const dot = el('span', 'vm-swatch');
+      if (hex) dot.style.background = hex;
+      dot.setAttribute('aria-label', listing.colour || `Option ${i + 1}`);
+      opt.append(dot);
+      opt.append(el('span', 'vm-pick-price', gbp(listing.priceMin)));
       opt.addEventListener('click', () => {
         picker.querySelectorAll('.vm-pick-opt').forEach((b) => { b.classList.remove('is-on'); b.setAttribute('aria-pressed', 'false'); });
         opt.classList.add('is-on');
@@ -647,22 +659,8 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
       });
       picker.append(opt);
     });
-    // Wrap so a right-edge chevron can hint the strip scrolls to more cars.
-    // The hint hides once the user reaches the end (or there's nothing to scroll).
-    const pickWrap = el('div', 'vm-pick-wrap');
-    const pickHint = el('span', 'vm-pick-hint');
-    pickHint.setAttribute('aria-hidden', 'true');
-    pickHint.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    const syncHint = () => {
-      const more = picker.scrollWidth - picker.clientWidth - picker.scrollLeft > 4;
-      pickWrap.classList.toggle('has-more', more);
-    };
-    picker.addEventListener('scroll', syncHint);
-    // The card reveals from zero width, so recompute when the strip is measured.
-    if (window.ResizeObserver) new ResizeObserver(syncHint).observe(picker);
-    requestAnimationFrame(syncHint);
-    pickWrap.append(picker, pickHint);
-    body.append(pickWrap);
+    pickWrap.append(picker);
+    pickerBlock = pickWrap;
   }
 
   // Features — collapsible toggle. Built here but appended below the decision
@@ -713,7 +711,7 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
       const list = el('ul', 'vm-bmw-reasons vm-bmw-hero-reasons');
       strengths.forEach((r) => {
         const li = el('li', null);
-        li.innerHTML = r;
+        li.innerHTML = capFirstReason(r);
         list.append(li);
       });
       body.append(list);
@@ -726,7 +724,7 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
     const pros = wins.length ? wins : (reasons || []).slice(0, 2);
     pros.slice(0, 3).forEach((r) => {
       const li = el('li', null);
-      li.innerHTML = r;
+      li.innerHTML = capFirstReason(r);
       prosCol.append(li);
     });
 
@@ -735,7 +733,7 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
     // fallback — if losses is empty the column stays empty rather than lie.
     losses.slice(0, 3).forEach((r) => {
       const li = el('li', 'vm-bmw-reason-but');
-      li.innerHTML = `<strong>But:</strong> ${r.charAt(0).toLowerCase()}${r.slice(1)}`;
+      li.innerHTML = `<span class="vm-bmw-but-lead">But:</span> ${r.charAt(0).toLowerCase()}${r.slice(1)}`;
       consCol.append(li);
     });
 
@@ -746,6 +744,9 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
   // Features sit at the foot on both card types: below the hero reasons/CTA row
   // on the leader, and below the "decision to make" section on runner-ups.
   if (featureBlock) body.append(...featureBlock);
+
+  // Colour/listing picker sits below Features and above the CTAs.
+  if (pickerBlock) body.append(pickerBlock);
 
   // Actions: both route to the car's live retailer listing. A thin, full-width
   // pair pinned to the foot on every card, so cards in a row end level.

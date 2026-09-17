@@ -4641,64 +4641,41 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   letter-spacing: 0.1px;
 }
 
-/* Cluster picker as a compact horizontal scroll strip: all the info (swatch,
-   colour, price, mileage) but each option a small fixed-width chip in one
-   scrollable row, instead of full-width stacked buttons that dominated the
-   card. BMW podium only — matchCard's picker keeps its column. */
+/* Cluster picker as small square swatch tiles: a caption, then a wrapping grid
+   of colour-dot + price boxes with every colour visible at once. Clicking one
+   swaps the photo, price, spec and CTA. BMW podium only. */
+.vm-bmw-card .vm-pick-caption {
+  margin: 0 0 6px;
+  font-family: var(--vm-font-bold);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--vm-ink-muted);
+}
 .vm-bmw-card .vm-pick {
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 8px;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  padding-bottom: 4px;
-  scrollbar-width: thin;
-}
-.vm-bmw-card .vm-pick::-webkit-scrollbar { height: 6px; }
-.vm-bmw-card .vm-pick::-webkit-scrollbar-thumb {
-  background: #cfcfcf;
-  border-radius: 3px;
 }
 .vm-bmw-card .vm-pick-opt {
   flex: 0 0 auto;
-  width: auto;
-  flex-wrap: wrap;
-  gap: 4px 6px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  scroll-snap-align: start;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 52px;
+  padding: 6px 4px;
+  border-radius: 8px;
 }
-/* Colour name + price/mileage sit on one tight line inside the chip; no
-   auto-margin push (that was for the full-width row layout). */
-.vm-bmw-card .vm-pick-colour { font-size: 12px; }
-.vm-bmw-card .vm-pick-meta {
-  margin-left: 0;
+.vm-bmw-card .vm-pick-opt .vm-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+.vm-bmw-card .vm-pick-price {
   font-size: 11px;
+  line-height: 1.1;
   white-space: nowrap;
 }
-
-/* Right-edge chevron hinting the chip strip scrolls to more cars. Sits over the
-   strip's right edge, transparent so it never hides a chip, and click-through so
-   it can't block picking. JS toggles .has-more to hide it at the end of scroll. */
-.vm-bmw-card .vm-pick-wrap { position: relative; }
-.vm-bmw-card .vm-pick-hint {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 40px;
-  padding-right: 2px;
-  color: rgba(90, 90, 90, 0.55);
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9) 60%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-.vm-bmw-card .vm-pick-wrap.has-more .vm-pick-hint { opacity: 1; }
 
 /* "Matched to you because..." / "The decision to make" labels */
 .vm-bmw-section-label {
@@ -4760,7 +4737,10 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 
 /* "But:" tradeoff items in the decision section — slightly muted */
 .vm-bmw-reason-but { color: #555; }
-.vm-bmw-reason-but strong { color: #c0392b; }
+/* "But:" lead is bold and dark; only the difference word (a <strong> from the
+   server's deficit phrase) is bold + red, one per point when there is one. */
+.vm-bmw-but-lead { font-weight: 700; color: #1a1a1a; }
+.vm-bmw-reason-but strong { font-weight: 700; color: #c0392b; }
 
 /* Two-column decision row: positives left, buts right, fills the card width */
 .vm-bmw-decision-row {

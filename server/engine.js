@@ -955,70 +955,69 @@ const SIZE_WORD = { 1: 'compact', 2: 'compact', 3: 'mid-size', 4: 'large', 5: 'f
  */
 const DIM_COPY = {
   budget: {
-    strength: (c) => `Well within your <strong>budget</strong>`,
+    strength: (c) => `Within <strong>budget</strong>`,
     deficit: (rival, car) => {
       const save = Number(car.priceFrom ?? car.priceMin) - Number(rival.priceFrom ?? rival.priceMin);
       return Number.isFinite(save) && save >= 2000
-        ? `costs <strong>${gbp(save)} less</strong> to get into`
-        : `is better value for what you get`;
+        ? `costs <strong>${gbp(save)} less</strong>`
+        : `is better value`;
     },
   },
   body: {
-    strength: (c) => `The <strong>${BODY_WORD[c.body] || 'shape'}</strong> you asked for`,
+    strength: (c) => `The <strong>${BODY_WORD[c.body] || 'shape'}</strong> you wanted`,
     deficit: (rival, car) => (rival.body && car.body && rival.body !== car.body
-      ? `is the <strong>${BODY_WORD[rival.body] || rival.body}</strong> you asked for, where this is a ${BODY_WORD[car.body] || car.body}`
-      : `is a closer match to the shape you wanted`),
+      ? `is the <strong>${BODY_WORD[rival.body] || rival.body}</strong> you wanted`
+      : `is closer on shape`),
   },
   fuel: {
     strength: (c) => `<strong>${FUEL_LABELS[c.fuel] || c.fuel}</strong>, the fuel you wanted`,
     deficit: (rival, car) => (rival.fuel && car.fuel && rival.fuel !== car.fuel
-      ? `is <strong>${FUEL_LABELS[rival.fuel] || rival.fuel}</strong>, the fuel you chose, where this is ${FUEL_LABELS[car.fuel] || car.fuel}`
-      : `better fits the fuel you chose`),
+      ? `is <strong>${FUEL_LABELS[rival.fuel] || rival.fuel}</strong>, the fuel you wanted`
+      : `is closer on fuel`),
   },
   practicality: {
-    strength: (c) => (c.boot ? `<strong>${c.boot}L</strong> boot for what you carry` : `the space you need`),
+    strength: (c) => (c.boot ? `<strong>${c.boot}L</strong> boot` : `the space you need`),
     deficit: (rival, car) => {
       if (Number.isFinite(rival.seats) && Number.isFinite(car.seats) && rival.seats > car.seats) {
-        return `seats <strong>${rival.seats}</strong> to this car's ${car.seats}`;
+        return `seats <strong>${rival.seats}</strong>`;
       }
       const gap = Number(rival.boot) - Number(car.boot);
       return Number.isFinite(gap) && gap >= 40
-        ? `has a <strong>${rival.boot}L</strong> boot to this car's ${car.boot}L`
-        : `has more room for people and luggage`;
+        ? `has a <strong>${rival.boot}L</strong> boot`
+        : `has more room`;
     },
   },
   performance: {
     strength: (c) => (c.zeroTo62 ? `<strong>0–62 in ${c.zeroTo62}s</strong>` : `the pace you're after`),
     deficit: (rival, car) => (Number.isFinite(rival.zeroTo62) && Number.isFinite(car.zeroTo62) && car.zeroTo62 - rival.zeroTo62 >= 0.3
-      ? `is the quicker car, <strong>0–62 in ${rival.zeroTo62}s</strong> against ${car.zeroTo62}s`
-      : `has more of the performance you asked for`),
+      ? `is quicker, <strong>0–62 in ${rival.zeroTo62}s</strong>`
+      : `has more pace`),
   },
   economy: {
-    strength: (c) => (c.fuel === 'ev' ? `cheap <strong>per mile</strong> to run` : (c.mpg ? `<strong>${c.mpg}mpg</strong>, cheap to run` : `low running costs`)),
+    strength: (c) => (c.fuel === 'ev' ? `cheap <strong>per mile</strong>` : (c.mpg ? `<strong>${c.mpg}mpg</strong>` : `low running costs`)),
     deficit: (rival, car) => {
-      if (rival.fuel === 'ev' && car.fuel !== 'ev') return `runs on <strong>electricity</strong>, pennies a mile where this burns fuel`;
+      if (rival.fuel === 'ev' && car.fuel !== 'ev') return `is <strong>electric</strong>, pennies a mile`;
       const gap = Number(rival.mpg) - Number(car.mpg);
       return Number.isFinite(gap) && gap >= 6
-        ? `is cheaper over your mileage at <strong>${rival.mpg}mpg</strong> to this car's ${car.mpg}`
-        : `is cheaper to run for your mileage`;
+        ? `does <strong>${rival.mpg}mpg</strong>`
+        : `is cheaper to run`;
     },
   },
   character: {
     // Character is scored off body/size/tags, so the honest "why" is the
-    // concrete trait that scored it: a sharper 0-62, or a smaller, easier-to-place
-    // car when that's what the driving answers implied.
-    strength: () => `suits how you want to drive`,
+    // concrete trait that scored it: a sharper 0-62, or a smaller, easier car.
+    strength: () => `drives how you want`,
     deficit: (rival, car) => {
       if (Number.isFinite(rival.zeroTo62) && Number.isFinite(car.zeroTo62) && car.zeroTo62 - rival.zeroTo62 >= 0.4) {
-        return `is the keener drive, <strong>0–62 in ${rival.zeroTo62}s</strong> against ${car.zeroTo62}s`;
+        return `is keener, <strong>0–62 in ${rival.zeroTo62}s</strong>`;
       }
       if (Number.isFinite(rival.sizeClass) && Number.isFinite(car.sizeClass) && rival.sizeClass < car.sizeClass) {
-        return `is the <strong>${SIZE_WORD[rival.sizeClass] || 'smaller'}</strong> car, easier to place and park than this ${SIZE_WORD[car.sizeClass] || 'larger'} one`;
+        return `is <strong>${SIZE_WORD[rival.sizeClass] || 'smaller'}</strong>, easier to park`;
       }
       if (Number.isFinite(rival.sizeClass) && Number.isFinite(car.sizeClass) && rival.sizeClass > car.sizeClass) {
-        return `is the <strong>bigger</strong>, more planted car for the miles you do`;
+        return `is <strong>bigger</strong>, more planted`;
       }
-      return `is a closer match to how you want to drive`;
+      return `is closer on style`;
     },
   },
 };
@@ -1031,16 +1030,39 @@ const BODY_WORD = {
 export function compareShown(matches) {
   if (!matches.length) return [];
 
+  // Cross-card win order: every card lists the SAME shared dimension in the same
+  // slot (budget 1st, boot 2nd, ...), so the three cards read as directly
+  // comparable. A dimension is "shared" if it wins on more than one card; those
+  // lead, in a fixed priority. A dimension unique to one card sorts after the
+  // shared block, so a car-specific reason always sits below the matching ones.
+  const WIN_DIMS = matches.map((m) => Object.entries(m.dims || {})
+    .filter(([dim, s]) => s >= STRONG && DIM_COPY[dim])
+    .sort((a, b) => b[1] - a[1])
+    .map(([dim]) => dim));
+  const dimCardCount = new Map();
+  WIN_DIMS.forEach((dims) => new Set(dims).forEach((dim) => {
+    dimCardCount.set(dim, (dimCardCount.get(dim) || 0) + 1);
+  }));
+  const DIM_PRIORITY = ['budget', 'body', 'fuel', 'practicality', 'performance', 'economy', 'character'];
+  const prio = (dim) => { const i = DIM_PRIORITY.indexOf(dim); return i === -1 ? DIM_PRIORITY.length : i; };
+  const winRank = (dim) => {
+    // Shared dims (win on >1 card) first, ordered by the fixed priority; then
+    // car-specific dims, also by priority so ordering stays stable.
+    const shared = (dimCardCount.get(dim) || 0) > 1 ? 0 : 1;
+    return shared * 100 + prio(dim);
+  };
+
   return matches.map((m, i) => {
     const car = m.car;
     const dims = m.dims || {};
     const isLeader = i === 0;
 
-    // WINS: dimensions this car is genuinely strong on, best first.
-    const wins = Object.entries(dims)
-      .filter(([dim, s]) => s >= STRONG && DIM_COPY[dim])
-      .sort((a, b) => b[1] - a[1])
-      .map(([dim]) => DIM_COPY[dim].strength(car))
+    // WINS: dimensions this car is strong on, ordered so the same shared reason
+    // lands in the same slot on every card (see winRank above).
+    const wins = WIN_DIMS[i]
+      .slice()
+      .sort((a, b) => winRank(a) - winRank(b))
+      .map((dim) => DIM_COPY[dim].strength(car))
       .filter(Boolean);
 
     // Each car is measured against the one immediately ABOVE it, not the leader:
@@ -1084,9 +1106,9 @@ export function compareShown(matches) {
     // the one honest difference — a different fuel/engine — or say it's a toss-up.
     if (!isLeader && !losses.length && (m.tradeOffs || []).length === 0) {
       if (car.fuel !== rival.car.fuel) {
-        losses.push(`practically tied, it's ${FUEL_LABELS[car.fuel] || car.fuel} where the ${rivalName} is ${FUEL_LABELS[rival.car.fuel] || rival.car.fuel}`);
+        losses.push(`the ${rivalName} is <strong>${FUEL_LABELS[rival.car.fuel] || rival.car.fuel}</strong>, otherwise tied`);
       } else {
-        losses.push(`practically tied with the ${rivalName}, it comes down to the details`);
+        losses.push(`tied with the ${rivalName}, down to the details`);
       }
     }
 
@@ -1096,7 +1118,7 @@ export function compareShown(matches) {
     for (const t of m.tradeOffs || []) {
       const got = t.dim === 'fuel' ? (FUEL_LABELS[t.got] || t.got) : (BODY_WORD[t.got] || t.got);
       const want = (t.wants || []).map((w) => (t.dim === 'fuel' ? FUEL_LABELS[w] : BODY_WORD[w]) || w).join(' or ');
-      losses.unshift(`it's ${got}, and you asked for ${want}`);
+      losses.unshift(`it's <strong>${got}</strong>, you wanted ${want}`);
     }
 
     return { wins: wins.slice(0, 3), losses: losses.slice(0, 2) };
@@ -1113,18 +1135,18 @@ function specDeltas(car, leader) {
   const out = [];
   const mi = car.mileage - leader.mileage;
   if (Number.isFinite(mi) && mi >= 8000) {
-    out.push({ gap: mi / 10000, text: `${car.mileage.toLocaleString('en-GB')} miles vs the ${leader.line}'s ${leader.mileage.toLocaleString('en-GB')}` });
+    out.push({ gap: mi / 10000, text: `has <strong>${car.mileage.toLocaleString('en-GB')} miles</strong>` });
   }
   const price = car.priceFrom - leader.priceFrom;
   if (Number.isFinite(price) && price >= 3000) {
-    out.push({ gap: price / 10000, text: `costs more than the ${leader.line} to get into` });
+    out.push({ gap: price / 10000, text: `costs <strong>more</strong>` });
   }
   if (car.fuel === 'ev' && leader.fuel === 'ev' && Number.isFinite(car.evRange) && Number.isFinite(leader.evRange) && leader.evRange - car.evRange >= 15) {
-    out.push({ gap: (leader.evRange - car.evRange) / 100, text: `${car.evRange}-mile range vs the ${leader.line}'s ${leader.evRange}` });
+    out.push({ gap: (leader.evRange - car.evRange) / 100, text: `does <strong>${car.evRange} miles</strong> a charge` });
   }
   const mpgGap = Number(leader.mpg) - Number(car.mpg);
   if (car.fuel !== 'ev' && Number.isFinite(mpgGap) && mpgGap >= 8) {
-    out.push({ gap: mpgGap / 20, text: `thirstier at ${car.mpg}mpg vs the ${leader.line}'s ${leader.mpg}` });
+    out.push({ gap: mpgGap / 20, text: `is thirstier at <strong>${car.mpg}mpg</strong>` });
   }
   return out.sort((a, b) => b.gap - a.gap).map((d) => d.text);
 }
