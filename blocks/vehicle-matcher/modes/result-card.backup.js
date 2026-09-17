@@ -562,112 +562,103 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
     ? car.name.slice(lineName.length).trim()
     : null;
 
-  const isFrom = car.listingCount > 1 && car.priceFrom !== car.priceTo;
-  const priceNum = isFrom ? gbp(car.priceFrom) : gbp(car.priceMin ?? car.priceMax);
+  const priceNum = car.listingCount > 1 && car.priceFrom !== car.priceTo
+    ? gbp(car.priceFrom)
+    : (car.priceMin === car.priceMax ? gbp(car.priceMin) : gbp(car.priceMin));
+  const isFrom = (car.listingCount > 1 && car.priceFrom !== car.priceTo)
+    || car.priceMin !== car.priceMax;
 
   const card = el('article', 'vm-card vm-bmw-card');
-
-  // Photo with name + price overlaid at the bottom. showPhoto (not just media)
-  // so the listing picker can swap in a real photo even when the first listing
-  // had none — the old direct-img mutation no-oped on a placeholder card.
-  const { media, showPhoto } = mediaWell(car);
-  const photoWrap = el('div', 'vm-bmw-photo-wrap');
-  // The whole photo is a link to the live listing, same target as the buttons.
-  // The caption overlay is decorative (pointer-events:none in CSS) so the click
-  // lands on the link; the reject chip is a sibling above it and stays clickable.
-  let photoLink = null;
-  if (car.link) {
-    photoLink = el('a', 'vm-bmw-photo-link');
-    photoLink.href = car.link;
-    photoLink.target = '_blank';
-    photoLink.rel = 'noopener noreferrer';
-    photoLink.setAttribute('aria-label', `View the ${lineName} at ${car.retailerName || 'the retailer'}`);
-    photoLink.append(media);
-    photoWrap.append(photoLink);
-  } else {
-    photoWrap.append(media);
-  }
-  const photoCaption = el('div', 'vm-bmw-photo-caption');
-  const captionLeft = el('div', 'vm-bmw-caption-name');
-  captionLeft.append(el('span', 'vm-bmw-caption-line', lineName));
-  if (trimName) captionLeft.append(el('span', 'vm-bmw-caption-trim', trimName));
-  const captionRight = el('div', 'vm-bmw-caption-price');
-  if (isFrom) captionRight.append(el('span', 'vm-bmw-from', 'from'));
-  captionRight.append(el('span', 'vm-bmw-price', priceNum));
-  photoCaption.append(captionLeft, captionRight);
-  photoWrap.append(photoCaption);
-  card.append(photoWrap);
+  const { media } = mediaWell(car);
+  card.append(media);
 
   const body = el('div', 'vm-card-body vm-bmw-body');
 
-  // Slim spec bar: just gearbox · year · mileage (updates when a listing is picked)
-  const specBar = el('p', 'vm-bmw-spec-slim');
-  const renderSpecBar = (transmission, year, plate, mileage) => {
-    const parts = [];
-    if (transmission === 'auto') parts.push('Automatic');
-    else if (transmission === 'manual') parts.push('Manual');
-    if (year) parts.push(String(year));
-    else if (plate) parts.push(`'${plate} reg`);
-    if (mileage != null) parts.push(`${mileage.toLocaleString('en-GB')} miles`);
-    specBar.textContent = parts.join(' · ');
-  };
-  renderSpecBar(car.transmission, car.year, car.plate, car.mileage);
-  if (specBar.textContent) body.append(specBar);
+  // Header: left = model name + trim, right = roundel + from/price
+  const header = el('div', 'vm-bmw-header');
 
-  // Listing picker for clustered cars (multiple listings at different prices)
-  if (match.listings?.length > 1) {
-    const picker = el('div', 'vm-pick');
-    match.listings.forEach((listing, i) => {
-      const opt = el('button', `vm-pick-opt${i === 0 ? ' is-on' : ''}`);
-      opt.type = 'button';
-      opt.setAttribute('aria-pressed', String(i === 0));
-      const hex = (listing.colour || '').toLowerCase().split(/[^a-z]+/).map((w) => SWATCH_HEX[w]).find(Boolean);
-      if (hex) { const dot = el('span', 'vm-swatch'); dot.style.background = hex; opt.append(dot); }
-      const label = listing.colour || (listing.mileage != null ? `${listing.mileage.toLocaleString('en-GB')} miles` : `Option ${i + 1}`);
-      opt.append(el('span', 'vm-pick-colour', label));
-      opt.append(el('span', 'vm-pick-meta', [gbp(listing.priceMin), listing.mileage != null ? `${listing.mileage.toLocaleString('en-GB')} mi` : null].filter(Boolean).join(' · ')));
-      opt.addEventListener('click', () => {
-        picker.querySelectorAll('.vm-pick-opt').forEach((b) => { b.classList.remove('is-on'); b.setAttribute('aria-pressed', 'false'); });
-        opt.classList.add('is-on');
-        opt.setAttribute('aria-pressed', 'true');
-        // Hide "from" once user picks a specific listing — price is now exact
-        const priceEl = photoCaption.querySelector('.vm-bmw-price');
-        const fromEl = photoCaption.querySelector('.vm-bmw-from');
-        if (priceEl) priceEl.textContent = gbp(listing.priceMin);
-        if (fromEl) fromEl.hidden = true;
-        renderSpecBar(listing.transmission ?? car.transmission, car.year, car.plate, listing.mileage ?? car.mileage);
-        // Swap the photo via showPhoto so a placeholder card gets a real image
-        // (the old direct-img mutation no-oped when the first listing had none).
-        showPhoto(listing.photo);
-        // Point the CTAs and the photo link at the specific listing chosen.
-        if (listing.link) {
-          card.querySelectorAll('.vm-bmw-btn').forEach((a) => { a.href = listing.link; });
-          if (photoLink) photoLink.href = listing.link;
-        }
-      });
-      picker.append(opt);
-    });
-    // Wrap so a right-edge chevron can hint the strip scrolls to more cars.
-    // The hint hides once the user reaches the end (or there's nothing to scroll).
-    const pickWrap = el('div', 'vm-pick-wrap');
-    const pickHint = el('span', 'vm-pick-hint');
-    pickHint.setAttribute('aria-hidden', 'true');
-    pickHint.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    const syncHint = () => {
-      const more = picker.scrollWidth - picker.clientWidth - picker.scrollLeft > 4;
-      pickWrap.classList.toggle('has-more', more);
-    };
-    picker.addEventListener('scroll', syncHint);
-    // The card reveals from zero width, so recompute when the strip is measured.
-    if (window.ResizeObserver) new ResizeObserver(syncHint).observe(picker);
-    requestAnimationFrame(syncHint);
-    pickWrap.append(picker, pickHint);
-    body.append(pickWrap);
+  const nameStack = el('div', 'vm-bmw-name-stack');
+  nameStack.append(el('h3', 'vm-bmw-name', lineName));
+  if (trimName) nameStack.append(el('span', 'vm-bmw-trim', trimName));
+  header.append(nameStack);
+
+  const priceStack = el('div', 'vm-bmw-price-stack');
+  const roundel = el('span', 'vm-bmw-roundel');
+  roundel.innerHTML = `<svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="none" stroke="#1c69d4" stroke-width="2"/><path d="M16 1v15H1A15 15 0 0 1 16 1z" fill="#1c69d4"/><path d="M16 16v15A15 15 0 0 1 1 16z" fill="#fff"/><path d="M16 1a15 15 0 0 1 15 15H16z" fill="#fff"/><path d="M31 16a15 15 0 0 1-15 15V16z" fill="#1c69d4"/><circle cx="16" cy="16" r="15" fill="none" stroke="#999" stroke-width="1"/></svg>`;
+  if (isFrom) priceStack.append(el('span', 'vm-bmw-from', 'from'));
+  const priceRow = el('div', 'vm-bmw-price-row');
+  priceRow.append(roundel, el('span', 'vm-bmw-price', priceNum));
+  priceStack.append(priceRow);
+  header.append(priceStack);
+
+  body.append(header);
+
+  // Blue spec band — 2 lines: line 1 bold (body/fuel/gearbox/mpg), line 2 normal (colour/seats/boot + 0-62)
+  const specBand = el('div', 'vm-bmw-spec-band');
+  const line1Parts = [SPEC_LABELS[car.body], FUEL_SPEC[car.fuel]];
+  if (car.transmission === 'auto') line1Parts.push('Automatic');
+  else if (car.transmission === 'manual') line1Parts.push('Manual');
+  if (car.mpg) line1Parts.push(`${car.mpg} mpg`);
+  specBand.append(el('p', 'vm-bmw-spec-line1', line1Parts.filter(Boolean).join(' - ')));
+
+  const line2Parts = [];
+  if (car.colour?.manufacturerColour || car.colour?.colour) {
+    line2Parts.push(car.colour.manufacturerColour || car.colour.colour);
+  }
+  if (car.seats) line2Parts.push(`${car.seats} Seats`);
+  if (car.boot) line2Parts.push(`${car.boot}l Boot`);
+  if (car.zeroTo62) line2Parts.push(`0-62mph in ${car.zeroTo62}s`);
+  if (line2Parts.length) specBand.append(el('p', 'vm-bmw-spec-line2', line2Parts.join(' - ')));
+  body.append(specBand);
+
+  // Detail rows — SVG icons, no emojis
+  const details = el('div', 'vm-bmw-details');
+
+  const calIcon = `<svg class="vm-bmw-svg-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2" y="4" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h16" stroke="currentColor" stroke-width="1.5"/><path d="M6 2v4M14 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+  const milesIcon = `<svg class="vm-bmw-svg-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+  const pinIcon = `<svg class="vm-bmw-svg-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2a6 6 0 0 1 6 6c0 4-6 10-6 10S4 12 4 8a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/></svg>`;
+
+  if (car.plate || car.year) {
+    const row = el('div', 'vm-bmw-detail-row');
+    row.innerHTML = calIcon;
+    const label = [
+      car.year ? `${car.year}` : null,
+      car.plate ? `(${car.plate})` : null,
+    ].filter(Boolean).join(' ');
+    const txt = el('span', 'vm-bmw-detail-text');
+    txt.append(`Approved-used `);
+    txt.append(el('strong', null, label));
+    txt.append(` registered ${car.line || ''}`);
+    row.append(txt);
+    details.append(row);
   }
 
-  // Features — collapsible toggle. Built here but appended below the decision
-  // section (after wins/losses), so the reasoning reads first and the feature
-  // list sits at the foot with its arrow, above the CTAs.
+  if (car.mileage != null) {
+    const row = el('div', 'vm-bmw-detail-row');
+    row.innerHTML = milesIcon;
+    const txt = el('span', 'vm-bmw-detail-text');
+    txt.append(`Approx. `);
+    txt.append(el('strong', null, `${car.mileage.toLocaleString('en-GB')} miles`));
+    row.append(txt);
+    details.append(row);
+  }
+
+  if (car.retailerName) {
+    const row = el('div', 'vm-bmw-detail-row');
+    row.innerHTML = pinIcon;
+    const txt = el('span', 'vm-bmw-detail-text');
+    txt.append(`Ready for pickup from `);
+    txt.append(el('strong', null, car.retailerName));
+    if (car.distance != null) {
+      txt.append(el('span', 'vm-bmw-distance', ` · ${distanceLabel(car.distance)}`));
+    }
+    row.append(txt);
+    details.append(row);
+  }
+
+  if (details.children.length) body.append(details);
+
+  // Features — sorted so shared features (same across all podium cards) appear first
   const have = new Set(car.features || []);
   let featureKeys = Object.keys(CONCEPT_LABELS).filter((k) => have.has(k));
   if (sharedFeatureOrder) {
@@ -678,40 +669,17 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
     ];
   }
   const named = featureKeys.slice(0, KIT_SHOWN).map((k) => CONCEPT_LABELS[k]);
-  let featureBlock = null;
   if (named.length) {
-    const featToggle = el('button', 'vm-bmw-feat-toggle');
-    featToggle.type = 'button';
-    featToggle.setAttribute('aria-expanded', 'false');
-    const featChevron = el('span', 'vm-bmw-feat-chevron');
-    featChevron.setAttribute('aria-hidden', 'true');
-    featToggle.append(el('span', null, 'Features'), featChevron);
-    const featPanel = el('div', 'vm-bmw-feat-panel');
-    featPanel.hidden = true;
-    featPanel.textContent = named.join(' · ');
-    featToggle.addEventListener('click', () => {
-      const open = featToggle.getAttribute('aria-expanded') === 'true';
-      featToggle.setAttribute('aria-expanded', String(!open));
-      featPanel.hidden = open;
-    });
-    featureBlock = [featToggle, featPanel];
+    body.append(el('p', 'vm-bmw-section-label', 'Features'));
+    body.append(el('p', 'vm-bmw-features', named.join(' - ')));
   }
 
-  // Head-to-head decision aid, scoped to the three shown cars. Two columns:
-  // what this car does best for you (left), and why it isn't the top pick
-  // (right). Both come from the server's compareShown — real differences among
-  // these cars, never claims about the wider range. Falls back to the old
-  // reasons/tradeOffs only if the API hasn't sent wins/losses yet.
-  const wins = match.wins || [];
-  const losses = match.losses || [];
-  // The leader's CTAs live INSIDE the hero row (right column, beside the
+  // Gold: "Matched to you because..." / Silver+Bronze: "The decision to make" with tradeoffs as BUTs
   if (rank === 0) {
-    // The leader has nothing above it, so it shows strengths only, full width.
-    const strengths = wins.length ? wins : (reasons || []).slice(0, 3);
-    if (strengths.length) {
-      body.append(el('p', 'vm-bmw-section-label', 'Why it fits you best'));
-      const list = el('ul', 'vm-bmw-reasons vm-bmw-hero-reasons');
-      strengths.forEach((r) => {
+    if (reasons && reasons.length) {
+      body.append(el('p', 'vm-bmw-section-label', 'Matched to you because...'));
+      const list = el('ul', 'vm-bmw-reasons');
+      reasons.slice(0, 4).forEach((r) => {
         const li = el('li', null);
         li.innerHTML = r;
         list.append(li);
@@ -720,44 +688,37 @@ export function bmwPodiumCard(match, { rank = 0, sharedFeatureOrder = null } = {
     }
   } else {
     body.append(el('p', 'vm-bmw-section-label', 'The decision to make'));
+    // Two-column layout: positives left, buts right
     const decisionRow = el('div', 'vm-bmw-decision-row');
 
     const prosCol = el('ul', 'vm-bmw-reasons vm-bmw-decision-pros');
-    const pros = wins.length ? wins : (reasons || []).slice(0, 2);
-    pros.slice(0, 3).forEach((r) => {
+    (reasons || []).slice(0, 2).forEach((r) => {
       const li = el('li', null);
       li.innerHTML = r;
       prosCol.append(li);
     });
 
     const consCol = el('ul', 'vm-bmw-reasons vm-bmw-decision-cons');
-    // The server always sends a real, specific reason (compareShown). No filler
-    // fallback — if losses is empty the column stays empty rather than lie.
-    losses.slice(0, 3).forEach((r) => {
+    const trades = match.tradeOffs || [];
+    trades.slice(0, 2).forEach((t) => {
       const li = el('li', 'vm-bmw-reason-but');
-      li.innerHTML = `<strong>But:</strong> ${r.charAt(0).toLowerCase()}${r.slice(1)}`;
+      const gotLabel = t.dim === 'fuel'
+        ? (FUEL_SPEC[t.got] || t.got)
+        : (SPEC_LABELS[t.got] || t.got);
+      const wantLabel = (t.wants || []).map((w) => (t.dim === 'fuel' ? FUEL_SPEC[w] : SPEC_LABELS[w]) || w).join(' or ');
+      li.innerHTML = `<strong>But:</strong> ${gotLabel}, not ${wantLabel}`;
       consCol.append(li);
     });
+    // If no tradeoffs from the API, generate a score-gap note
+    if (!consCol.children.length) {
+      const li = el('li', 'vm-bmw-reason-but');
+      li.innerHTML = '<strong>But:</strong> pipped to first on overall match score';
+      consCol.append(li);
+    }
 
     decisionRow.append(prosCol, consCol);
     body.append(decisionRow);
   }
-
-  // Features sit at the foot on both card types: below the hero reasons/CTA row
-  // on the leader, and below the "decision to make" section on runner-ups.
-  if (featureBlock) body.append(...featureBlock);
-
-  // Actions: both route to the car's live retailer listing. A thin, full-width
-  // pair pinned to the foot on every card, so cards in a row end level.
-  const actions = el('div', 'vm-bmw-actions');
-  const drive = el('a', 'vm-bmw-btn vm-bmw-btn-primary', 'Book a test drive');
-  const details = el('a', 'vm-bmw-btn vm-bmw-btn-ghost', 'See full details');
-  [drive, details].forEach((a) => {
-    if (car.link) { a.href = car.link; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
-    else a.setAttribute('aria-disabled', 'true');
-  });
-  actions.append(drive, details);
-  body.append(actions);
 
   card.append(body);
   return card;
@@ -781,18 +742,7 @@ export function bmwTailTile(match) {
 
   const tile = el('article', 'vm-bmw-tail-tile');
   const { media } = mediaWell(car);
-  // Clickable photo → the live listing, same as the podium cards.
-  if (car.link) {
-    const photoLink = el('a', 'vm-bmw-photo-link');
-    photoLink.href = car.link;
-    photoLink.target = '_blank';
-    photoLink.rel = 'noopener noreferrer';
-    photoLink.setAttribute('aria-label', `View the ${lineName} at ${car.retailerName || 'the retailer'}`);
-    photoLink.append(media);
-    tile.append(photoLink);
-  } else {
-    tile.append(media);
-  }
+  tile.append(media);
 
   const body = el('div', 'vm-bmw-tail-body');
   body.append(el('h4', 'vm-bmw-tail-name', lineName));

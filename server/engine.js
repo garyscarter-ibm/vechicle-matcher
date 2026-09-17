@@ -624,6 +624,10 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
       let tasteWeighted = 0;
       let stretch = false;
       const candidates = [];
+      // Per-dimension raw scores (0..1), kept so the shown cards can be compared
+      // against EACH OTHER after ranking (see compareShown) — the card's "why not
+      // 1st" needs the losing dimension, which the blended score can't recover.
+      const dims = {};
       for (const [dim, scorer] of Object.entries(SCORERS)) {
         // A dimension a brand doesn't weight (e.g. styleLine/doors for BMW)
         // contributes nothing and can't surface a reason — so adding a scorer
@@ -631,6 +635,7 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
         const weight = (fitW[dim] ?? 0) + (tasteW[dim] ?? 0);
         if (weight === 0) continue;
         const r = scorer(car, answers, tuning);
+        dims[dim] = r.score;
         if (fitW[dim]) fitWeighted += fitW[dim] * r.score;
         if (tasteW[dim]) tasteWeighted += tasteW[dim] * r.score;
         if (r.stretch) stretch = true;
@@ -670,6 +675,7 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
         stretch,
         reasons,
         tradeOffs: tradeOffs(answers, car),
+        dims,
       };
     })
     // Fit first, then taste — so within a group of equally suitable cars the
@@ -911,4 +917,214 @@ export function matchCars(answers, cars, tuning = DEFAULT_TUNING) {
     tasteLead,
     searched,
   };
+}
+
+/*
+ * Head-to-head comparison of the cars actually on screen — the decision aid.
+ *
+ * The problem this solves: two cars can score 82 and 83 and look identical, and
+ * "pipped on overall score" tells the buyer nothing. The engine DOES know why —
+ * it scored every car on each dimension (dims) — so this names the specific
+ * dimension the leader won on, in words the buyer can act on.
+ *
+ * Each non-leader card gets:
+ *   wins   — dimensions this car is genuinely strong on (score ≥ STRONG),
+ *            phrased with its own spec. What it does FOR the buyer.
+ *   losses — the dimensions where the LEADER out-scores it by a real margin.
+ *            The true "why it isn't top", straight from the scores.
+ * The leader shows wins only (nothing sits above it).
+ *
+ * Everything is scoped to THESE cars: a loss means "the top pick beats it here",
+ * never a claim about the wider range. Dimensions with no buyer-legible phrase
+ * (size) are skipped — a reason the buyer can't picture is worse than none.
+ */
+const STRONG = 0.7; // a genuine strength worth stating
+const DIM_GAP = 0.12; // how much better the leader must score to call it a reason
+
+const SIZE_WORD = { 1: 'compact', 2: 'compact', 3: 'mid-size', 4: 'large', 5: 'full-size' };
+
+/*
+ * How each engine dimension reads on the card. `strength` is the left-column
+ * phrase (this car is good here). `deficit(rival, car)` is a complete predicate
+ * that reads after the rival's name — "the X1 <deficit>" — and its whole job is
+ * to name the CONCRETE FACT that put `rival` above `car`, not restate the
+ * dimension. `rival` is whichever car sits one place higher (the leader for the
+ * runner-up, the runner-up for third), so 2nd and 3rd never echo each other.
+ * Each falls back to a plain phrase only when the spec numbers aren't both
+ * present — an unquantified reason is still true, just less sharp.
+ */
+const DIM_COPY = {
+  budget: {
+    strength: (c) => `Well within your <strong>budget</strong>`,
+    deficit: (rival, car) => {
+      const save = Number(car.priceFrom ?? car.priceMin) - Number(rival.priceFrom ?? rival.priceMin);
+      return Number.isFinite(save) && save >= 2000
+        ? `costs <strong>${gbp(save)} less</strong> to get into`
+        : `is better value for what you get`;
+    },
+  },
+  body: {
+    strength: (c) => `The <strong>${BODY_WORD[c.body] || 'shape'}</strong> you asked for`,
+    deficit: (rival, car) => (rival.body && car.body && rival.body !== car.body
+      ? `is the <strong>${BODY_WORD[rival.body] || rival.body}</strong> you asked for, where this is a ${BODY_WORD[car.body] || car.body}`
+      : `is a closer match to the shape you wanted`),
+  },
+  fuel: {
+    strength: (c) => `<strong>${FUEL_LABELS[c.fuel] || c.fuel}</strong>, the fuel you wanted`,
+    deficit: (rival, car) => (rival.fuel && car.fuel && rival.fuel !== car.fuel
+      ? `is <strong>${FUEL_LABELS[rival.fuel] || rival.fuel}</strong>, the fuel you chose, where this is ${FUEL_LABELS[car.fuel] || car.fuel}`
+      : `better fits the fuel you chose`),
+  },
+  practicality: {
+    strength: (c) => (c.boot ? `<strong>${c.boot}L</strong> boot for what you carry` : `the space you need`),
+    deficit: (rival, car) => {
+      if (Number.isFinite(rival.seats) && Number.isFinite(car.seats) && rival.seats > car.seats) {
+        return `seats <strong>${rival.seats}</strong> to this car's ${car.seats}`;
+      }
+      const gap = Number(rival.boot) - Number(car.boot);
+      return Number.isFinite(gap) && gap >= 40
+        ? `has a <strong>${rival.boot}L</strong> boot to this car's ${car.boot}L`
+        : `has more room for people and luggage`;
+    },
+  },
+  performance: {
+    strength: (c) => (c.zeroTo62 ? `<strong>0–62 in ${c.zeroTo62}s</strong>` : `the pace you're after`),
+    deficit: (rival, car) => (Number.isFinite(rival.zeroTo62) && Number.isFinite(car.zeroTo62) && car.zeroTo62 - rival.zeroTo62 >= 0.3
+      ? `is the quicker car, <strong>0–62 in ${rival.zeroTo62}s</strong> against ${car.zeroTo62}s`
+      : `has more of the performance you asked for`),
+  },
+  economy: {
+    strength: (c) => (c.fuel === 'ev' ? `cheap <strong>per mile</strong> to run` : (c.mpg ? `<strong>${c.mpg}mpg</strong>, cheap to run` : `low running costs`)),
+    deficit: (rival, car) => {
+      if (rival.fuel === 'ev' && car.fuel !== 'ev') return `runs on <strong>electricity</strong>, pennies a mile where this burns fuel`;
+      const gap = Number(rival.mpg) - Number(car.mpg);
+      return Number.isFinite(gap) && gap >= 6
+        ? `is cheaper over your mileage at <strong>${rival.mpg}mpg</strong> to this car's ${car.mpg}`
+        : `is cheaper to run for your mileage`;
+    },
+  },
+  character: {
+    // Character is scored off body/size/tags, so the honest "why" is the
+    // concrete trait that scored it: a sharper 0-62, or a smaller, easier-to-place
+    // car when that's what the driving answers implied.
+    strength: () => `suits how you want to drive`,
+    deficit: (rival, car) => {
+      if (Number.isFinite(rival.zeroTo62) && Number.isFinite(car.zeroTo62) && car.zeroTo62 - rival.zeroTo62 >= 0.4) {
+        return `is the keener drive, <strong>0–62 in ${rival.zeroTo62}s</strong> against ${car.zeroTo62}s`;
+      }
+      if (Number.isFinite(rival.sizeClass) && Number.isFinite(car.sizeClass) && rival.sizeClass < car.sizeClass) {
+        return `is the <strong>${SIZE_WORD[rival.sizeClass] || 'smaller'}</strong> car, easier to place and park than this ${SIZE_WORD[car.sizeClass] || 'larger'} one`;
+      }
+      if (Number.isFinite(rival.sizeClass) && Number.isFinite(car.sizeClass) && rival.sizeClass > car.sizeClass) {
+        return `is the <strong>bigger</strong>, more planted car for the miles you do`;
+      }
+      return `is a closer match to how you want to drive`;
+    },
+  },
+};
+
+const BODY_WORD = {
+  hatchback: 'hatchback', saloon: 'saloon', estate: 'estate', suv: 'SUV',
+  coupe: 'coupé', convertible: 'convertible', mpv: 'family carrier',
+};
+
+export function compareShown(matches) {
+  if (!matches.length) return [];
+
+  return matches.map((m, i) => {
+    const car = m.car;
+    const dims = m.dims || {};
+    const isLeader = i === 0;
+
+    // WINS: dimensions this car is genuinely strong on, best first.
+    const wins = Object.entries(dims)
+      .filter(([dim, s]) => s >= STRONG && DIM_COPY[dim])
+      .sort((a, b) => b[1] - a[1])
+      .map(([dim]) => DIM_COPY[dim].strength(car))
+      .filter(Boolean);
+
+    // Each car is measured against the one immediately ABOVE it, not the leader:
+    // the runner-up explains why it isn't first, third why it isn't second. That
+    // is the step the buyer is actually weighing, and it stops 2nd and 3rd from
+    // printing the same "…than the leader" line. The rival's own spec is what the
+    // deficit phrases quote, so the reason is a fact, not a restatement.
+    const rival = isLeader ? null : matches[i - 1];
+    const rivalDims = rival ? (rival.dims || {}) : {};
+    const rivalName = rival ? (rival.car.line || 'the car above') : '';
+
+    // LOSSES: where the RIVAL beats this car by a real margin — the actual
+    // reason it ranked lower. Biggest gap first, so the headline reason leads.
+    // De-duped by the concrete fact each cites: performance and character both
+    // read off 0-62, so without this a car can print the same time twice under
+    // two labels. Keeping the first (bigger-gap) wins the slot.
+    const seen = new Set();
+    const losses = isLeader ? [] : Object.entries(rivalDims)
+      .map(([dim, ls]) => ({ dim, gap: ls - (dims[dim] ?? 0) }))
+      .filter(({ dim, gap }) => gap >= DIM_GAP && DIM_COPY[dim])
+      .sort((a, b) => b.gap - a.gap)
+      .map(({ dim }) => `the ${rivalName} ${DIM_COPY[dim].deficit(rival.car, car)}`)
+      .filter((text) => {
+        // Fact fingerprint: the sequence of numbers a phrase quotes. Performance
+        // and character both read off 0-62, so "quicker car, 0–62 in 3.9s vs 7.5"
+        // and "keener drive, 0–62 in 3.9s vs 7.5" share a fingerprint and only the
+        // first (bigger-gap) survives. A phrase with no numbers keys on its words,
+        // so two distinct unquantified reasons still both show.
+        const nums = (text.replace(/<[^>]+>/g, '').match(/[0-9.]+/g) || []).join(',');
+        const key = nums || text.replace(/<[^>]+>/g, '').toLowerCase();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+    // When the dimension scores can't separate near-identical cars (three X5s,
+    // say), the honest difference is in the raw spec. Surface concrete deltas vs
+    // the rival so "why not higher" always has substance, biggest gap first.
+    if (!isLeader && !losses.length) losses.push(...specDeltas(car, rival.car));
+    // Genuinely tied on everything the engine can see: don't invent a flaw. Name
+    // the one honest difference — a different fuel/engine — or say it's a toss-up.
+    if (!isLeader && !losses.length && (m.tradeOffs || []).length === 0) {
+      if (car.fuel !== rival.car.fuel) {
+        losses.push(`practically tied, it's ${FUEL_LABELS[car.fuel] || car.fuel} where the ${rivalName} is ${FUEL_LABELS[rival.car.fuel] || rival.car.fuel}`);
+      } else {
+        losses.push(`practically tied with the ${rivalName}, it comes down to the details`);
+      }
+    }
+
+    // A missed hard want (wrong fuel/shape) is the sharpest loss — surface it first.
+    // Measured against what the USER asked for (a fact about this car), so it holds
+    // regardless of which rival it's ranked against.
+    for (const t of m.tradeOffs || []) {
+      const got = t.dim === 'fuel' ? (FUEL_LABELS[t.got] || t.got) : (BODY_WORD[t.got] || t.got);
+      const want = (t.wants || []).map((w) => (t.dim === 'fuel' ? FUEL_LABELS[w] : BODY_WORD[w]) || w).join(' or ');
+      losses.unshift(`it's ${got}, and you asked for ${want}`);
+    }
+
+    return { wins: wins.slice(0, 3), losses: losses.slice(0, 2) };
+  });
+}
+
+/*
+ * Concrete spec differences between a car and the leader, worst-for-the-buyer
+ * first. The tiebreaker when the dimension scores are effectively flat — every
+ * line is a fact off the spec sheet the buyer can verify, scoped to this pair.
+ * Only meaningful gaps speak (a £400 or 2-mile difference is noise).
+ */
+function specDeltas(car, leader) {
+  const out = [];
+  const mi = car.mileage - leader.mileage;
+  if (Number.isFinite(mi) && mi >= 8000) {
+    out.push({ gap: mi / 10000, text: `${car.mileage.toLocaleString('en-GB')} miles vs the ${leader.line}'s ${leader.mileage.toLocaleString('en-GB')}` });
+  }
+  const price = car.priceFrom - leader.priceFrom;
+  if (Number.isFinite(price) && price >= 3000) {
+    out.push({ gap: price / 10000, text: `costs more than the ${leader.line} to get into` });
+  }
+  if (car.fuel === 'ev' && leader.fuel === 'ev' && Number.isFinite(car.evRange) && Number.isFinite(leader.evRange) && leader.evRange - car.evRange >= 15) {
+    out.push({ gap: (leader.evRange - car.evRange) / 100, text: `${car.evRange}-mile range vs the ${leader.line}'s ${leader.evRange}` });
+  }
+  const mpgGap = Number(leader.mpg) - Number(car.mpg);
+  if (car.fuel !== 'ev' && Number.isFinite(mpgGap) && mpgGap >= 8) {
+    out.push({ gap: mpgGap / 20, text: `thirstier at ${car.mpg}mpg vs the ${leader.line}'s ${leader.mpg}` });
+  }
+  return out.sort((a, b) => b.gap - a.gap).map((d) => d.text);
 }

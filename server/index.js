@@ -32,6 +32,7 @@ import { timingSafeEqual } from 'node:crypto';
 
 import {
   matchCars, rankCars, groupListings, budgetRange, unmetWants, TOP_MATCHES,
+  compareShown,
 } from './engine.js';
 import {
   fetchRetailerStock, fetchNearbyStock, startStockWarmer, StockUnavailableError, enrichColours,
@@ -397,7 +398,7 @@ function publicPool(brand, cars, directory = null) {
 }
 
 function publicMatch({
-  car, score, stretch, reasons, tradeOffs, listings,
+  car, score, stretch, reasons, tradeOffs, listings, wins, losses,
 }) {
   return {
     car: publicCar(car),
@@ -405,6 +406,12 @@ function publicMatch({
     stretch,
     reasons,
     tradeOffs,
+    // Head-to-head decision aid: what this car does best among the shown cars
+    // (wins) and why it isn't the top pick (losses). Scoped to these cars only.
+    // Absent on non-shown matches (alternatives) — compareShown ran on the
+    // shown set, so they simply carry nothing.
+    wins,
+    losses,
     // The individual cars behind a grouped card. Sent for EVERY match, not
     // just multi-listing ones, because the page's refine/reject layer filters
     // listings and rebuilds the card from the survivors — a one-listing group
@@ -596,6 +603,21 @@ async function handleMatch(req, res, deps) {
   // folded answers — those are the wants actually searched for. Half the
   // picture: the block waits for /api/nearby to agree before telling the user
   // a want is genuinely unavailable.
+  // Compare the shown cars against each other for the decision aid, then fold
+  // each card's wins/losses onto its match so publicMatch can carry them.
+  const comparison = compareShown(matches);
+  matches.forEach((m, i) => { m.wins = comparison[i].wins; m.losses = comparison[i].losses; });
+  // Alternatives need the same data: a rejected card is replaced by one of
+  // these, and it must arrive with its own decision aid rather than a blank
+  // column. compareShown measures each car against the one immediately above
+  // it, so pass the WHOLE ranked chain (shown + alternatives) and read the
+  // alternatives' slice off the end — each alternative explains the step down
+  // from the car ranked just ahead of it, exactly as the shown cards do.
+  if (matches.length && alternatives.length) {
+    const chain = compareShown([...matches, ...alternatives]);
+    const altCompare = chain.slice(matches.length);
+    alternatives.forEach((m, i) => { m.wins = altCompare[i].wins; m.losses = altCompare[i].losses; });
+  }
   return sendJson(res, 200, {
     matches: matches.map(publicMatch),
     // Held back for "not this one" to fall through to (see matchCars).
@@ -692,6 +714,17 @@ async function handlePreview(req, res, deps) {
     }
   } catch (err) {
     console.warn('[preview] colour enrichment failed:', err?.message);
+  }
+
+  // Same decision aid the committed /api/match builds (compareShown): why each
+  // shown car isn't the leader, straight from its dimension scores. The preview
+  // ranking is provisional, so this is a live estimate that re-derives as the
+  // brief fills in — which is exactly what the podium promises.
+  try {
+    const comparison = compareShown(matches);
+    matches.forEach((m, i) => { m.wins = comparison[i].wins; m.losses = comparison[i].losses; });
+  } catch (err) {
+    console.warn('[preview] comparison failed:', err?.message);
   }
 
   return sendJson(res, 200, { matches: matches.map(publicMatch) });

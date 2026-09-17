@@ -102,7 +102,7 @@ const PODIUM_COPY = {
     wordmark: 'MINI Podium',
     title: 'YOUR TOP THREE, LIVE.',
     bannerStart: "Nothing decided yet. We've made a start from your budget anyway.",
-    bannerProgress: ({ done, total }) => `${done}/${total} answered — questions you answer go to the bottom`,
+    bannerProgress: ({ done, total }) => `${done}/${total} answered`,
     bannerComplete: "That's the lot answered. Go on then, make it official.",
     commitCta: 'Find my perfect match',
     commitBusy: 'Having a proper look',
@@ -150,8 +150,8 @@ const PODIUM_COPY = {
   bmw: {
     wordmark: 'Your Shortlist',
     title: 'Your top three, live.',
-    bannerStart: '0/9 answered — questions you answer go to the bottom',
-    bannerProgress: ({ done, total }) => `${done}/${total} answered — questions you answer go to the bottom`,
+    bannerStart: '0/9 answered',
+    bannerProgress: ({ done, total }) => `${done}/${total} answered`,
     bannerComplete: 'All answered. Confirm when you\'re ready.',
     commitCta: 'Find my perfect match',
     commitBusy: 'Checking the stock',
@@ -198,7 +198,7 @@ const PODIUM_COPY = {
     wordmark: 'Your Shortlist',
     title: 'Your top three, live.',
     bannerStart: "Nothing committed yet. The shortlist is already working from your budget.",
-    bannerProgress: ({ done, total }) => `${done}/${total} answered — questions you answer go to the bottom`,
+    bannerProgress: ({ done, total }) => `${done}/${total} answered`,
     bannerComplete: "That's everything answered. Confirm when you're ready.",
     commitCta: 'Find my perfect match',
     commitBusy: 'Checking the stock',
@@ -245,7 +245,7 @@ const PODIUM_COPY = {
     wordmark: 'Your Shortlist',
     title: 'Your top three, live.',
     bannerStart: "Nothing committed yet. We've made a start from your budget.",
-    bannerProgress: ({ done, total }) => `${done}/${total} answered — questions you answer go to the bottom`,
+    bannerProgress: ({ done, total }) => `${done}/${total} answered`,
     bannerComplete: "That's everything answered. Confirm whenever you're ready.",
     commitCta: 'Find my perfect match',
     commitBusy: 'Checking the stock',
@@ -292,7 +292,7 @@ const PODIUM_COPY = {
     wordmark: 'Your Shortlist',
     title: 'Your top three bikes, live.',
     bannerStart: "Nothing committed yet. The shortlist is already working from your budget.",
-    bannerProgress: ({ done, total }) => `${done}/${total} answered — questions you answer go to the bottom`,
+    bannerProgress: ({ done, total }) => `${done}/${total} answered`,
     bannerComplete: "That's everything answered. Confirm when you're ready.",
     commitCta: 'Find my perfect match',
     commitBusy: 'Checking the stock',
@@ -341,7 +341,7 @@ const PODIUM_COPY = {
     wordmark: 'The Podium',
     title: 'Your top three, live.',
     bannerStart: 'Nothing settled yet. The order has started from your budget.',
-    bannerProgress: ({ done, total }) => `${done}/${total} answered — questions you answer go to the bottom`,
+    bannerProgress: ({ done, total }) => `${done}/${total} answered`,
     bannerComplete: "That's everything answered. Settle it when you're ready.",
     commitCta: 'Find my perfect match',
     commitBusy: 'Looking through the stock',
@@ -778,14 +778,6 @@ function mount(root, ctx) {
     if (state.committed) dropToLive();
     syncQuestions();
     scheduleRefresh();
-    // Move answered questions to the end, preserving their relative order
-    // among answered ones; unanswered questions stay at the top.
-    const visible = visibleQuestions(state.questions, state.answers);
-    const answeredNodes = visible
-      .filter(isAnswered)
-      .map((q) => blocks.get(q.id))
-      .filter(Boolean);
-    answeredNodes.forEach((node) => questionsWrap.append(node));
   }
 
   const scheduleRefresh = () => {

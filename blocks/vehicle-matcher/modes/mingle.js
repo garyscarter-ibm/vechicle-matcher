@@ -1070,7 +1070,14 @@ function mount(root, ctx) {
       const why = el('div', 'vm-mingle-why');
       why.append(el('p', 'vm-mingle-why-intro', copy.whyIntro));
       const list = el('ul', 'vm-mingle-why-list');
-      hero.reasons.forEach((r) => list.append(el('li', 'vm-mingle-why-item', r)));
+      // Reasons carry <strong> markup from the engine; innerHTML so the emphasis
+      // renders instead of printing the raw tag. Same trust model as the other
+      // cards (server copy, not user input).
+      hero.reasons.forEach((r) => {
+        const li = el('li', 'vm-mingle-why-item');
+        li.innerHTML = r;
+        list.append(li);
+      });
       why.append(list);
       const trait = swipeTrait();
       if (trait && !thin) why.append(el('p', 'vm-mingle-callback', copy.swipeCallback({ trait })));

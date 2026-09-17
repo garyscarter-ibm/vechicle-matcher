@@ -1149,7 +1149,12 @@ function mount(root, ctx) {
       const why = el('div', 'vm-mingle-why');
       why.append(el('p', 'vm-mingle-why-intro', copy.whyIntro));
       const list = el('ul', 'vm-mingle-why-list');
-      reasons.forEach((r) => list.append(el('li', 'vm-mingle-why-item', r)));
+      // innerHTML so the engine's <strong> emphasis renders, not the raw tag.
+      reasons.forEach((r) => {
+        const li = el('li', 'vm-mingle-why-item');
+        li.innerHTML = r;
+        list.append(li);
+      });
       why.append(list);
       const beaten = beatenLabel();
       if (beaten) why.append(el('p', 'vm-mingle-callback', copy.crownCallback({ beaten })));
