@@ -1,0 +1,20 @@
+[
+  {
+    "sampleId": "sport-tourer-structured-equipment",
+    "canonicalDerivativeId": "bmw-motorrad:s-1000-xr",
+    "registrationYear": 2023,
+    "ausstattungsText": "ABS, Heated grips, Hand protection, ESA, DTC, Main stand, Cruise control",
+    "merkmaleText": "Complete with Colour Matched Top Box.",
+    "packagesText": "",
+    "basisDaten": {"Segment": "Sport", "Drive": "Chain"}
+  },
+  {
+    "sampleId": "package-and-negation",
+    "canonicalDerivativeId": "bmw-motorrad:r-1250-gs",
+    "registrationYear": 2021,
+    "ausstattungsText": "Heated grips, Dynamic ESA, No top box",
+    "merkmaleText": "Touring package mentioned in advert text",
+    "packagesText": "Touring package",
+    "basisDaten": {"Segment": "Adventure"}
+  }
+]

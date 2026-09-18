@@ -40,6 +40,7 @@ import {
   shuffle, photosFirst, swatchFor, priceLabel, cap,
   bracketToAnswers, idOf, celebrate, ageInYears,
 } from './match-signal.js';
+import { renderStockFreshnessNotice } from './stock-freshness.js';
 
 /* The most cars we'll ever field, even when stock is deep — four rounds
  * (16 → 8 → 4 → 2 → 1) is already a long-ish sitting for a promo. The field is
@@ -1139,6 +1140,8 @@ function mount(root, ctx) {
     screen.append(el('p', 'vm-kicker vm-mingle-match-kicker', copy.matchKicker));
     screen.append(el('h2', 'vm-title', copy.matchTitle({ model: champion.name })));
     screen.append(el('p', 'vm-lede', copy.matchLede));
+    const stockNotice = ctx.brand === 'motorrad' ? renderStockFreshnessNotice(result.stockFreshness) : null;
+    if (stockNotice) screen.append(stockNotice);
 
     // Hero card — always the CHAMPION the player crowned (never swapped out).
     screen.append(buildHero(champion));

@@ -1,0 +1,1946 @@
+{
+  "generatedAt": "2026-09-16",
+  "mode": "live-stratified-sample",
+  "scope": "Derivative-stratified live sample from 10 requested result pages; percentages are sample percentages, not complete-pool percentages.",
+  "liveOffersDiscovered": 200,
+  "offersSampled": 50,
+  "successfulDetailRequests": 50,
+  "failedDetailRequests": 0,
+  "offersWithNonEmptyEquipmentData": 50,
+  "sourceFieldCoverage": {
+    "ausstattungsText": 50,
+    "merkmaleText": 44,
+    "basisDaten": 50
+  },
+  "request": {
+    "pageRequests": 10,
+    "detailRequests": 50,
+    "detailConcurrency": 3,
+    "retries": 2,
+    "uniqueOfferRequests": 50,
+    "meanPageLatencyMs": 5210,
+    "meanDetailLatencyMs": 273
+  },
+  "availableCanonicalDerivatives": 44,
+  "derivativeCoverage": [
+    {
+      "canonicalDerivativeId": "bmw-motorrad:c-400-gt",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2026
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:c-400-x",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2026
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:ce-04",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2023
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-450-gs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2026
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-800-gs-895cc",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2025
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-850-gs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2019
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-900-gs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2024
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-900-gs-adventure",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2026
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-900-r",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2022
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-900-r-a2-70-kw",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2021
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-900-xr",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2023
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:g-310-gs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2021
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:g-310-r",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2024
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:k-1600-b",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2019
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:k-1600-grand-america",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2019
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:k-1600-gt",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2017
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:m-1000-r",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2023
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:m-1000-rr",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2022
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:m-1000-xr",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2024
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-12",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2026
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-12-ninet",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2024
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1200-gs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2018
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1200-gs-adventure",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2017
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1200-r",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2018
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1200-rs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2018
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1200-rt",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2018
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1250-gs",
+      "sampled": 2,
+      "success": 2,
+      "registrationYears": [
+        2019,
+        2022
+      ],
+      "nonEmptyEquipment": 2
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1250-gs-adventure",
+      "sampled": 2,
+      "success": 2,
+      "registrationYears": [
+        2019,
+        2024
+      ],
+      "nonEmptyEquipment": 2
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1250-r",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2021
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1250-rs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2023
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1250-rt",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2019
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1300-gs",
+      "sampled": 2,
+      "success": 2,
+      "registrationYears": [
+        2023,
+        2026
+      ],
+      "nonEmptyEquipment": 2
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1300-gs-adventure",
+      "sampled": 2,
+      "success": 2,
+      "registrationYears": [
+        2024,
+        2026
+      ],
+      "nonEmptyEquipment": 2
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1300-r",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2025
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1300-rs",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2025
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-1300-rt",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2025
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-18-b",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2023
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-18-transcontinental",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2025
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-ninet",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2023
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-ninet-pure",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2022
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:r-ninet-urban-g-s",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2022
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:s-1000-r",
+      "sampled": 2,
+      "success": 2,
+      "registrationYears": [
+        2019,
+        2026
+      ],
+      "nonEmptyEquipment": 2
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:s-1000-rr",
+      "sampled": 1,
+      "success": 1,
+      "registrationYears": [
+        2021
+      ],
+      "nonEmptyEquipment": 1
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:s-1000-xr",
+      "sampled": 2,
+      "success": 2,
+      "registrationYears": [
+        2018,
+        2025
+      ],
+      "nonEmptyEquipment": 2
+    }
+  ],
+  "phrases": [
+    {
+      "rawWording": "Available as of: from now",
+      "normalisedWording": "available as of from now",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 50,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-b",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "MOT: --",
+      "normalisedWording": "mot",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 50,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-b",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "[redacted restricted phrase]",
+      "normalisedWording": "redacted restricted phrase",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 50,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-b",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "high",
+      "classification": "noise",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Restricted identifier/contact wording is excluded from audit data."
+    },
+    {
+      "rawWording": "Drive: Shaft drive",
+      "normalisedWording": "drive shaft drive",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 42,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-b",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Keyless Ride",
+      "normalisedWording": "keyless ride",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 36,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "keyless-ride",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Segment: Adventure",
+      "normalisedWording": "segment adventure",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 32,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Tyre Pressure Control",
+      "normalisedWording": "tyre pressure control",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 32,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Heated grips",
+      "normalisedWording": "heated grips",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 31,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "heated-grips",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Cruise control",
+      "normalisedWording": "cruise control",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 30,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "cruise-control",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Main stand",
+      "normalisedWording": "main stand",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 30,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "centre-stand",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "ABS",
+      "normalisedWording": "abs",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 29,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "abs",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "ESA",
+      "normalisedWording": "esa",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 26,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "electronic-suspension",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Windshield",
+      "normalisedWording": "windshield",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 25,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-urban-g-s"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Seat heating",
+      "normalisedWording": "seat heating",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 22,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-ninet",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-rr"
+      ],
+      "proposedCanonicalFeatureId": "heated-seat",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Anti-theft alarm system",
+      "normalisedWording": "anti theft alarm system",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 21,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-18-b",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-rr",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "alarm",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Colour: Black Storm Metallic",
+      "normalisedWording": "colour black storm metallic",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 16,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "DTC",
+      "normalisedWording": "dtc",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 16,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "traction-control",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Engine protection bar",
+      "normalisedWording": "engine protection bar",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 16,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Hand protection",
+      "normalisedWording": "hand protection",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 15,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-urban-g-s",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Colour: RACING BLUE METALLIC",
+      "normalisedWording": "colour racing blue metallic",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 14,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-ninet"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "seat heating",
+      "normalisedWording": "seat heating",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 14,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:r-1250-r",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-rs",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-ninet"
+      ],
+      "proposedCanonicalFeatureId": "heated-seat",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "comfort package",
+      "normalisedWording": "comfort package",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 12,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "comfort-package",
+      "confidence": "low",
+      "classification": "package",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Package label is retained only; it does not expand to component features."
+    },
+    {
+      "rawWording": "cruise control",
+      "normalisedWording": "cruise control",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 12,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-850-gs",
+        "bmw-motorrad:f-900-gs",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:r-12",
+        "bmw-motorrad:r-1250-gs-adventure",
+        "bmw-motorrad:s-1000-r"
+      ],
+      "proposedCanonicalFeatureId": "cruise-control",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "On-board computer",
+      "normalisedWording": "on board computer",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 12,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:m-1000-r",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt",
+        "bmw-motorrad:r-18-transcontinental",
+        "bmw-motorrad:r-ninet-urban-g-s"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Radio / CD",
+      "normalisedWording": "radio cd",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 10,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:g-310-r",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-ninet-pure",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Drive: Chain",
+      "normalisedWording": "drive chain",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 8,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Panniers",
+      "normalisedWording": "panniers",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 8,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1200-r",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-gs-adventure",
+        "bmw-motorrad:r-1300-r",
+        "bmw-motorrad:r-1300-rt"
+      ],
+      "proposedCanonicalFeatureId": "panniers",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Top box",
+      "normalisedWording": "top box",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 8,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-rt"
+      ],
+      "proposedCanonicalFeatureId": "top-box",
+      "confidence": "high",
+      "classification": "feature",
+      "evidenceState": "advertised",
+      "individualAdvert": true,
+      "reviewNotes": "Structured individual advert equipment text."
+    },
+    {
+      "rawWording": "Colour: Racing Red",
+      "normalisedWording": "colour racing red",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 7,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Segment: Sport",
+      "normalisedWording": "segment sport",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 7,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-rs",
+        "bmw-motorrad:s-1000-r",
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "centre stand",
+      "normalisedWording": "centre stand",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 5,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt"
+      ],
+      "proposedCanonicalFeatureId": "centre-stand",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "Colour: Kalamata Metallic",
+      "normalisedWording": "colour kalamata metallic",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 5,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-x",
+        "bmw-motorrad:m-1000-xr",
+        "bmw-motorrad:r-1200-gs-adventure",
+        "bmw-motorrad:r-1250-rs",
+        "bmw-motorrad:r-1250-rt"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "dynamic esa",
+      "normalisedWording": "dynamic esa",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 5,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt"
+      ],
+      "proposedCanonicalFeatureId": "electronic-suspension",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "keyless ride",
+      "normalisedWording": "keyless ride",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 5,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt"
+      ],
+      "proposedCanonicalFeatureId": "keyless-ride",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "Segment: Heritage",
+      "normalisedWording": "segment heritage",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 5,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:r-1200-rt",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-18-b"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Segment: Tourer / Luxury tourer",
+      "normalisedWording": "segment tourer luxury tourer",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 5,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt",
+        "bmw-motorrad:s-1000-rr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Colour: MANHATTAN METALLIC MATT",
+      "normalisedWording": "colour manhattan metallic matt",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 4,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:ce-04",
+        "bmw-motorrad:m-1000-rr",
+        "bmw-motorrad:r-1250-gs",
+        "bmw-motorrad:r-18-b"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "dynamic package",
+      "normalisedWording": "dynamic package",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 4,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:f-900-xr",
+        "bmw-motorrad:s-1000-r"
+      ],
+      "proposedCanonicalFeatureId": "dynamic-package",
+      "confidence": "low",
+      "classification": "package",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Package label is retained only; it does not expand to component features."
+    },
+    {
+      "rawWording": "heated grips",
+      "normalisedWording": "heated grips",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 4,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r",
+        "bmw-motorrad:g-310-gs",
+        "bmw-motorrad:k-1600-grand-america",
+        "bmw-motorrad:k-1600-gt"
+      ],
+      "proposedCanonicalFeatureId": "heated-grips",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "topcase",
+      "normalisedWording": "topcase",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 4,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:k-1600-b",
+        "bmw-motorrad:r-1200-gs",
+        "bmw-motorrad:r-1300-gs",
+        "bmw-motorrad:r-1300-rt"
+      ],
+      "proposedCanonicalFeatureId": "top-box",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "alarm",
+      "normalisedWording": "alarm",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 3,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-rs"
+      ],
+      "proposedCanonicalFeatureId": "alarm",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "ASC",
+      "normalisedWording": "asc",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 3,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:c-400-gt",
+        "bmw-motorrad:r-12-ninet",
+        "bmw-motorrad:r-1200-rs"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "heated handlebar grips",
+      "normalisedWording": "heated handlebar grips",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 3,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:s-1000-r"
+      ],
+      "proposedCanonicalFeatureId": "heated-grips",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "riding mode pro",
+      "normalisedWording": "riding mode pro",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 3,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-800-gs-895cc",
+        "bmw-motorrad:f-900-gs-adventure",
+        "bmw-motorrad:s-1000-r"
+      ],
+      "proposedCanonicalFeatureId": "riding-modes",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "Colour: Ice grey",
+      "normalisedWording": "colour ice grey",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 2,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-450-gs",
+        "bmw-motorrad:r-18-transcontinental"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Navigation system",
+      "normalisedWording": "navigation system",
+      "sourceField": "ausstattungsText",
+      "occurrenceCount": 2,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-r-a2-70-kw",
+        "bmw-motorrad:r-1300-r"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "advertised",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "alarm system",
+      "normalisedWording": "alarm system",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 1,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-xr"
+      ],
+      "proposedCanonicalFeatureId": "alarm",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "Colour: Alpine White",
+      "normalisedWording": "colour alpine white",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 1,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:s-1000-rr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "Colour: GRAVITYBLUE METALLIC",
+      "normalisedWording": "colour gravityblue metallic",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 1,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:r-1200-rt"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "rdc",
+      "normalisedWording": "rdc",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 1,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-xr"
+      ],
+      "proposedCanonicalFeatureId": "tyre-pressure-monitoring",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    },
+    {
+      "rawWording": "Segment: Roadster / Naked bike",
+      "normalisedWording": "segment roadster naked bike",
+      "sourceField": "basisDaten",
+      "occurrenceCount": 1,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:f-900-xr"
+      ],
+      "proposedCanonicalFeatureId": null,
+      "confidence": "low",
+      "classification": "descriptive-text",
+      "evidenceState": "model-general",
+      "individualAdvert": false,
+      "reviewNotes": "Not in the controlled feature vocabulary."
+    },
+    {
+      "rawWording": "top box",
+      "normalisedWording": "top box",
+      "sourceField": "merkmaleText",
+      "occurrenceCount": 1,
+      "exampleCanonicalDerivatives": [
+        "bmw-motorrad:s-1000-xr"
+      ],
+      "proposedCanonicalFeatureId": "top-box",
+      "confidence": "low",
+      "classification": "feature",
+      "evidenceState": "uncertain",
+      "individualAdvert": false,
+      "reviewNotes": "Unstructured/general wording; do not treat as independently fitted equipment."
+    }
+  ],
+  "featureOccurrenceCounts": {
+    "abs": 29,
+    "alarm": 25,
+    "centre-stand": 35,
+    "comfort-package": 12,
+    "cruise-control": 42,
+    "dynamic-package": 4,
+    "electronic-suspension": 31,
+    "heated-grips": 38,
+    "heated-seat": 36,
+    "keyless-ride": 41,
+    "panniers": 8,
+    "riding-modes": 3,
+    "top-box": 13,
+    "traction-control": 16,
+    "tyre-pressure-monitoring": 1
+  },
+  "featureEvidenceStates": {
+    "abs": {
+      "advertised": 29
+    },
+    "alarm": {
+      "advertised": 21,
+      "uncertain": 4
+    },
+    "centre-stand": {
+      "advertised": 30,
+      "uncertain": 5
+    },
+    "comfort-package": {
+      "uncertain": 12
+    },
+    "cruise-control": {
+      "advertised": 30,
+      "uncertain": 12
+    },
+    "dynamic-package": {
+      "uncertain": 4
+    },
+    "electronic-suspension": {
+      "advertised": 26,
+      "uncertain": 5
+    },
+    "heated-grips": {
+      "advertised": 31,
+      "uncertain": 7
+    },
+    "heated-seat": {
+      "advertised": 22,
+      "uncertain": 14
+    },
+    "keyless-ride": {
+      "advertised": 36,
+      "uncertain": 5
+    },
+    "panniers": {
+      "advertised": 8
+    },
+    "riding-modes": {
+      "uncertain": 3
+    },
+    "top-box": {
+      "advertised": 8,
+      "uncertain": 5
+    },
+    "traction-control": {
+      "advertised": 16
+    },
+    "tyre-pressure-monitoring": {
+      "uncertain": 1
+    }
+  },
+  "phraseMetrics": {
+    "distinctRawEquipmentPhrases": 52,
+    "confidentlyMapped": 11,
+    "packageOnly": 0,
+    "uncertainOrUnmapped": 41
+  }
+}

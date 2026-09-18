@@ -70,7 +70,15 @@ export async function apiMatch(base, answers, retailer, brandKey, scope) {
       answers, retailer, brand: brandKey, scope,
     }),
   });
-  if (!res.ok) throw new Error(`Match request failed (${res.status})`);
+  if (!res.ok) {
+    // A controlled Motorrad availability state is the only error detail the
+    // result surface may act on. The body is otherwise deliberately discarded.
+    let stockFreshness = null;
+    try { stockFreshness = (await res.json()).stockFreshness; } catch { /* no-op */ }
+    const error = new Error(`Match request failed (${res.status})`);
+    error.stockFreshness = stockFreshness;
+    throw error;
+  }
   return res.json();
 }
 

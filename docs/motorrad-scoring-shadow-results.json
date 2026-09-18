@@ -1,0 +1,6622 @@
+{
+  "generatedAt": "2026-09-16",
+  "purpose": "Shadow-only current compatibility versus proposed derivative profiles.",
+  "fixtureOffers": 955,
+  "evaluatedOffers": 955,
+  "scenarios": [
+    {
+      "id": "a1-commute-low",
+      "answers": {
+        "budget": [
+          0,
+          7000
+        ],
+        "mileage": "high",
+        "fuel": "open",
+        "bodyStyles": [
+          "scooter"
+        ],
+        "primaryUse": "city",
+        "priorities": [
+          "economy"
+        ],
+        "style": 2,
+        "licence": "a1"
+      },
+      "currentTopResults": [],
+      "proposedTopResults": [],
+      "topThreeCurrent": [],
+      "topThreeProposed": [],
+      "topTenAdded": [],
+      "topTenRemoved": [],
+      "materialMovements": []
+    },
+    {
+      "id": "a2-adventure-medium",
+      "answers": {
+        "budget": [
+          0,
+          14000
+        ],
+        "mileage": "mid",
+        "fuel": "open",
+        "bodyStyles": [
+          "adventure"
+        ],
+        "primaryUse": "roadtrips",
+        "priorities": [
+          "comfort"
+        ],
+        "style": 3,
+        "licence": "a2"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "575124",
+          "title": "BMW G 310 GS with Centre Stand",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "574558",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "575997",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "575188",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "576785",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "577013",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "575062",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "574091",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "576990",
+          "title": "BMW G 310 GS Pre Registered Special",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        },
+        {
+          "offerId": "564181",
+          "title": "BMW G 310 GS",
+          "score": 71,
+          "fit": 89,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget",
+            "Frugal for what it is, around 83mpg"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "575124",
+          "title": "BMW G 310 GS with Centre Stand",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "574558",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "575997",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "575188",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "576785",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "577013",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "575062",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "574091",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "576990",
+          "title": "BMW G 310 GS Pre Registered Special",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        },
+        {
+          "offerId": "564181",
+          "title": "BMW G 310 GS",
+          "score": 65,
+          "fit": 81,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £14k budget"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "575124",
+        "574558",
+        "575997"
+      ],
+      "topThreeProposed": [
+        "575124",
+        "574558",
+        "575997"
+      ],
+      "topTenAdded": [],
+      "topTenRemoved": [],
+      "materialMovements": [
+        {
+          "offerId": "575124",
+          "currentPosition": 1,
+          "proposedPosition": 1,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574558",
+          "currentPosition": 2,
+          "proposedPosition": 2,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575997",
+          "currentPosition": 3,
+          "proposedPosition": 3,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575188",
+          "currentPosition": 4,
+          "proposedPosition": 4,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576785",
+          "currentPosition": 5,
+          "proposedPosition": 5,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577013",
+          "currentPosition": 6,
+          "proposedPosition": 6,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575062",
+          "currentPosition": 7,
+          "proposedPosition": 7,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574091",
+          "currentPosition": 8,
+          "proposedPosition": 8,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576990",
+          "currentPosition": 9,
+          "proposedPosition": 9,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "564181",
+          "currentPosition": 10,
+          "proposedPosition": 10,
+          "currentScore": 71,
+          "proposedScore": 65,
+          "currentFit": 89,
+          "proposedFit": 81,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "full-a-performance-high",
+      "answers": {
+        "budget": [
+          0,
+          30000
+        ],
+        "mileage": "mid",
+        "fuel": "open",
+        "bodyStyles": [
+          "sport"
+        ],
+        "primaryUse": "fun",
+        "priorities": [
+          "performance"
+        ],
+        "style": 5,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "576433",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "575855",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "574182",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "571608",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "576118",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "575643",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "573855",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "574944",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "575699",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "573244",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "575595",
+          "title": "BMW M 1000 RR",
+          "score": 84,
+          "fit": 89,
+          "taste": 63,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "576855",
+          "title": "BMW M 1000 RR COMPETITION PACK",
+          "score": 84,
+          "fit": 89,
+          "taste": 63,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "575470",
+          "title": "BMW M 1000 RR",
+          "score": 84,
+          "fit": 89,
+          "taste": 63,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "573831",
+          "title": "BMW M 1000 RR",
+          "score": 84,
+          "fit": 89,
+          "taste": 63,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "576236",
+          "title": "BMW M 1000 RR",
+          "score": 84,
+          "fit": 89,
+          "taste": 63,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "574356",
+          "title": "BMW M 1000 RR",
+          "score": 84,
+          "fit": 89,
+          "taste": 63,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "576433",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "575855",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "574182",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        },
+        {
+          "offerId": "571608",
+          "title": "BMW S 1000 RR Sport",
+          "score": 84,
+          "fit": 89,
+          "taste": 62,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "576433",
+        "575855",
+        "574182"
+      ],
+      "topThreeProposed": [
+        "575595",
+        "576855",
+        "575470"
+      ],
+      "topTenAdded": [
+        "575595",
+        "576855",
+        "575470",
+        "573831",
+        "576236",
+        "574356"
+      ],
+      "topTenRemoved": [
+        "576118",
+        "575643",
+        "573855",
+        "574944",
+        "575699",
+        "573244"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "576433",
+          "currentPosition": 1,
+          "proposedPosition": 7,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575855",
+          "currentPosition": 2,
+          "proposedPosition": 8,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574182",
+          "currentPosition": 3,
+          "proposedPosition": 9,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571608",
+          "currentPosition": 4,
+          "proposedPosition": 10,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576118",
+          "currentPosition": 5,
+          "proposedPosition": 11,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575643",
+          "currentPosition": 6,
+          "proposedPosition": 12,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573855",
+          "currentPosition": 7,
+          "proposedPosition": 13,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574944",
+          "currentPosition": 8,
+          "proposedPosition": 14,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575699",
+          "currentPosition": 9,
+          "proposedPosition": 15,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573244",
+          "currentPosition": 10,
+          "proposedPosition": 16,
+          "currentScore": 84,
+          "proposedScore": 84,
+          "currentFit": 89,
+          "proposedFit": 89,
+          "currentTaste": 62,
+          "proposedTaste": 62,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575595",
+          "currentPosition": 27,
+          "proposedPosition": 1,
+          "currentScore": 83,
+          "proposedScore": 84,
+          "currentFit": 88,
+          "proposedFit": 89,
+          "currentTaste": 63,
+          "proposedTaste": 63,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576855",
+          "currentPosition": 28,
+          "proposedPosition": 2,
+          "currentScore": 83,
+          "proposedScore": 84,
+          "currentFit": 88,
+          "proposedFit": 89,
+          "currentTaste": 63,
+          "proposedTaste": 63,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575470",
+          "currentPosition": 29,
+          "proposedPosition": 3,
+          "currentScore": 83,
+          "proposedScore": 84,
+          "currentFit": 88,
+          "proposedFit": 89,
+          "currentTaste": 63,
+          "proposedTaste": 63,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573831",
+          "currentPosition": 30,
+          "proposedPosition": 4,
+          "currentScore": 83,
+          "proposedScore": 84,
+          "currentFit": 88,
+          "proposedFit": 89,
+          "currentTaste": 63,
+          "proposedTaste": 63,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576236",
+          "currentPosition": 31,
+          "proposedPosition": 5,
+          "currentScore": 83,
+          "proposedScore": 84,
+          "currentFit": 88,
+          "proposedFit": 89,
+          "currentTaste": 63,
+          "proposedTaste": 63,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574356",
+          "currentPosition": 32,
+          "proposedPosition": 6,
+          "currentScore": 83,
+          "proposedScore": 84,
+          "currentFit": 88,
+          "proposedFit": 89,
+          "currentTaste": 63,
+          "proposedTaste": 63,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "full-a-economy-high-mileage",
+      "answers": {
+        "budget": [
+          0,
+          16000
+        ],
+        "mileage": "high",
+        "fuel": "open",
+        "bodyStyles": [
+          "roadster"
+        ],
+        "primaryUse": "commute",
+        "priorities": [
+          "economy"
+        ],
+        "style": 3,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "552441",
+          "title": "BMW R 1250 R Sport Cruise & Heated Grips",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "557304",
+          "title": "BMW R 1250 R Sport",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576318",
+          "title": "BMW R 1250 R",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "577032",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "557696",
+          "title": "BMW R 1250 R SE",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "571004",
+          "title": "BMW R 1250 RS",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576034",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576122",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576684",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576919",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 95,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 55mpg, kind on a big annual mileage"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "573426",
+          "title": "BMW F 900 R SE",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "573293",
+          "title": "BMW F 900 R LOW CHASSIS",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576914",
+          "title": "BMW F 900 R SE",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "575806",
+          "title": "BMW F 900 R 2yr",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "576979",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "575511",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "575925",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "571218",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "575766",
+          "title": "BMW F 900 R SE",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        },
+        {
+          "offerId": "573605",
+          "title": "BMW F 900 R 2yr",
+          "score": 77,
+          "fit": 95,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £16k budget",
+            "Frugal at around 67.26mpg, kind on a big annual mileage"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "552441",
+        "557304",
+        "576318"
+      ],
+      "topThreeProposed": [
+        "573426",
+        "573293",
+        "576914"
+      ],
+      "topTenAdded": [
+        "573426",
+        "573293",
+        "576914",
+        "575806",
+        "576979",
+        "575511",
+        "575925",
+        "571218",
+        "575766",
+        "573605"
+      ],
+      "topTenRemoved": [
+        "552441",
+        "557304",
+        "576318",
+        "577032",
+        "557696",
+        "571004",
+        "576034",
+        "576122",
+        "576684",
+        "576919"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "552441",
+          "currentPosition": 1,
+          "proposedPosition": 85,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "557304",
+          "currentPosition": 2,
+          "proposedPosition": 86,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576318",
+          "currentPosition": 3,
+          "proposedPosition": 87,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577032",
+          "currentPosition": 4,
+          "proposedPosition": 88,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "557696",
+          "currentPosition": 5,
+          "proposedPosition": 89,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571004",
+          "currentPosition": 6,
+          "proposedPosition": 90,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576034",
+          "currentPosition": 7,
+          "proposedPosition": 91,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576122",
+          "currentPosition": 8,
+          "proposedPosition": 92,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576684",
+          "currentPosition": 9,
+          "proposedPosition": 93,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576919",
+          "currentPosition": 10,
+          "proposedPosition": 94,
+          "currentScore": 79,
+          "proposedScore": 73,
+          "currentFit": 95,
+          "proposedFit": 88,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573426",
+          "currentPosition": 77,
+          "proposedPosition": 1,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573293",
+          "currentPosition": 78,
+          "proposedPosition": 2,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576914",
+          "currentPosition": 79,
+          "proposedPosition": 3,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575806",
+          "currentPosition": 80,
+          "proposedPosition": 4,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576979",
+          "currentPosition": 81,
+          "proposedPosition": 5,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575511",
+          "currentPosition": 82,
+          "proposedPosition": 6,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575925",
+          "currentPosition": 83,
+          "proposedPosition": 7,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571218",
+          "currentPosition": 84,
+          "proposedPosition": 8,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575766",
+          "currentPosition": 85,
+          "proposedPosition": 9,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573605",
+          "currentPosition": 86,
+          "proposedPosition": 10,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 95,
+          "proposedFit": 95,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "full-a-touring-practicality",
+      "answers": {
+        "budget": [
+          0,
+          30000
+        ],
+        "mileage": "mid",
+        "fuel": "open",
+        "bodyStyles": [
+          "tourer"
+        ],
+        "primaryUse": "roadtrips",
+        "priorities": [
+          "comfort"
+        ],
+        "style": 2,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "577231",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575183",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576041",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "574740",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "567185",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "574065",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "569077",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575290",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576186",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "577045",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 97,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "574560",
+          "title": "BMW R 1300 RT LE ASA",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576550",
+          "title": "BMW R 1300 RT LE",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "568709",
+          "title": "BMW R 1300 RT LE",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576083",
+          "title": "BMW R 1300 RT LE ASA",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "572960",
+          "title": "BMW R 1300 RT LE ASA Ex Demonstrator - Massive Saving",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576043",
+          "title": "BMW R 1300 RT LE",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "569605",
+          "title": "BMW R 1300 RT LE ASA",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575389",
+          "title": "BMW R 1300 RT LE ASA Warranty until 01/2029.",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575050",
+          "title": "BMW R 1300 RT",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "577100",
+          "title": "BMW R 1300 RT",
+          "score": 70,
+          "fit": 86,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "577231",
+        "575183",
+        "576041"
+      ],
+      "topThreeProposed": [
+        "574560",
+        "576550",
+        "568709"
+      ],
+      "topTenAdded": [
+        "574560",
+        "576550",
+        "568709",
+        "576083",
+        "572960",
+        "576043",
+        "569605",
+        "575389",
+        "575050",
+        "577100"
+      ],
+      "topTenRemoved": [
+        "577231",
+        "575183",
+        "576041",
+        "574740",
+        "567185",
+        "574065",
+        "569077",
+        "575290",
+        "576186",
+        "577045"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "577231",
+          "currentPosition": 1,
+          "proposedPosition": 25,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575183",
+          "currentPosition": 2,
+          "proposedPosition": 26,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576041",
+          "currentPosition": 3,
+          "proposedPosition": 27,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574740",
+          "currentPosition": 4,
+          "proposedPosition": 28,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "567185",
+          "currentPosition": 5,
+          "proposedPosition": 29,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574065",
+          "currentPosition": 6,
+          "proposedPosition": 30,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "569077",
+          "currentPosition": 7,
+          "proposedPosition": 31,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575290",
+          "currentPosition": 8,
+          "proposedPosition": 32,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576186",
+          "currentPosition": 9,
+          "proposedPosition": 33,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577045",
+          "currentPosition": 10,
+          "proposedPosition": 34,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 97,
+          "proposedFit": 86,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574560",
+          "currentPosition": 36,
+          "proposedPosition": 1,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576550",
+          "currentPosition": 37,
+          "proposedPosition": 2,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "568709",
+          "currentPosition": 38,
+          "proposedPosition": 3,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576083",
+          "currentPosition": 39,
+          "proposedPosition": 4,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "572960",
+          "currentPosition": 40,
+          "proposedPosition": 5,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576043",
+          "currentPosition": 41,
+          "proposedPosition": 6,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "569605",
+          "currentPosition": 42,
+          "proposedPosition": 7,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575389",
+          "currentPosition": 43,
+          "proposedPosition": 8,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575050",
+          "currentPosition": 44,
+          "proposedPosition": 9,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577100",
+          "currentPosition": 45,
+          "proposedPosition": 10,
+          "currentScore": 79,
+          "proposedScore": 70,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "full-a-pillion",
+      "answers": {
+        "budget": [
+          0,
+          30000
+        ],
+        "mileage": "low",
+        "fuel": "open",
+        "bodyStyles": [
+          "tourer"
+        ],
+        "people": "family",
+        "primaryUse": "roadtrips",
+        "priorities": [
+          "comfort"
+        ],
+        "style": 2,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "577231",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575183",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576041",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "574740",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "567185",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "574065",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "569077",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575290",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576186",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "577045",
+          "title": "BMW R 1250 RT LE",
+          "score": 80,
+          "fit": 96,
+          "taste": 13,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "94 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "574560",
+          "title": "BMW R 1300 RT LE ASA",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576550",
+          "title": "BMW R 1300 RT LE",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "568709",
+          "title": "BMW R 1300 RT LE",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576083",
+          "title": "BMW R 1300 RT LE ASA",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "572960",
+          "title": "BMW R 1300 RT LE ASA Ex Demonstrator - Massive Saving",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576043",
+          "title": "BMW R 1300 RT LE",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "569605",
+          "title": "BMW R 1300 RT LE ASA",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575389",
+          "title": "BMW R 1300 RT LE ASA Warranty until 01/2029.",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575050",
+          "title": "BMW R 1300 RT",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "577100",
+          "title": "BMW R 1300 RT",
+          "score": 71,
+          "fit": 87,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £30k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "577231",
+        "575183",
+        "576041"
+      ],
+      "topThreeProposed": [
+        "574560",
+        "576550",
+        "568709"
+      ],
+      "topTenAdded": [
+        "574560",
+        "576550",
+        "568709",
+        "576083",
+        "572960",
+        "576043",
+        "569605",
+        "575389",
+        "575050",
+        "577100"
+      ],
+      "topTenRemoved": [
+        "577231",
+        "575183",
+        "576041",
+        "574740",
+        "567185",
+        "574065",
+        "569077",
+        "575290",
+        "576186",
+        "577045"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "577231",
+          "currentPosition": 1,
+          "proposedPosition": 25,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575183",
+          "currentPosition": 2,
+          "proposedPosition": 26,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576041",
+          "currentPosition": 3,
+          "proposedPosition": 27,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574740",
+          "currentPosition": 4,
+          "proposedPosition": 28,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "567185",
+          "currentPosition": 5,
+          "proposedPosition": 29,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574065",
+          "currentPosition": 6,
+          "proposedPosition": 30,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "569077",
+          "currentPosition": 7,
+          "proposedPosition": 31,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575290",
+          "currentPosition": 8,
+          "proposedPosition": 32,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576186",
+          "currentPosition": 9,
+          "proposedPosition": 33,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577045",
+          "currentPosition": 10,
+          "proposedPosition": 34,
+          "currentScore": 80,
+          "proposedScore": 70,
+          "currentFit": 96,
+          "proposedFit": 87,
+          "currentTaste": 13,
+          "proposedTaste": 5,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574560",
+          "currentPosition": 36,
+          "proposedPosition": 1,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576550",
+          "currentPosition": 37,
+          "proposedPosition": 2,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "568709",
+          "currentPosition": 38,
+          "proposedPosition": 3,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576083",
+          "currentPosition": 39,
+          "proposedPosition": 4,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "572960",
+          "currentPosition": 40,
+          "proposedPosition": 5,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576043",
+          "currentPosition": 41,
+          "proposedPosition": 6,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "569605",
+          "currentPosition": 42,
+          "proposedPosition": 7,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575389",
+          "currentPosition": 43,
+          "proposedPosition": 8,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575050",
+          "currentPosition": 44,
+          "proposedPosition": 9,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577100",
+          "currentPosition": 45,
+          "proposedPosition": 10,
+          "currentScore": 79,
+          "proposedScore": 71,
+          "currentFit": 97,
+          "proposedFit": 87,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "full-a-manageability",
+      "answers": {
+        "budget": [
+          0,
+          12000
+        ],
+        "mileage": "low",
+        "fuel": "open",
+        "bodyStyles": [
+          "naked"
+        ],
+        "primaryUse": "city",
+        "priorities": [
+          "economy"
+        ],
+        "style": 2,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "574097",
+          "title": "BMW G 310 R",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "573757",
+          "title": "BMW G 310 R",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "574092",
+          "title": "BMW G 310 R",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "576997",
+          "title": "BMW G 310 R Pre-Registered Special",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "576206",
+          "title": "BMW S 1000 R Sport",
+          "score": 76,
+          "fit": 88,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "575859",
+          "title": "BMW S 1000 R Sport",
+          "score": 76,
+          "fit": 88,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "575185",
+          "title": "BMW S 1000 R Sport",
+          "score": 76,
+          "fit": 88,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "568858",
+          "title": "BMW S 1000 R Sport",
+          "score": 76,
+          "fit": 88,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "576205",
+          "title": "BMW S 1000 R Sport",
+          "score": 76,
+          "fit": 88,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "574936",
+          "title": "BMW S 1000 R Sport",
+          "score": 76,
+          "fit": 88,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "576206",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "575859",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "575185",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "568858",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "576205",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "574936",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "576028",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "575546",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "577005",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        },
+        {
+          "offerId": "573856",
+          "title": "BMW S 1000 R Sport",
+          "score": 75,
+          "fit": 87,
+          "taste": 27,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "574097",
+        "573757",
+        "574092"
+      ],
+      "topThreeProposed": [
+        "576206",
+        "575859",
+        "575185"
+      ],
+      "topTenAdded": [
+        "576028",
+        "575546",
+        "577005",
+        "573856"
+      ],
+      "topTenRemoved": [
+        "574097",
+        "573757",
+        "574092",
+        "576997"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "574097",
+          "currentPosition": 1,
+          "proposedPosition": 15,
+          "currentScore": 78,
+          "proposedScore": 75,
+          "currentFit": 98,
+          "proposedFit": 94,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573757",
+          "currentPosition": 2,
+          "proposedPosition": 16,
+          "currentScore": 78,
+          "proposedScore": 75,
+          "currentFit": 98,
+          "proposedFit": 94,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574092",
+          "currentPosition": 3,
+          "proposedPosition": 17,
+          "currentScore": 78,
+          "proposedScore": 75,
+          "currentFit": 98,
+          "proposedFit": 94,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576997",
+          "currentPosition": 4,
+          "proposedPosition": 18,
+          "currentScore": 78,
+          "proposedScore": 75,
+          "currentFit": 98,
+          "proposedFit": 94,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576206",
+          "currentPosition": 5,
+          "proposedPosition": 1,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575859",
+          "currentPosition": 6,
+          "proposedPosition": 2,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575185",
+          "currentPosition": 7,
+          "proposedPosition": 3,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "568858",
+          "currentPosition": 8,
+          "proposedPosition": 4,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576205",
+          "currentPosition": 9,
+          "proposedPosition": 5,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574936",
+          "currentPosition": 10,
+          "proposedPosition": 6,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576028",
+          "currentPosition": 11,
+          "proposedPosition": 7,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575546",
+          "currentPosition": 12,
+          "proposedPosition": 8,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577005",
+          "currentPosition": 13,
+          "proposedPosition": 9,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573856",
+          "currentPosition": 14,
+          "proposedPosition": 10,
+          "currentScore": 76,
+          "proposedScore": 75,
+          "currentFit": 88,
+          "proposedFit": 87,
+          "currentTaste": 27,
+          "proposedTaste": 27,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "full-a-heritage-character",
+      "answers": {
+        "budget": [
+          0,
+          22000
+        ],
+        "mileage": "low",
+        "fuel": "open",
+        "bodyStyles": [
+          "heritage"
+        ],
+        "primaryUse": "fun",
+        "priorities": [
+          "image"
+        ],
+        "style": 3,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "574194",
+          "title": "BMW R nineT Pure Sport",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "569513",
+          "title": "BMW R nineT",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "574779",
+          "title": "BMW R nineT 1 Year Warranty Included",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "574614",
+          "title": "BMW R nineT Pure",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "576945",
+          "title": "BMW R nineT Pure",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "571713",
+          "title": "BMW R nineT Pure",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "576641",
+          "title": "BMW R nineT",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "576400",
+          "title": "BMW R nineT",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "577260",
+          "title": "BMW R nineT Urban G/S Option 719 Gold",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "572415",
+          "title": "BMW R nineT",
+          "score": 75,
+          "fit": 93,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "574194",
+          "title": "BMW R nineT Pure Sport",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "569513",
+          "title": "BMW R nineT",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "574779",
+          "title": "BMW R nineT 1 Year Warranty Included",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "574614",
+          "title": "BMW R nineT Pure",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "576945",
+          "title": "BMW R nineT Pure",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "571713",
+          "title": "BMW R nineT Pure",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "576641",
+          "title": "BMW R nineT",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "576400",
+          "title": "BMW R nineT",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "577260",
+          "title": "BMW R nineT Urban G/S Option 719 Gold",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        },
+        {
+          "offerId": "572415",
+          "title": "BMW R nineT",
+          "score": 74,
+          "fit": 90,
+          "taste": 7,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £22k budget"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "574194",
+        "569513",
+        "574779"
+      ],
+      "topThreeProposed": [
+        "574194",
+        "569513",
+        "574779"
+      ],
+      "topTenAdded": [],
+      "topTenRemoved": [],
+      "materialMovements": [
+        {
+          "offerId": "574194",
+          "currentPosition": 1,
+          "proposedPosition": 1,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "569513",
+          "currentPosition": 2,
+          "proposedPosition": 2,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574779",
+          "currentPosition": 3,
+          "proposedPosition": 3,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574614",
+          "currentPosition": 4,
+          "proposedPosition": 4,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576945",
+          "currentPosition": 5,
+          "proposedPosition": 5,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571713",
+          "currentPosition": 6,
+          "proposedPosition": 6,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576641",
+          "currentPosition": 7,
+          "proposedPosition": 7,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576400",
+          "currentPosition": 8,
+          "proposedPosition": 8,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577260",
+          "currentPosition": 9,
+          "proposedPosition": 9,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "572415",
+          "currentPosition": 10,
+          "proposedPosition": 10,
+          "currentScore": 75,
+          "proposedScore": 74,
+          "currentFit": 93,
+          "proposedFit": 90,
+          "currentTaste": 7,
+          "proposedTaste": 7,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "category-adventure",
+      "answers": {
+        "budget": [
+          0,
+          20000
+        ],
+        "mileage": "mid",
+        "fuel": "open",
+        "bodyStyles": [
+          "adventure"
+        ],
+        "primaryUse": "roadtrips",
+        "priorities": [],
+        "style": 3,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "576053",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "571192",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576758",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "573145",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576031",
+          "title": "BMW R 1250 GS Rallye TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "575195",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "571751",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "559851",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576420",
+          "title": "BMW R 1250 GS Rallye TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576467",
+          "title": "BMW R 1250 GS TE",
+          "score": 82,
+          "fit": 98,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "68 litres of boot with all 2 seats up",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "574202",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576331",
+          "title": "BMW R 1300 GS",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576207",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "571223",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "574602",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576966",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "577031",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "576428",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "574631",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        },
+        {
+          "offerId": "573807",
+          "title": "BMW R 1300 GS TE",
+          "score": 72,
+          "fit": 86,
+          "taste": 16,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Built to cover big miles two-up, with the luggage to match"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "576053",
+        "571192",
+        "576758"
+      ],
+      "topThreeProposed": [
+        "574202",
+        "576331",
+        "576207"
+      ],
+      "topTenAdded": [
+        "574202",
+        "576331",
+        "576207",
+        "571223",
+        "574602",
+        "576966",
+        "577031",
+        "576428",
+        "574631",
+        "573807"
+      ],
+      "topTenRemoved": [
+        "576053",
+        "571192",
+        "576758",
+        "573145",
+        "576031",
+        "575195",
+        "571751",
+        "559851",
+        "576420",
+        "576467"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "576053",
+          "currentPosition": 1,
+          "proposedPosition": 76,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571192",
+          "currentPosition": 2,
+          "proposedPosition": 77,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576758",
+          "currentPosition": 3,
+          "proposedPosition": 78,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573145",
+          "currentPosition": 4,
+          "proposedPosition": 79,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576031",
+          "currentPosition": 5,
+          "proposedPosition": 80,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575195",
+          "currentPosition": 6,
+          "proposedPosition": 81,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571751",
+          "currentPosition": 7,
+          "proposedPosition": 82,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "559851",
+          "currentPosition": 8,
+          "proposedPosition": 83,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576420",
+          "currentPosition": 9,
+          "proposedPosition": 84,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576467",
+          "currentPosition": 10,
+          "proposedPosition": 85,
+          "currentScore": 82,
+          "proposedScore": 71,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 18,
+          "proposedTaste": 12,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574202",
+          "currentPosition": 36,
+          "proposedPosition": 1,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576331",
+          "currentPosition": 37,
+          "proposedPosition": 2,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576207",
+          "currentPosition": 38,
+          "proposedPosition": 3,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571223",
+          "currentPosition": 39,
+          "proposedPosition": 4,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574602",
+          "currentPosition": 40,
+          "proposedPosition": 5,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576966",
+          "currentPosition": 41,
+          "proposedPosition": 6,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577031",
+          "currentPosition": 42,
+          "proposedPosition": 7,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576428",
+          "currentPosition": 43,
+          "proposedPosition": 8,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574631",
+          "currentPosition": 44,
+          "proposedPosition": 9,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573807",
+          "currentPosition": 45,
+          "proposedPosition": 10,
+          "currentScore": 81,
+          "proposedScore": 72,
+          "currentFit": 98,
+          "proposedFit": 86,
+          "currentTaste": 16,
+          "proposedTaste": 16,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "category-roadster",
+      "answers": {
+        "budget": [
+          0,
+          20000
+        ],
+        "mileage": "mid",
+        "fuel": "open",
+        "bodyStyles": [
+          "roadster"
+        ],
+        "primaryUse": "fun",
+        "priorities": [],
+        "style": 3,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "552441",
+          "title": "BMW R 1250 R Sport Cruise & Heated Grips",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "557304",
+          "title": "BMW R 1250 R Sport",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "576318",
+          "title": "BMW R 1250 R",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "577032",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "557696",
+          "title": "BMW R 1250 R SE",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "571004",
+          "title": "BMW R 1250 RS",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "576034",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "576122",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "576684",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        },
+        {
+          "offerId": "576919",
+          "title": "BMW R 1250 RS SE",
+          "score": 79,
+          "fit": 94,
+          "taste": 18,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 55mpg"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "573426",
+          "title": "BMW F 900 R SE",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "573293",
+          "title": "BMW F 900 R LOW CHASSIS",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "576914",
+          "title": "BMW F 900 R SE",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "575806",
+          "title": "BMW F 900 R 2yr",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "576979",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "575511",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "575925",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "571218",
+          "title": "BMW F 900 R",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "575766",
+          "title": "BMW F 900 R SE",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        },
+        {
+          "offerId": "573605",
+          "title": "BMW F 900 R 2yr",
+          "score": 77,
+          "fit": 94,
+          "taste": 9,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Frugal for what it is, around 67.26mpg"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "552441",
+        "557304",
+        "576318"
+      ],
+      "topThreeProposed": [
+        "573426",
+        "573293",
+        "576914"
+      ],
+      "topTenAdded": [
+        "573426",
+        "573293",
+        "576914",
+        "575806",
+        "576979",
+        "575511",
+        "575925",
+        "571218",
+        "575766",
+        "573605"
+      ],
+      "topTenRemoved": [
+        "552441",
+        "557304",
+        "576318",
+        "577032",
+        "557696",
+        "571004",
+        "576034",
+        "576122",
+        "576684",
+        "576919"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "552441",
+          "currentPosition": 1,
+          "proposedPosition": 102,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "557304",
+          "currentPosition": 2,
+          "proposedPosition": 103,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576318",
+          "currentPosition": 3,
+          "proposedPosition": 104,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "577032",
+          "currentPosition": 4,
+          "proposedPosition": 105,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "557696",
+          "currentPosition": 5,
+          "proposedPosition": 106,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571004",
+          "currentPosition": 6,
+          "proposedPosition": 107,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576034",
+          "currentPosition": 7,
+          "proposedPosition": 108,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576122",
+          "currentPosition": 8,
+          "proposedPosition": 109,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576684",
+          "currentPosition": 9,
+          "proposedPosition": 110,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576919",
+          "currentPosition": 10,
+          "proposedPosition": 111,
+          "currentScore": 79,
+          "proposedScore": 74,
+          "currentFit": 94,
+          "proposedFit": 89,
+          "currentTaste": 18,
+          "proposedTaste": 13,
+          "fieldChanges": [
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573426",
+          "currentPosition": 93,
+          "proposedPosition": 1,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573293",
+          "currentPosition": 94,
+          "proposedPosition": 2,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576914",
+          "currentPosition": 95,
+          "proposedPosition": 3,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575806",
+          "currentPosition": 96,
+          "proposedPosition": 4,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576979",
+          "currentPosition": 97,
+          "proposedPosition": 5,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575511",
+          "currentPosition": 98,
+          "proposedPosition": 6,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575925",
+          "currentPosition": 99,
+          "proposedPosition": 7,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571218",
+          "currentPosition": 100,
+          "proposedPosition": 8,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575766",
+          "currentPosition": 101,
+          "proposedPosition": 9,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573605",
+          "currentPosition": 102,
+          "proposedPosition": 10,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 94,
+          "proposedFit": 94,
+          "currentTaste": 9,
+          "proposedTaste": 9,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "category-naked",
+      "answers": {
+        "budget": [
+          0,
+          20000
+        ],
+        "mileage": "mid",
+        "fuel": "open",
+        "bodyStyles": [
+          "naked"
+        ],
+        "primaryUse": "city",
+        "priorities": [],
+        "style": 3,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "574097",
+          "title": "BMW G 310 R",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "573757",
+          "title": "BMW G 310 R",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "574092",
+          "title": "BMW G 310 R",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "576997",
+          "title": "BMW G 310 R Pre-Registered Special",
+          "score": 78,
+          "fit": 98,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget",
+            "Light and low enough to be easy through town and traffic",
+            "Frugal for what it is, around 85mpg"
+          ]
+        },
+        {
+          "offerId": "574358",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 85,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576808",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 85,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "575527",
+          "title": "BMW M 1000 R Carbon & Billet Pack",
+          "score": 77,
+          "fit": 85,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576996",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 85,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "574327",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 85,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576218",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 85,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "574358",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576808",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "575527",
+          "title": "BMW M 1000 R Carbon & Billet Pack",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576996",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "574327",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576218",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576985",
+          "title": "BMW M 1000 R Forged Wheels",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576694",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "573816",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        },
+        {
+          "offerId": "576357",
+          "title": "BMW M 1000 R",
+          "score": 77,
+          "fit": 84,
+          "taste": 47,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £20k budget"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "574097",
+        "573757",
+        "574092"
+      ],
+      "topThreeProposed": [
+        "574358",
+        "576808",
+        "575527"
+      ],
+      "topTenAdded": [
+        "576985",
+        "576694",
+        "573816",
+        "576357"
+      ],
+      "topTenRemoved": [
+        "574097",
+        "573757",
+        "574092",
+        "576997"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "574097",
+          "currentPosition": 1,
+          "proposedPosition": 60,
+          "currentScore": 78,
+          "proposedScore": 74,
+          "currentFit": 98,
+          "proposedFit": 93,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573757",
+          "currentPosition": 2,
+          "proposedPosition": 61,
+          "currentScore": 78,
+          "proposedScore": 74,
+          "currentFit": 98,
+          "proposedFit": 93,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574092",
+          "currentPosition": 3,
+          "proposedPosition": 62,
+          "currentScore": 78,
+          "proposedScore": 74,
+          "currentFit": 98,
+          "proposedFit": 93,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576997",
+          "currentPosition": 4,
+          "proposedPosition": 63,
+          "currentScore": 78,
+          "proposedScore": 74,
+          "currentFit": 98,
+          "proposedFit": 93,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "kerbMassKg",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574358",
+          "currentPosition": 5,
+          "proposedPosition": 1,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576808",
+          "currentPosition": 6,
+          "proposedPosition": 2,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575527",
+          "currentPosition": 7,
+          "proposedPosition": 3,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576996",
+          "currentPosition": 8,
+          "proposedPosition": 4,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574327",
+          "currentPosition": 9,
+          "proposedPosition": 5,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576218",
+          "currentPosition": 10,
+          "proposedPosition": 6,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576985",
+          "currentPosition": 11,
+          "proposedPosition": 7,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576694",
+          "currentPosition": 12,
+          "proposedPosition": 8,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573816",
+          "currentPosition": 13,
+          "proposedPosition": 9,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576357",
+          "currentPosition": 14,
+          "proposedPosition": 10,
+          "currentScore": 77,
+          "proposedScore": 77,
+          "currentFit": 85,
+          "proposedFit": 84,
+          "currentTaste": 47,
+          "proposedTaste": 47,
+          "fieldChanges": [
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    },
+    {
+      "id": "category-scooter",
+      "answers": {
+        "budget": [
+          0,
+          12000
+        ],
+        "mileage": "high",
+        "fuel": "open",
+        "bodyStyles": [
+          "scooter"
+        ],
+        "primaryUse": "city",
+        "priorities": [
+          "economy"
+        ],
+        "style": 2,
+        "licence": "a"
+      },
+      "currentTopResults": [
+        {
+          "offerId": "572411",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "549900",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "566943",
+          "title": "BMW C 400 GT 2yr BMW Warranty + Full History",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "576392",
+          "title": "BMW C 400 GT",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "571325",
+          "title": "BMW C 400 X Great Spec Ex Management Bike",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "572357",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "573440",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "576263",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "574609",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "573799",
+          "title": "BMW C 400 X",
+          "score": 77,
+          "fit": 96,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Frugal at around 80mpg, kind on a big annual mileage",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        }
+      ],
+      "proposedTopResults": [
+        {
+          "offerId": "540397",
+          "title": "BMW CE 02 AM",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "576862",
+          "title": "BMW CE 02 AM Pre Registered Special",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "566738",
+          "title": "BMW CE 02 AM Urban mobility",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "575888",
+          "title": "BMW CE 02 AM",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "573307",
+          "title": "BMW CE 02 Highline",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "559312",
+          "title": "BMW CE 02 AM",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "564126",
+          "title": "BMW CE 02 AM",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "574894",
+          "title": "BMW CE 02",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "563992",
+          "title": "BMW CE 02",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        },
+        {
+          "offerId": "575152",
+          "title": "BMW CE 02",
+          "score": 72,
+          "fit": 90,
+          "taste": 0,
+          "reasons": [
+            "The undefined shape you asked for",
+            "Comfortably within your £12k budget",
+            "Light and low enough to be easy through town and traffic"
+          ]
+        }
+      ],
+      "topThreeCurrent": [
+        "572411",
+        "549900",
+        "566943"
+      ],
+      "topThreeProposed": [
+        "540397",
+        "576862",
+        "566738"
+      ],
+      "topTenAdded": [
+        "540397",
+        "576862",
+        "566738",
+        "575888",
+        "573307",
+        "559312",
+        "564126",
+        "574894",
+        "563992",
+        "575152"
+      ],
+      "topTenRemoved": [
+        "572411",
+        "549900",
+        "566943",
+        "576392",
+        "571325",
+        "572357",
+        "573440",
+        "576263",
+        "574609",
+        "573799"
+      ],
+      "materialMovements": [
+        {
+          "offerId": "572411",
+          "currentPosition": 1,
+          "proposedPosition": 15,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "549900",
+          "currentPosition": 2,
+          "proposedPosition": 16,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "566943",
+          "currentPosition": 3,
+          "proposedPosition": 17,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576392",
+          "currentPosition": 4,
+          "proposedPosition": 18,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "571325",
+          "currentPosition": 5,
+          "proposedPosition": 19,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "572357",
+          "currentPosition": 6,
+          "proposedPosition": 20,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573440",
+          "currentPosition": 7,
+          "proposedPosition": 21,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576263",
+          "currentPosition": 8,
+          "proposedPosition": 22,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574609",
+          "currentPosition": 9,
+          "proposedPosition": 23,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573799",
+          "currentPosition": 10,
+          "proposedPosition": 24,
+          "currentScore": 77,
+          "proposedScore": 71,
+          "currentFit": 96,
+          "proposedFit": 89,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "mpg",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "540397",
+          "currentPosition": 26,
+          "proposedPosition": 1,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "576862",
+          "currentPosition": 27,
+          "proposedPosition": 2,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "566738",
+          "currentPosition": 28,
+          "proposedPosition": 3,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575888",
+          "currentPosition": 29,
+          "proposedPosition": 4,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "573307",
+          "currentPosition": 30,
+          "proposedPosition": 5,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "559312",
+          "currentPosition": 31,
+          "proposedPosition": 6,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "564126",
+          "currentPosition": 32,
+          "proposedPosition": 7,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "574894",
+          "currentPosition": 33,
+          "proposedPosition": 8,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "563992",
+          "currentPosition": 34,
+          "proposedPosition": 9,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        },
+        {
+          "offerId": "575152",
+          "currentPosition": 35,
+          "proposedPosition": 10,
+          "currentScore": 72,
+          "proposedScore": 72,
+          "currentFit": 90,
+          "proposedFit": 90,
+          "currentTaste": 0,
+          "proposedTaste": 0,
+          "fieldChanges": [
+            "tags",
+            "zeroTo62",
+            "seats",
+            "boot"
+          ],
+          "missingDataAffected": true
+        }
+      ]
+    }
+  ]
+}

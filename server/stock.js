@@ -31,6 +31,7 @@ import { mapVehicle, mapMotorradRaw, mapHondaRaw, mapFerrariRaw } from './mappin
 import { brandConfig, normalizeBrand } from './brands.js';
 import { parseListingHtml, listingUrl } from './honda-listing.js';
 import { parseResTable } from './motorrad-listing.js';
+import { createMotorradStockResilience, fileStore, motorradStockConfig } from './motorrad-stock-resilience.js';
 import {
   parseListingHtml as parseFerrariHtml,
   listingUrl as ferrariListingUrl,
@@ -692,13 +693,17 @@ const MOTORRAD_FILTER_BODY = {
  * motorradRowToRaw; if it's an HTML string we parse it. Anything else → empty
  * (a clean StockUnavailableError upstream) rather than a crash.
  */
+export class MotorradContractError extends Error { constructor(code) { super(code); this.name = 'MotorradContractError'; this.code = code; } }
 export function motorradRowsFromEnvelope(env) {
   const sf = env?.SearchFilter ?? env;
   const table = env?.ResTable ?? sf?.ResTable ?? sf?.ResOverviewData?.ResTable;
+  if (table === undefined || table === null) throw new MotorradContractError('RESULTS_CONTAINER_MISSING');
   if (typeof table === 'string') return parseResTable(table); // the real shape
   const rows = table?.Items ?? table?.items ?? (Array.isArray(table) ? table : []);
-  return Array.isArray(rows) ? rows.map(motorradRowToRaw) : [];
+  if (!Array.isArray(rows)) throw new MotorradContractError('RESULTS_CONTAINER_INVALID');
+  return rows.map(motorradRowToRaw);
 }
+export function parseMotorradResultsPayload(body) { try { return motorradRowsFromEnvelope(JSON.parse(body)); } catch (error) { if (error instanceof MotorradContractError) throw error; throw new MotorradContractError('JSON_ENVELOPE_INVALID'); } }
 
 /**
  * Project one JSON result row into the flat shape mapMotorradRaw consumes.
@@ -784,19 +789,7 @@ async function motorradFetchPage(origin, sid, page) {
   if (res.status !== 200) {
     throw new StockUnavailableError(`Motorrad feed returned HTTP ${res.status} on page ${page}`);
   }
-  let env;
-  try {
-    env = JSON.parse(res.body);
-  } catch (cause) {
-    throw new StockUnavailableError('Motorrad feed returned non-JSON', { cause });
-  }
-  // A null ResTable is the signature of a request with no live session.
-  if (env?.ResTable == null) {
-    throw new StockUnavailableError(
-      `Motorrad feed returned a null envelope on page ${page} (session not accepted)`,
-    );
-  }
-  return env;
+  try { parseMotorradResultsPayload(res.body); return JSON.parse(res.body); } catch (cause) { throw new StockUnavailableError(`Motorrad feed response contract failed on page ${page}: ${cause.code || 'UNKNOWN'}`, { cause }); }
 }
 
 /**
@@ -858,7 +851,7 @@ async function motorradLiveStock(origin) {
       }
       let added = 0;
       for (const row of rows) {
-        if (row?.id && !byId.has(row.id)) { byId.set(row.id, row); added += 1; }
+        if (row?.id && !byId.has(row.id)) { byId.set(row.id, { ...row, motorradDetailPage: p }); added += 1; }
       }
       if (rows.length < MOTORRAD_PAGE_SIZE || added === 0) { done = true; break; }
     }
@@ -872,6 +865,16 @@ async function motorradLiveStock(origin) {
   }
   return bikes;
 }
+
+// Last-known-good only stores mapped public stock fields; sessions, HTML and
+// detail payloads never leave the request path. File persistence is optional:
+// an unwritable deployment simply continues with memory resilience.
+const motorradResilientStock = createMotorradStockResilience({
+  refresh: () => motorradLiveStock(brandConfig('motorrad').origin),
+  store: fileStore(join(REPO_ROOT, '.cache', 'motorrad-last-known-good.json')),
+  config: motorradStockConfig(),
+});
+export const motorradStockHealth = () => motorradResilientStock.snapshot();
 
 /* ------------------------------ public API ---------------------------- */
 
@@ -918,7 +921,9 @@ export async function fetchRetailerStock(brand = 'bmw', retailerSite, scope) {
   if (source === 'live-motorrad') {
     const key = keyFor(b, site);
     seenRetailers.set(key, { brand: b, retailerSite: site });
-    return cachedFetch(cacheByRetailer, key, () => motorradLiveStock(origin));
+    return motorradStockConfig().enabled
+      ? motorradResilientStock.get()
+      : cachedFetch(cacheByRetailer, key, () => motorradLiveStock(origin));
   }
 
   // Ferrari's live feed, when the registry opts into it. The listing is

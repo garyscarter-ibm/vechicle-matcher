@@ -4,11 +4,11 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import {
-  mapVehicle, mapHondaRaw, mapFordRaw, mapMotorradRaw, mapFerrariRaw,
+  mapVehicle, mapHondaRaw, mapFordRaw, mapMotorradRawLegacy as mapMotorradRaw, mapFerrariRaw,
 } from '../mapping.js';
 import { questionsForBrand, applyBespokeAnswers } from '../questions.js';
 import { normalizeBrand, brandConfig, brandTuning } from '../brands.js';
-import { rankCars } from '../engine.js';
+import { licenceRatioCheck, rankCars } from '../engine.js';
 import { motorradRowsFromEnvelope, motorradRowToRaw, parseMotorradSid } from '../stock.js';
 import { parseListingHtml, parseCard, listingUrl } from '../honda-listing.js';
 import { parseResTable, parseRow, splitRows } from '../motorrad-listing.js';
@@ -965,7 +965,7 @@ test('brand config: motorrad runs live, naming its bikes-file offline pool', () 
 });
 
 test('mapMotorradRaw projects a flat bike record into the engine schema', () => {
-  const bike = mapMotorradRaw(motorradRaw());
+  const bike = mapMotorradRaw(motorradRaw({ cc: 1254, powerKw: 100 }));
   for (const field of ['id', 'name', 'line', 'body', 'fuel', 'priceMin', 'priceMax', 'sizeClass', 'seats', 'boot', 'zeroTo62', 'tags', 'blurb']) {
     assert.ok(bike[field] !== undefined, `mapped Motorrad missing ${field}`);
   }
@@ -979,6 +979,8 @@ test('mapMotorradRaw projects a flat bike record into the engine schema', () => 
   assert.equal(bike.retailerName, 'BMW Motorrad Approved Used');
   assert.match(bike.name, /^BMW /, 'the display name leads with the marque');
   assert.equal(bike.cc, 1254, 'engine capacity is surfaced for the card');
+  assert.equal(bike.advertisedCc, 1254, 'licence screen keeps the live advertised capacity separate');
+  assert.equal(bike.advertisedPowerKw, 100, 'licence screen keeps the live advertised power separate');
   assert.match(bike.blurb, /ride away/, 'bikes ride away, they do not drive away');
 });
 
@@ -997,6 +999,54 @@ test('mapMotorradRaw derives the category (body) from the model across the range
     const bike = mapMotorradRaw(motorradRaw({ title }));
     assert.equal(bike.body, category, `${title} should map to the ${category} category`);
     assert.ok(bike.tags.includes(category), `${title} carries its category as a tag`);
+  }
+});
+
+test('mapMotorradRaw resolves mass-sensitive derivatives before their parent models', () => {
+  const cases = [
+    ['BMW R 1300 R SE ASA', 'R 1300 R'],
+    ['BMW R 1300 RS SE ASA', 'R 1300 RS'],
+    ['BMW F 900 GS Trophy', 'F 900 GS'],
+    ['BMW F 900 GS Adventure TE', 'F 900 GS Adventure'],
+    ['BMW R 12 Classic Style', 'R 12'],
+    ['BMW R 12 G/S Option 719', 'R 12 G/S'],
+    ['BMW R 12 S', 'R 12 S'],
+    ['BMW R 18', 'R 18'],
+    ['BMW R 18 B LE', 'R 18 B'],
+    ['BMW R 18 Classic', 'R 18 Classic'],
+    ['BMW R 18 Roctane', 'R 18 Roctane'],
+    ['BMW F450 GS LATEST MODEL', 'F 450 GS'],
+    ['BMW R 1250 GS TE', 'R 1250 GS'],
+  ];
+  for (const [title, line] of cases) {
+    assert.equal(mapMotorradRaw(motorradRaw({ title })).line, line, title);
+  }
+});
+
+test('mapMotorradRaw carries sourced mass only for an exact recognised profile', () => {
+  const sourced = mapMotorradRaw(motorradRaw({ title: 'BMW F 900 R', powerKw: 77 }));
+  const unresolved = mapMotorradRaw(motorradRaw({ title: 'BMW F 850 GS', powerKw: 70 }));
+  assert.equal(sourced.kerbMassKg, 208);
+  assert.equal(sourced.powerToWeightKwPerKg, 77 / 208);
+  assert.equal(unresolved.kerbMassKg, undefined);
+  assert.equal(unresolved.powerToWeightKwPerKg, undefined);
+});
+
+test('F 450 GS no longer inherits R 1250 GS calibration', () => {
+  const f450 = mapMotorradRaw(motorradRaw({ title: 'BMW F450 GS LATEST MODEL', cc: undefined, powerKw: 35 }));
+  assert.deepEqual(
+    { cc: f450.cc, boot: f450.boot, zeroTo62: f450.zeroTo62, sizeClass: f450.sizeClass, mpg: f450.mpg, kerbMassKg: f450.kerbMassKg },
+    { cc: 420, boot: 20, zeroTo62: 6.0, sizeClass: 2, mpg: 74, kerbMassKg: 178 },
+  );
+});
+
+test('mass-sensitive rules leave unrelated Motorrad mappings unchanged', () => {
+  for (const [title, line] of [
+    ['BMW K 1600 GTL LE', 'K 1600 GTL'],
+    ['BMW S 1000 RR Sport', 'S 1000 RR'],
+    ['BMW CE 04', 'CE 04'],
+  ]) {
+    assert.equal(mapMotorradRaw(motorradRaw({ title })).line, line, title);
   }
 });
 
@@ -1109,6 +1159,100 @@ test('applyBespokeAnswers(motorrad) folds ridingStyle into standard engine field
   // fills a blank; it never overwrites what the rider set directly).
   const explicit = applyBespokeAnswers('motorrad', { primaryUse: 'city', ridingStyle: 'sport' });
   assert.equal(explicit.primaryUse, 'city', 'an explicit primaryUse is not overwritten by the bespoke fold');
+  assert.deepEqual(applyBespokeAnswers('motorrad', { licence: 'a2' }), { licence: 'a2' }, 'licence is a hard screen, not a ranking preference');
+});
+
+const motorradLicenceBike = (id, overrides = {}) => ({
+  id, name: `BMW ${id}`, line: 'F 900 R', body: 'roadster', fuel: 'petrol',
+  priceMin: 9000, priceMax: 9000, sizeClass: 3, seats: 2, boot: 0, zeroTo62: 3.7,
+  mpg: 62, tags: ['commuter'], blurb: '', advertisedCc: 895, advertisedPowerKw: 35,
+  ...overrides,
+});
+
+const motorradLicenceAnswers = (licence) => ({
+  budget: [5000, 15000], bodyStyles: ['any'], fuel: ['petrol'], primaryUse: 'commute',
+  people: 'solo', mileage: 8000, priorities: [], licence,
+});
+
+test('Motorrad A1 hard filter requires advertised 125cc and 11kW or less', () => {
+  const atLimit = motorradLicenceBike('a1-limit', { advertisedCc: 125, advertisedPowerKw: 11 });
+  const overCc = motorradLicenceBike('a1-over-cc', { advertisedCc: 126, advertisedPowerKw: 11 });
+  const overPower = motorradLicenceBike('a1-over-power', { advertisedCc: 125, advertisedPowerKw: 11.1 });
+  const ranked = rankCars(motorradLicenceAnswers('a1'), [atLimit, overCc, overPower], brandTuning('motorrad'));
+  assert.deepEqual(ranked.map((m) => m.car.id), ['a1-limit']);
+});
+
+test('Motorrad A2 hard filter uses advertised kW, not title or profile', () => {
+  const atLimit = motorradLicenceBike('a2-limit', { advertisedPowerKw: 35 });
+  const overLimit = motorradLicenceBike('a2-over', { advertisedPowerKw: 35.1 });
+  const f900A2 = motorradLicenceBike('f900-a2', { name: 'BMW F 900 R A2', advertisedPowerKw: 70, kerbMassKg: 400 });
+  const f900Standard = motorradLicenceBike('f900-standard', { name: 'BMW F 900 R', advertisedPowerKw: 77, kerbMassKg: 400 });
+  const ranked = rankCars(motorradLicenceAnswers('a2'), [atLimit, overLimit, f900A2, f900Standard], brandTuning('motorrad'));
+  assert.deepEqual(ranked.map((m) => m.car.id), ['a2-limit']);
+});
+
+test('Motorrad A1 and A2 exclude listings without advertised power', () => {
+  const noPower = motorradLicenceBike('no-power', { advertisedPowerKw: undefined });
+  assert.equal(rankCars(motorradLicenceAnswers('a1'), [noPower], brandTuning('motorrad')).length, 0);
+  assert.equal(rankCars(motorradLicenceAnswers('a2'), [noPower], brandTuning('motorrad')).length, 0);
+});
+
+test('Motorrad A1 excludes listings without advertised engine capacity', () => {
+  const noCc = motorradLicenceBike('no-cc', { advertisedCc: undefined, advertisedPowerKw: 11 });
+  assert.equal(rankCars(motorradLicenceAnswers('a1'), [noCc], brandTuning('motorrad')).length, 0);
+});
+
+test('Motorrad A1 power-to-weight screen accepts its exact 0.1kW/kg boundary', () => {
+  const atLimit = motorradLicenceBike('a1-ratio-limit', {
+    advertisedCc: 125, advertisedPowerKw: 10, kerbMassKg: 100,
+  });
+  const [match] = rankCars(motorradLicenceAnswers('a1'), [atLimit], brandTuning('motorrad'));
+  assert.equal(match.licenceRatioCheck, 'checked-pass');
+});
+
+test('Motorrad A1 power-to-weight screen excludes values just above 0.1kW/kg', () => {
+  const overLimit = motorradLicenceBike('a1-ratio-over', {
+    advertisedCc: 125, advertisedPowerKw: 10.001, kerbMassKg: 100,
+  });
+  assert.equal(licenceRatioCheck(overLimit, motorradLicenceAnswers('a1'), brandTuning('motorrad')), 'checked-fail');
+  assert.equal(rankCars(motorradLicenceAnswers('a1'), [overLimit], brandTuning('motorrad')).length, 0);
+});
+
+test('Motorrad A2 power-to-weight screen uses the unrounded 0.2kW/kg boundary', () => {
+  const atLimit = motorradLicenceBike('a2-ratio-limit', { advertisedPowerKw: 20, kerbMassKg: 100 });
+  const roundsToLimit = motorradLicenceBike('a2-ratio-over', { advertisedPowerKw: 20.004, kerbMassKg: 100 });
+  const pass = rankCars(motorradLicenceAnswers('a2'), [atLimit], brandTuning('motorrad'));
+  assert.equal(pass[0].licenceRatioCheck, 'checked-pass');
+  assert.equal(rankCars(motorradLicenceAnswers('a2'), [roundsToLimit], brandTuning('motorrad')).length, 0);
+});
+
+test('Motorrad licence screen retains advertised-spec matches without a sourced mass', () => {
+  const noMass = motorradLicenceBike('no-mass', { advertisedCc: 125, advertisedPowerKw: 11, kerbMassKg: undefined });
+  const [a1] = rankCars(motorradLicenceAnswers('a1'), [noMass], brandTuning('motorrad'));
+  const [a2] = rankCars(motorradLicenceAnswers('a2'), [noMass], brandTuning('motorrad'));
+  assert.equal(a1.licenceRatioCheck, 'not-available');
+  assert.equal(a2.licenceRatioCheck, 'not-available');
+});
+
+test('Motorrad full-A and every other brand keep their existing ranking behaviour', () => {
+  const noAdvertisedSpecs = motorradLicenceBike('no-specs', { advertisedCc: undefined, advertisedPowerKw: undefined });
+  const fullA = rankCars(motorradLicenceAnswers('a'), [noAdvertisedSpecs], brandTuning('motorrad'));
+  assert.equal(fullA.length, 1, 'full A does not apply an advertised-spec exclusion');
+
+  const bmwCar = { ...noAdvertisedSpecs, id: 'bmw-no-specs', priceMin: 30000, priceMax: 30000 };
+  const bmwAnswers = { ...motorradLicenceAnswers('a2'), budget: [20000, 40000] };
+  assert.equal(rankCars(bmwAnswers, [bmwCar], brandTuning('bmw')).length, 1, 'BMW ignores the Motorrad-only screen');
+});
+
+test('Motorrad ranking is unchanged among bikes that pass the advertised A2 screen', () => {
+  const quicker = motorradLicenceBike('quicker', { zeroTo62: 3.2, advertisedPowerKw: 35 });
+  const slower = motorradLicenceBike('slower', { zeroTo62: 5, advertisedPowerKw: 35 });
+  const ineligible = motorradLicenceBike('ineligible', { zeroTo62: 2.8, advertisedPowerKw: 70 });
+  const answers = motorradLicenceAnswers('a2');
+  const eligibleOnly = rankCars(answers, [quicker, slower], brandTuning('motorrad'));
+  const withIneligible = rankCars(answers, [quicker, slower, ineligible], brandTuning('motorrad'));
+  assert.deepEqual(withIneligible.map((m) => m.car.id), eligibleOnly.map((m) => m.car.id));
+  assert.deepEqual(withIneligible.map((m) => m.score), eligibleOnly.map((m) => m.score));
 });
 
 test('motorrad tuning surfaces a go-anywhere GS for an adventure rider, over a sportbike', () => {
@@ -1185,10 +1329,11 @@ test('motorradRowsFromEnvelope parses the real HTML ResTable string at either en
   assert.equal(motorradRowsFromEnvelope({ SearchFilter: { ResTable: html } }).length, 5);
   // Also read at the envelope root (older/flatter captures).
   assert.equal(motorradRowsFromEnvelope({ ResTable: html }).length, 5);
-  // The null envelope a session-less request gets back — no rows, no throw.
-  assert.deepEqual(motorradRowsFromEnvelope({ SearchFilter: null, ResTable: null }), []);
-  assert.deepEqual(motorradRowsFromEnvelope(null), [], 'a null body is empty, not a crash');
-  assert.deepEqual(motorradRowsFromEnvelope({}), [], 'an unknown shape degrades to empty');
+  // A missing container is a response-contract error, never a misleading
+  // zero-stock result; the live adapter turns it into the controlled 502 path.
+  assert.throws(() => motorradRowsFromEnvelope({ SearchFilter: null, ResTable: null }), /RESULTS_CONTAINER_MISSING/);
+  assert.throws(() => motorradRowsFromEnvelope(null), /RESULTS_CONTAINER_MISSING/);
+  assert.throws(() => motorradRowsFromEnvelope({}), /RESULTS_CONTAINER_MISSING/);
 });
 
 test('motorradRowsFromEnvelope still accepts a pre-parsed JSON array (resilience fallback)', () => {

@@ -51,6 +51,7 @@ import { matchCard, bmwPodiumCard, bmwTailTile } from './result-card.js';
 import {
   WEAK_SCORE, celebrate, shadeOf, cap, idOf,
 } from './match-signal.js';
+import { renderStockFreshnessNotice } from './stock-freshness.js';
 
 /*
  * How far apart two scores may be and still count as a tie. Mirrors the
@@ -535,6 +536,7 @@ function mount(root, ctx) {
   let bannerEl = null;
   let commitBtn = null;
   let liveEl = null;
+  let freshnessEl = null;
   let stepsEl = null;
   let tailEl = null;
   let tailGrid = null;
@@ -622,6 +624,7 @@ function mount(root, ctx) {
     liveEl = el('p', 'vm-podium-live');
     liveEl.setAttribute('role', 'status');
     liveEl.setAttribute('aria-live', 'polite');
+    freshnessEl = el('div', 'vm-podium-freshness');
     stepsEl = el('div', 'vm-podium-steps');
     // Focus lands here after a dismissal removes the card the focus was on.
     stepsEl.tabIndex = -1;
@@ -631,7 +634,7 @@ function mount(root, ctx) {
     tailEl.append(el('h3', 'vm-subhead vm-podium-tail-head', copy.tailHeading), tailGrid);
     noteEl = el('p', 'vm-podium-note');
     noteEl.hidden = true;
-    results.append(liveEl, stepsEl, tailEl, noteEl);
+    results.append(liveEl, freshnessEl, stepsEl, tailEl, noteEl);
 
     grid.append(ask, results);
     stage.append(grid);
@@ -887,6 +890,7 @@ function mount(root, ctx) {
 
     stepsEl.replaceChildren();
     tailGrid.replaceChildren();
+    freshnessEl.replaceChildren();
     tailEl.hidden = true;
     noteEl.hidden = true;
     noteEl.textContent = '';
@@ -898,6 +902,11 @@ function mount(root, ctx) {
       const hadResult = state.live.length > 0 || Boolean(state.committed);
       liveEl.textContent = hadResult ? copy.emptyNote : '';
       return;
+    }
+
+    if (state.committed && ctx.brand === 'motorrad') {
+      const stockNotice = renderStockFreshnessNotice(state.committed.stockFreshness);
+      if (stockNotice) freshnessEl.append(stockNotice);
     }
 
     const tied = tiedLeaders(list);

@@ -245,8 +245,8 @@ export function matchCard(match, {
       priceText,
       car.seats ? `${car.seats} seats` : null,
       car.boot ? `${car.boot}-litre boot, seats up` : null,
-      `0–62 ${car.zeroTo62}s`,
-      car.fuel === 'ev' ? `${car.evRange} mi range` : `${car.mpg} mpg`,
+      Number.isFinite(car.zeroTo62) ? `0–62 ${car.zeroTo62}s` : null,
+      car.fuel === 'ev' ? (Number.isFinite(car.evRange) ? `${car.evRange} mi range` : null) : (Number.isFinite(car.mpg) ? `${car.mpg} mpg` : null),
     ]).filter(Boolean);
     // No paint to print, or a compact tile whose caller hasn't asked for it.
     if (!paint || (compact && !showPaint)) {
@@ -272,6 +272,18 @@ export function matchCard(match, {
     car.transmission,
   );
   body.append(specs);
+  // BMW Motorrad detail enrichment is an individual advert claim, not a model
+  // specification. It is optional: no badges means the existing card remains
+  // unchanged and never implies that equipment is absent.
+  if (brandKey === 'motorrad' && Array.isArray(car.advertisedFeatures) && car.advertisedFeatures.length) {
+    const equipment = el('section', 'vm-advertised-equipment');
+    equipment.setAttribute('aria-label', 'Advertised equipment');
+    equipment.append(el('strong', 'vm-advertised-equipment-title', 'Advertised equipment'));
+    const badges = el('div', 'vm-advertised-equipment-badges');
+    for (const feature of car.advertisedFeatures.slice(0, 6)) badges.append(el('span', 'vm-advertised-equipment-badge', feature.label));
+    equipment.append(badges, el('span', 'vm-advertised-equipment-note', 'Confirm specification with the retailer'));
+    body.append(equipment);
+  }
 
   // The whole point of the carousel: how far away is it, and whose is it?
   // Distance comes from the live feed, so omit the line rather than invent

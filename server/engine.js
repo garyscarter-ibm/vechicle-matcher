@@ -200,7 +200,7 @@ function scoreOneFuel(pref, car, answers, tuning) {
 
   let reason;
   if (score >= 0.85) {
-    if (car.fuel === 'ev') {
+    if (car.fuel === 'ev' && Number.isFinite(car.evRange)) {
       reason = canCharge
         ? `Fully electric with a ${car.evRange}-mile range, ideal with your charging setup`
         : `Fully electric with a ${car.evRange}-mile range`;
@@ -277,11 +277,21 @@ function phrase(tuning, key, car) {
   return say(car);
 }
 
+// Catalogue scoring profiles can explicitly mark a field unavailable. Legacy
+// records have no map and retain their established explanation behaviour.
+function explanationAllowed(car, field) {
+  return car.scoringExplanationFields?.[field] !== false;
+}
+
 function scorePracticality(car, answers, tuning) {
   const { bootNeed, seatsFloor, crewBonusSeats } = tuning.practicality;
   // Boot targets are per-brand (a MINI's "big" is smaller than a BMW's), so
   // the derived key is looked up in the brand's own table.
   const need = bootNeed[bootNeedKey(answers)] ?? 0;
+  // Catalogue profiles use undefined for evidence that is genuinely unavailable.
+  // That is neutral for scoring, not zero capacity and not a parent-profile
+  // fallback. Existing populated production records take the unchanged path.
+  if (!(Number.isFinite(car.boot) && Number.isFinite(car.seats))) return { score: need === 0 ? 1 : 0.5 };
   const seatsOk = answers.people === 'solo' || car.seats >= seatsFloor;
   let score = need === 0 ? 1 : clamp(car.boot / need);
   if (!seatsOk) score *= 0.3;
@@ -308,7 +318,33 @@ function scorePracticality(car, answers, tuning) {
   return { score, reason };
 }
 
+function scoreLinearPerformance(value, curve) {
+  const low = Number(curve?.low);
+  const high = Number(curve?.high);
+  if (!(Number.isFinite(value) && Number.isFinite(low) && Number.isFinite(high) && high > low)) return 0.5;
+  return clamp((value - low) / (high - low));
+}
+
+function scoreMotorradPowerToWeight(car, tuning) {
+  // The advertised kW is deliberately the numerator. Catalogue factory kW is
+  // reference data only and must never substitute for what this offer states.
+  const power = Number(car.advertisedPowerKw);
+  const mass = Number(car.kerbMassKg);
+  if (Number.isFinite(power) && Number.isFinite(mass) && mass > 0) {
+    return { score: scoreLinearPerformance(power / mass, tuning.performance.powerToWeight) };
+  }
+  // A global advertised-kW curve provides signal where exact-model mass has
+  // not been sourced. Missing power remains neutral, never a performance miss.
+  if (Number.isFinite(power)) {
+    return { score: scoreLinearPerformance(power, tuning.performance.advertisedPowerKw) };
+  }
+  return { score: 0.5 };
+}
+
 function scorePerformance(car, answers, tuning) {
+  if (tuning.performance?.strategy === 'power-to-weight') {
+    return scoreMotorradPowerToWeight(car, tuning);
+  }
   const { zeroBase, span } = tuning.performance;
   const wantsIt = Number(answers.style) >= 4 || (answers.priorities || []).includes('performance');
   // Per-brand 0-62 curve: a MINI is quick for its class but never fast in
@@ -322,6 +358,7 @@ function scorePerformance(car, answers, tuning) {
   // When performance is explicitly wanted, resolve the fast end properly.
   const base = wantsIt ? zeroBase - 3 : zeroBase;
   const range = wantsIt ? span - 2 : span;
+  if (!Number.isFinite(car.zeroTo62)) return { score: 0.5 };
   const score = clamp((base - car.zeroTo62) / range);
   let reason;
   if (score >= 0.85 && wantsIt) {
@@ -385,7 +422,12 @@ function scoreSize(car, answers, tuning) {
     // Was "Big-car refinement for long motorway days", which asserts a quality
     // nothing in the data supports. Size is all we actually know here, so size
     // is all the reason claims.
-    return { score: big ? 1 : 0.6, reason: big ? phrase(tuning, 'roadtrip', car) : undefined };
+    const reason = big
+      ? explanationAllowed(car, 'boot') && explanationAllowed(car, 'seats')
+        ? phrase(tuning, 'roadtrip', car)
+        : 'A larger size class for longer trips'
+      : undefined;
+    return { score: big ? 1 : 0.6, reason };
   }
   return { score: 0.7 };
 }
@@ -422,7 +464,10 @@ function scoreCharacter(car, answers, tuning) {
   }
   const hits = car.tags.filter((t) => wanted.has(t));
   const score = clamp(hits.length / 2);
-  return { score, reason: hits.length ? tagReasons(tuning)[hits[0]] : undefined };
+  // The Motorrad touring phrase asserts luggage. Keep its scoring tag but do
+  // not make the rider-facing claim if standard luggage is unavailable.
+  const explainable = hits.find((tag) => tag !== 'touring' || explanationAllowed(car, 'boot'));
+  return { score, reason: explainable ? tagReasons(tuning)[explainable] : undefined };
 }
 
 const STYLE_LINE_LABEL = {
@@ -582,9 +627,29 @@ function effectiveWeights(answers, tuning) {
   return w;
 }
 
+export function licenceRatioCheck(car, answers, tuning) {
+  const screen = tuning.licenceScreen;
+  const limit = answers.licence === 'a1' ? screen?.a1.maxPowerToWeightKwPerKg
+    : answers.licence === 'a2' ? screen?.a2.maxPowerToWeightKwPerKg
+      : undefined;
+  if (limit == null) return undefined;
+  if (!(Number.isFinite(car.kerbMassKg) && car.kerbMassKg > 0)) return 'not-available';
+  const ratio = car.advertisedPowerKw / car.kerbMassKg;
+  return ratio <= limit ? 'checked-pass' : 'checked-fail';
+}
+
 function passesHardFilters(car, answers, tuning) {
   const { crewBoot, crewSeats, familySeats } = tuning.hardFilter;
   const [, max] = budgetRange(answers);
+  const screen = tuning.licenceScreen;
+  if (screen && answers.licence === 'a1') {
+    if (!(Number.isFinite(car.advertisedCc) && car.advertisedCc > 0 && car.advertisedCc <= screen.a1.maxCc)) return false;
+    if (!(Number.isFinite(car.advertisedPowerKw) && car.advertisedPowerKw > 0 && car.advertisedPowerKw <= screen.a1.maxPowerKw)) return false;
+  }
+  if (screen && answers.licence === 'a2') {
+    if (!(Number.isFinite(car.advertisedPowerKw) && car.advertisedPowerKw > 0 && car.advertisedPowerKw <= screen.a2.maxPowerKw)) return false;
+  }
+  if (licenceRatioCheck(car, answers, tuning) === 'checked-fail') return false;
   if (car.priceMin > max * tuning.stretchFactor) return false;
   if (answers.people === 'crew' && (car.seats < crewSeats || car.boot < crewBoot)) return false;
   if (answers.people === 'family' && car.seats < familySeats) return false;
@@ -626,6 +691,7 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
   return cars
     .filter((car) => passesHardFilters(car, answers, tuning))
     .map((car) => {
+      const ratioCheck = licenceRatioCheck(car, answers, tuning);
       let fitWeighted = 0;
       let tasteWeighted = 0;
       let stretch = false;
@@ -662,6 +728,7 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
       const tasteRatio = tasteTotal ? tasteWeighted / tasteTotal : 0;
       return {
         car,
+        ...(ratioCheck ? { licenceRatioCheck: ratioCheck } : {}),
         // The match %: mostly how well the car suits them, plus a guaranteed
         // slice of how much they'd like it. The fixed TASTE_SHARE is the point.
         // Before, taste dimensions were nominally ~16-25% of a single weighted

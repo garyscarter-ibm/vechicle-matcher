@@ -1,0 +1,513 @@
+{
+  "generatedAt": "2026-09-16",
+  "purpose": "Controlled review-only vocabulary. Candidate-unobserved/package-only entries are not eligible for product use.",
+  "features": [
+    {
+      "id": "heated-grips",
+      "displayLabel": "Heated grips",
+      "category": "comfort",
+      "acceptedAliases": [
+        "heated grips",
+        "heated handlebar grips"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 38,
+      "observedEvidenceStates": {
+        "advertised": 31,
+        "uncertain": 7
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "heated-seat",
+      "displayLabel": "Heated seat",
+      "category": "comfort",
+      "acceptedAliases": [
+        "heated seat",
+        "seat heating"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": true,
+      "observedOccurrences": 36,
+      "observedEvidenceStates": {
+        "advertised": 22,
+        "uncertain": 14
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "panniers",
+      "displayLabel": "Panniers",
+      "category": "luggage",
+      "acceptedAliases": [
+        "panniers",
+        "side cases",
+        "side case"
+      ],
+      "rejectedAliases": [
+        "pannier preparation"
+      ],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": true,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": true,
+      "observedOccurrences": 8,
+      "observedEvidenceStates": {
+        "advertised": 8
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "top-box",
+      "displayLabel": "Top box",
+      "category": "luggage",
+      "acceptedAliases": [
+        "top box",
+        "topcase"
+      ],
+      "rejectedAliases": [
+        "top box preparation"
+      ],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": true,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 13,
+      "observedEvidenceStates": {
+        "advertised": 8,
+        "uncertain": 5
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "luggage-rack",
+      "displayLabel": "Luggage rack",
+      "category": "luggage",
+      "acceptedAliases": [
+        "luggage rack",
+        "carrier rack"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": true,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "electronic-suspension",
+      "displayLabel": "Electronic suspension / ESA",
+      "category": "chassis",
+      "acceptedAliases": [
+        "dynamic esa",
+        "esa",
+        "electronic suspension"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "longest-phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 31,
+      "observedEvidenceStates": {
+        "advertised": 26,
+        "uncertain": 5
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "cruise-control",
+      "displayLabel": "Cruise control",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "cruise control"
+      ],
+      "rejectedAliases": [
+        "adaptive cruise control"
+      ],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 42,
+      "observedEvidenceStates": {
+        "advertised": 30,
+        "uncertain": 12
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "adaptive-cruise-control",
+      "displayLabel": "Adaptive cruise control",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "adaptive cruise control",
+        "acc"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "longest-phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "quickshifter",
+      "displayLabel": "Gear Shift Assist Pro",
+      "category": "drivetrain",
+      "acceptedAliases": [
+        "gear shift assist pro",
+        "quickshifter",
+        "shift assist pro"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "riding-modes",
+      "displayLabel": "Riding modes",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "riding modes",
+        "riding mode pro"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "medium",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 3,
+      "observedEvidenceStates": {
+        "uncertain": 3
+      },
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "abs-pro",
+      "displayLabel": "ABS Pro",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "abs pro"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "longest-phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "abs",
+      "displayLabel": "ABS",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "abs"
+      ],
+      "rejectedAliases": [
+        "abs pro"
+      ],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 29,
+      "observedEvidenceStates": {
+        "advertised": 29
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "traction-control",
+      "displayLabel": "Dynamic Traction Control",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "dtc",
+        "dynamic traction control",
+        "traction control"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 16,
+      "observedEvidenceStates": {
+        "advertised": 16
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "tyre-pressure-monitoring",
+      "displayLabel": "Tyre-pressure monitoring",
+      "category": "rider-aid",
+      "acceptedAliases": [
+        "rdc",
+        "tyre pressure monitoring",
+        "tire pressure monitoring"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 1,
+      "observedEvidenceStates": {
+        "uncertain": 1
+      },
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "navigation-preparation",
+      "displayLabel": "Navigation preparation",
+      "category": "connectivity",
+      "acceptedAliases": [
+        "navigation preparation",
+        "nav preparation",
+        "gps preparation"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "centre-stand",
+      "displayLabel": "Centre stand",
+      "category": "touring",
+      "acceptedAliases": [
+        "centre stand",
+        "center stand",
+        "main stand"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "observed",
+      "displayEligible": true,
+      "observedOccurrences": 35,
+      "observedEvidenceStates": {
+        "advertised": 30,
+        "uncertain": 5
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "keyless-ride",
+      "displayLabel": "Keyless Ride",
+      "category": "convenience",
+      "acceptedAliases": [
+        "keyless ride",
+        "keyless"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": true,
+      "observedOccurrences": 41,
+      "observedEvidenceStates": {
+        "advertised": 36,
+        "uncertain": 5
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "alarm",
+      "displayLabel": "Alarm system",
+      "category": "security",
+      "acceptedAliases": [
+        "alarm system",
+        "alarm"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "medium",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": true,
+      "observedOccurrences": 25,
+      "observedEvidenceStates": {
+        "advertised": 21,
+        "uncertain": 4
+      },
+      "recommendedUse": "display-or-refinement-candidate"
+    },
+    {
+      "id": "led-lighting",
+      "displayLabel": "LED lighting",
+      "category": "lighting",
+      "acceptedAliases": [
+        "adaptive led headlight",
+        "led headlight",
+        "led lighting"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "longest-phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "comfort-package",
+      "displayLabel": "Comfort package",
+      "category": "package",
+      "acceptedAliases": [
+        "comfort package"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 12,
+      "observedEvidenceStates": {
+        "uncertain": 12
+      },
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "touring-package",
+      "displayLabel": "Touring package",
+      "category": "package",
+      "acceptedAliases": [
+        "touring package"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "dynamic-package",
+      "displayLabel": "Dynamic package",
+      "category": "package",
+      "acceptedAliases": [
+        "dynamic package"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 4,
+      "observedEvidenceStates": {
+        "uncertain": 4
+      },
+      "recommendedUse": "neither-pending-review"
+    },
+    {
+      "id": "premium-package",
+      "displayLabel": "Premium package",
+      "category": "package",
+      "acceptedAliases": [
+        "premium package"
+      ],
+      "rejectedAliases": [],
+      "matchingMethod": "phrase",
+      "confidenceRequired": "high",
+      "negationMustBeDetected": false,
+      "packageCanImplyFeature": false,
+      "packageImplication": "never expands package label",
+      "observationStatus": "candidate-unobserved",
+      "displayEligible": false,
+      "observedOccurrences": 0,
+      "observedEvidenceStates": {},
+      "recommendedUse": "neither-pending-review"
+    }
+  ]
+}

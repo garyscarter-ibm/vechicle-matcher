@@ -36,6 +36,7 @@ import {
   shuffle, photosFirst, shadeOf, swatchFor, priceLabel, cap, gbpShort,
   modal, rankByFrequency, swipesToAnswers, celebrate, ageInYears,
 } from './match-signal.js';
+import { renderStockFreshnessNotice } from './stock-freshness.js';
 
 /* How many cards make a good swipe session — enough to read a taste, few enough
  * not to become a chore (§4.2). We sample the pool down to this. */
@@ -1061,6 +1062,8 @@ function mount(root, ctx) {
     screen.append(el('p', 'vm-kicker vm-mingle-match-kicker', copy.matchKicker));
     screen.append(el('h2', 'vm-title', thin ? copy.thinTitle : copy.matchTitle({ model: hero.car.name })));
     screen.append(el('p', 'vm-lede', thin ? copy.thinLede : copy.matchLede));
+    const stockNotice = ctx.brand === 'motorrad' ? renderStockFreshnessNotice(result.stockFreshness) : null;
+    if (stockNotice) screen.append(stockNotice);
 
     // Hero card
     screen.append(buildHero(hero));

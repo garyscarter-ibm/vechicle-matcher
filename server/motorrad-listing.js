@@ -72,11 +72,12 @@ export function splitRows(html) {
  */
 export function parseRow(block) {
   // The offer number keys both the id and the detail link: ShowResOvDetail('577260',1).
-  const on = (block.match(/ShowResOvDetail\('(\d+)'/) || [])[1] || null;
+  const detailMatch = block.match(/ShowResOvDetail\('(\d+)',(\d+)\)/) || [];
+  const on = detailMatch[1] || null;
 
   // Title lives on the image anchor's title="…" and again as the <p> heading.
-  const title = pick(/class="ChildImg"[^>]*\btitle="([^"]+)"/, block)
-    || pick(/\btitle="(BMW[^"]+)"/, block)
+  const title = pick(/class=['"]ChildImg['"][^>]*\btitle=['"]([^'"]+)['"]/, block)
+    || pick(/\btitle=['"](BMW[^'"]+)['"]/, block)
     || pick(/ErgebnissListKopf[^>]*>\s*<p[^>]*>([^<]+)</, block);
   if (!title) return null;
 
@@ -94,13 +95,14 @@ export function parseRow(block) {
   const firstReg = spec('First registration', block); // dd/mm/yyyy
   const year = firstReg && firstReg.includes('/') ? num(firstReg.split('/').pop()) : null;
 
-  const detailPath = pick(/href="(\/uk\/detail\.cshtml\?on=\d+[^"]*)"/i, block);
+  const detailPath = pick(/href=['"](\/uk\/detail\.cshtml\?on=[^'"]+)['"]/i, block);
   const link = detailPath
     ? `https://approvedused.bmw-motorrad.co.uk${decode(detailPath).replace(/&amp;/g, '&')}`
     : null;
 
   return {
     id: on,
+    motorradDetailRowNumber: detailMatch[2] ? Number(detailMatch[2]) : null,
     title: decode(title),
     price,
     mileage: num(spec('Mileage', block)),
@@ -124,5 +126,7 @@ export function parseRow(block) {
  *  (unmapped). Rows that aren't real vehicles are dropped. */
 export function parseResTable(html) {
   if (!html || typeof html !== 'string') return [];
-  return splitRows(html).map(parseRow).filter(Boolean);
+  const blocks = splitRows(html); const rows = blocks.map(parseRow);
+  if (blocks.length && rows.some((row) => !row)) { const error = new Error('LISTING_ROW_INVALID'); error.code = 'LISTING_ROW_INVALID'; throw error; }
+  return rows.filter(Boolean);
 }

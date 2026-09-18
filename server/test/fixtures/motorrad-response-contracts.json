@@ -1,0 +1,15 @@
+{
+  "landingValid": "<input id=\"hfSID\" value=\"SESSION_PLACEHOLDER\">",
+  "landingMissingSession": "<main>Results</main>",
+  "firstPage": "{\"ResTable\":\"<table><tr class='ergebnissColor'><a class='ChildImg' title='BMW F 900 R'></a><span>£9,000</span><span>First registration </span><img>01/01/2024<a href='/uk/detail.cshtml?on=1001'></a>ShowResOvDetail('1001',1)</tr></table>\",\"pagination\":{\"page\":1,\"total\":2}}",
+  "laterPage": "{\"SearchFilter\":{\"ResTable\":\"<table><tr class='ergebnissColor'><a class='ChildImg' title='BMW R 1250 GS'></a><span>£12,000</span><a href='/uk/detail.cshtml?on=1002'></a>ShowResOvDetail('1002',2)</tr></table>\"},\"pagination\":{\"page\":2,\"total\":2}}",
+  "malformedJson": "{not json",
+  "missingContainer": "{\"SearchFilter\":{\"ResultsHtml\":\"<table></table>\"}}",
+  "emptyResults": "{\"ResTable\":\"<table><tbody></tbody></table>\"}",
+  "missingRequiredOfferFields": "{\"ResTable\":\"<table><tr class='ergebnissColor'>ShowResOvDetail('1003',1)</tr></table>\"}",
+  "missingOptionalFields": "{\"ResTable\":\"<table><tr class='ergebnissColor'><a class='ChildImg' title='BMW F 900 R'></a><span>£9,000</span><a href='/uk/detail.cshtml?on=1004'></a>ShowResOvDetail('1004',1)</tr></table>\"}",
+  "duplicateOfferIds": ["1001", "1001"],
+  "inconsistentPagination": {"pagesExpected": 3, "pagesCompleted": 2},
+  "laterPageFailure": {"page": 2, "category": "TRANSPORT_TIMEOUT"},
+  "truncatedCapture": {"pagesExpected": 4, "pagesRequested": 3, "pagesCompleted": 2, "offersGathered": 40, "uniqueOffersGathered": 39, "duplicateCount": 1}
+}

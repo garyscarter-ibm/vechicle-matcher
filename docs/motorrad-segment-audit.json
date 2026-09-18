@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-09-17",
+  "mode": "live-stratified-sample",
+  "offersDiscovered": 987,
+  "offersRequested": 88,
+  "verifiedDetails": 0,
+  "detailIdentityMismatches": 84,
+  "requiredModels": [
+    {
+      "canonicalDerivativeId": "bmw-motorrad:f-900-xr",
+      "status": "NOT_IN_VERIFIED_SAMPLE"
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:s-1000-xr",
+      "status": "NOT_IN_VERIFIED_SAMPLE"
+    },
+    {
+      "canonicalDerivativeId": "bmw-motorrad:s-1000-rr",
+      "status": "NOT_IN_VERIFIED_SAMPLE"
+    }
+  ],
+  "segments": [],
+  "translation": {
+    "Adventure": "adventure",
+    "Heritage": "heritage",
+    "Roadster / Naked bike": "roadster",
+    "Sport": "sport",
+    "Tourer / Luxury tourer": "tourer"
+  }
+}

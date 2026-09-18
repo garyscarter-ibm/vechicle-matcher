@@ -1546,6 +1546,13 @@
 }
 
 .vm-specs { color: var(--vm-ink-muted); font-size: var(--vm-text-label); margin: var(--vm-space-2) 0 var(--vm-space-2); }
+.vm-stock-notice { border-left: 3px solid var(--vm-line); color: var(--vm-ink-muted); font-size: var(--vm-text-label); margin: 0 0 var(--vm-space-4); max-width: 62ch; padding-left: var(--vm-space-3); }
+.vm-stock-notice--partial, .vm-stock-notice--expired, .vm-stock-notice--unavailable { border-left-color: var(--vm-accent); color: var(--vm-ink); }
+.vm-advertised-equipment { display: grid; gap: 6px; margin: 0 0 var(--vm-space-3); color: var(--vm-ink-muted); font-size: var(--vm-text-label); }
+.vm-advertised-equipment-title { color: var(--vm-ink); font-size: var(--vm-text-eyebrow); letter-spacing: .04em; text-transform: uppercase; }
+.vm-advertised-equipment-badges { display: flex; flex-wrap: wrap; gap: 5px; }
+.vm-advertised-equipment-badge { border: 1px solid var(--vm-line); border-radius: 999px; color: var(--vm-ink); padding: 3px 8px; white-space: nowrap; }
+.vm-advertised-equipment-note { font-size: 12px; }
 .vm-usedmeta {
   font-family: var(--vm-font-bold);
   font-weight: 700;

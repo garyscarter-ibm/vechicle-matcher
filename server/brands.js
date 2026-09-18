@@ -381,6 +381,11 @@ const FORD_TUNING = {
  * Everything not restated inherits BMW's base via mergeTuning.
  */
 const MOTORRAD_TUNING = {
+  // A first-pass advertised-spec screen, not a legal-entitlement or power-to-weight decision.
+  licenceScreen: {
+    a1: { maxCc: 125, maxPowerKw: 11, maxPowerToWeightKwPerKg: 0.1 },
+    a2: { maxPowerKw: 35, maxPowerToWeightKwPerKg: 0.2 },
+  },
   weights: {
     // Category (body) is how a rider shops first (GS vs sportbike vs tourer), so
     // it stays the dominant axis. Performance and character matter more than on a
@@ -401,7 +406,21 @@ const MOTORRAD_TUNING = {
   // BMW's car curve (10.5s->0, 4.5s->1) every bike would peg at 1.0 and the axis
   // would carry no signal. Re-point it to the bike range: a ~7.7s G 310 sits near
   // the bottom, a ~2.8s M 1000 RR at the top, midweights spread between.
-  performance: { zeroBase: 8.0, span: 5.2 },
+  performance: {
+    strategy: 'power-to-weight',
+    // Frozen from the 2026-09-17 capture: sourced-mass offers' 10th / 95th
+    // percentiles are 0.282 / 0.774 kW/kg (856 of 955 offers). Rounded
+    // outward to simple, stable anchors. The curve is linear and clamped:
+    // 0.28 kW/kg -> 0; 0.78 kW/kg -> 1. It ranks a live advertised-power
+    // figure against sourced derivative mass, not a catalogue factory kW.
+    powerToWeight: { low: 0.28, high: 0.78 },
+    // The same capture's advertised-power 10th / 95th percentiles are
+    // 66 / 154 kW. This global fallback is used only where exact-model mass
+    // is unavailable; it avoids turning unavailable mass into a quiet zero.
+    advertisedPowerKw: { low: 66, high: 154 },
+    // Retained for legacy compatibility scoring, which still uses 0-62.
+    zeroBase: 8.0, span: 5.2,
+  },
   practicality: {
     // "boot" is luggage litres here: 0 (sportbike) to ~110 (K 1600 tourer). The
     // need scale must match, or a fully-panniered tourer would still read as
@@ -729,9 +748,7 @@ export const BRANDS = {
      *    `scoresAs` sets `primaryUse` (so the size/practicality scorers fire the
      *    right way) and `priorities`/`style` so character scores in the right
      *    direction, and seeds `bodyStyles` toward the matching category.
-     *    `licence` (A1/A2/A) gates capacity: A1/A2 riders are steered to
-     *    smaller, a2-friendly bikes via `bodyStyles`/`priorities`, a full-A
-     *    rider is open to everything.
+     *    `licence` (A1/A2/A) screens the advertised cc/kW before ranking.
      */
     questions: {
       drop: ['charging', 'people', 'style'],
@@ -783,26 +800,23 @@ export const BRANDS = {
         {
           id: 'licence',
           title: 'Which licence do you ride on?',
-          help: 'We only show bikes you can ride. A2 has a power limit; full A is unrestricted.',
+          help: 'We screen advertised power and capacity, plus power-to-weight where BMW has a sourced model weight. This does not check entitlement.',
           insertAfter: 'ridingStyle',
           options: [
             {
               value: 'a1',
               label: 'A1',
-              sub: 'Up to 125cc, learner-friendly',
-              scoresAs: { priorities: ['economy'] },
+              sub: 'Up to 125cc and 11kW as advertised',
             },
             {
               value: 'a2',
               label: 'A2',
-              sub: 'Restricted power, stepping up',
-              scoresAs: { priorities: ['economy'] },
+              sub: 'Up to 35kW as advertised',
             },
             {
               value: 'a',
               label: 'Full A',
-              sub: 'No restrictions',
-              scoresAs: {},
+              sub: 'No power or capacity screen',
             },
           ],
         },

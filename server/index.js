@@ -36,6 +36,7 @@ import {
 import {
   fetchRetailerStock, fetchNearbyStock, startStockWarmer, StockUnavailableError, enrichColours,
   normalizeScope,
+  motorradStockHealth,
   startColourWarmer,
 } from './stock.js';
 import {
@@ -44,9 +45,12 @@ import {
 import { normalizeBrand, brandTuning } from './brands.js';
 import { fetchDealerDirectory } from './dealers.js';
 import { geocodePostcode } from './geocode.js';
+import { motorradEquipmentEnricher } from './motorrad-equipment-service.js';
+import { MOTORRAD_FEATURE_VOCABULARY } from './motorrad-equipment-parser.js';
 
 const PORT = Number(process.env.PORT) || 8787;
 const MAX_BODY_BYTES = 16 * 1024; // quiz answers are tiny; reject anything bigger
+const MOTORRAD_PUBLIC_RETAILER = 'BMW Motorrad Approved Used';
 
 // A shared secret that gates the /api/* surface, set only in the host's env
 // (e.g. Render dashboard) so it's never committed. When it's unset or empty,
@@ -165,7 +169,13 @@ function publicQuestions(brand) {
  * `retailerId` is deliberately absent: it exists only so fetchNearbyStock can
  * drop the anchor retailer's own cars, and the block has no use for it.
  */
-function publicCar(car) {
+export function publicCar(car, brand) {
+  // Motorrad's feed context can include a registration-shaped value while the
+  // collector is parsing a row. It is useful only inside the server: cards use
+  // the already-safe year for their age frame. Keep both that raw value and any
+  // accidental plate field out of its browser projection.
+  const isMotorrad = brand === 'motorrad';
+  const advertisedFeatures = publicMotorradAdvertisedFeatures(car.advertisedFeatures);
   return {
     // The advert id — already public in `link` (/vehicle/{advert_id}), and the
     // only stable identity the page has for a car. Refinement state needs it:
@@ -190,14 +200,12 @@ function publicCar(car) {
     blurb: car.blurb,
     // Live retailer detail (present when sourced from the live feed).
     mileage: car.mileage,
-    plate: car.plate,
+    ...(isMotorrad ? {} : { plate: car.plate }),
     // Age source for the swipe card's dating frame ("3 years old" instead of a
-    // reg plate). The plate encodes the age code for plated brands, but bikes
-    // (Motorrad) carry no plate in the feed, so the registration year/date are
-    // surfaced here too. Both describe the listing, so a card that prints an age
-    // is fair game (see ageInYears in match-signal.js for the derivation order).
+    // reg plate). The year is sufficient for Motorrad; its raw first-registration
+    // value stays server-side.
     year: car.year,
-    firstReg: car.firstReg,
+    ...(isMotorrad ? {} : { firstReg: car.firstReg }),
     photo: car.photo,
     // Granular facts the life-fit questions never ask about, for the
     // refinement step: equipment concepts (mapping.js FEATURE_CONCEPTS),
@@ -217,6 +225,7 @@ function publicCar(car) {
     topSpeed: car.topSpeed,
     fullServiceHistory: car.fullServiceHistory,
     previousOwners: car.previousOwners,
+    ...(advertisedFeatures.length ? { advertisedFeatures } : {}),
     // Set when repeat listings of the same car were grouped (see
     // groupListings): how many the retailer has, the price spread and the
     // colours they come in, so one card can speak for all of them.
@@ -224,12 +233,51 @@ function publicCar(car) {
     priceFrom: car.priceFrom,
     priceTo: car.priceTo,
     colours: car.colours,
-    retailerName: car.retailerName,
+    retailerName: isMotorrad ? MOTORRAD_PUBLIC_RETAILER : car.retailerName,
     link: car.link,
     // Miles from the configured retailer. Only set on `nearby` cars — the
     // hero matches are the configured retailer's own stock.
     distance: car.distance,
   };
+}
+
+const MOTORRAD_PUBLIC_FEATURES = new Map(
+  MOTORRAD_FEATURE_VOCABULARY.map(({ id, displayLabel: label, category }) => [id, { id, label, category }]),
+);
+
+/** Only vocabulary-owned equipment concepts can cross from the optional PDP fetch. */
+export function publicMotorradAdvertisedFeatures(features) {
+  if (!Array.isArray(features)) return [];
+  return features
+    .map((feature) => MOTORRAD_PUBLIC_FEATURES.get(feature?.id))
+    .filter(Boolean);
+}
+
+const STOCK_FRESHNESS_STATES = new Set(['fresh', 'stale', 'partial', 'expired', 'unavailable']);
+const STOCK_FRESHNESS_SOURCES = {
+  fresh: new Set(['memory', 'persisted']),
+  stale: new Set(['memory', 'persisted']),
+  partial: new Set(['partial']),
+  expired: new Set(['memory', 'persisted']),
+  unavailable: new Set(['unavailable']),
+};
+const STOCK_FRESHNESS_DEFAULT_SOURCE = {
+  fresh: 'memory', stale: 'memory', partial: 'partial', expired: 'memory', unavailable: 'unavailable',
+};
+
+/**
+ * The health object is intentionally richer than the public API contract.
+ * Rebuild the small browser value from an allowlist instead of copying it, so
+ * a future metric (or an upstream error object) cannot become response data.
+ */
+export function publicMotorradStockFreshness(health) {
+  const state = STOCK_FRESHNESS_STATES.has(health?.state) ? health.state : 'unavailable';
+  const ageMs = state === 'unavailable' || !Number.isFinite(health?.ageMs)
+    ? null
+    : Math.max(0, Math.min(Math.floor(health.ageMs), 7 * 24 * 60 * 60 * 1000));
+  const source = STOCK_FRESHNESS_SOURCES[state].has(health?.source)
+    ? health.source : STOCK_FRESHNESS_DEFAULT_SOURCE[state];
+  return { state, ageMs, source };
 }
 
 /* ------------------------- the whole-pool wire format ------------------ *
@@ -355,7 +403,9 @@ function publicPool(brand, cars, directory = null) {
   const [bodies, body] = dictionary(cars.map((c) => c.body));
   const [fuels, fuel] = dictionary(cars.map((c) => c.fuel));
   const [transmissions, transmission] = dictionary(cars.map((c) => c.transmission));
-  const [retailers, retailer] = dictionary(cars.map((c) => c.retailerName));
+  const [retailers, retailer] = dictionary(cars.map((c) => (
+    brand === 'motorrad' ? MOTORRAD_PUBLIC_RETAILER : c.retailerName
+  )));
   // Paint, in both forms the UI needs: the normalised basic name the filter
   // groups by ("Grey") and the marketing name a card prints ("Brooklyn Grey").
   // Absent for any car the colour warm pass hasn't reached yet — those are
@@ -385,7 +435,9 @@ function publicPool(brand, cars, directory = null) {
     price: cars.map((c) => c.priceMin ?? null),
     mileage: cars.map((c) => c.mileage ?? null),
     year: cars.map((c) => c.year ?? null),
-    plate: cars.map((c) => c.plate ?? null),
+    // Guess Who still needs an aligned column, but a Motorrad pool must never
+    // carry raw registration values into browser memory.
+    plate: cars.map((c) => (brand === 'motorrad' ? null : c.plate ?? null)),
     seats: cars.map((c) => c.seats ?? null),
     boot: cars.map((c) => c.boot ?? null),
     zeroTo62: cars.map((c) => c.zeroTo62 ?? null),
@@ -398,9 +450,9 @@ function publicPool(brand, cars, directory = null) {
 
 function publicMatch({
   car, score, stretch, reasons, tradeOffs, listings,
-}) {
+}, brand) {
   return {
-    car: publicCar(car),
+    car: publicCar(car, brand),
     score,
     stretch,
     reasons,
@@ -430,6 +482,9 @@ function publicMatch({
       transmission: c.transmission,
       features: c.features,
       link: c.link,
+      // The plate/registration fields are deliberately not part of a listing
+      // projection. In particular, Motorrad row context must not cross the
+      // API boundary through this nested path.
     })),
   };
 }
@@ -533,6 +588,12 @@ async function handleMatch(req, res, deps) {
     cars = await deps.fetchRetailerStock(brand, retailer, scope);
   } catch (err) {
     if (err instanceof StockUnavailableError) {
+      if (brand === 'motorrad') {
+        return sendJson(res, 502, {
+          error: 'Stock availability is temporarily unavailable',
+          stockFreshness: publicMotorradStockFreshness({ state: 'unavailable' }),
+        });
+      }
       return sendJson(res, 502, { error: 'Live stock is temporarily unavailable' });
     }
     return sendJson(res, 500, { error: 'Something went wrong finding matches' });
@@ -544,6 +605,23 @@ async function handleMatch(req, res, deps) {
   const {
     matches, alternatives, decisive, clusterSize, tasteLead, searched,
   } = matchCars(scored, cars, brandTuning(brand));
+
+  // Display-only and deliberately post-ranking: selected Motorrad result cards
+  // may gain sanitised advertised-equipment badges, never a score/filter input.
+  if (brand === 'motorrad') {
+    try {
+      const enriched = await deps.enrichMotorradEquipment(matches.map((match) => match.car));
+      for (const match of matches) {
+        const result = enriched.get(String(match.car.id));
+        if (!result) continue;
+        match.car.equipmentEnrichmentStatus = result.status;
+        match.car.equipmentEnrichmentReasonCodes = result.reasonCodes;
+        if (result.advertisedFeatures.length) match.car.advertisedFeatures = result.advertisedFeatures;
+      }
+    } catch {
+      // Detail data is optional display enhancement; ranking response remains intact.
+    }
+  }
 
   // Paint only exists on the vehicle detail page, so it's fetched for the
   // handful of cars we're about to show rather than the whole pool (see
@@ -597,9 +675,9 @@ async function handleMatch(req, res, deps) {
   // picture: the block waits for /api/nearby to agree before telling the user
   // a want is genuinely unavailable.
   return sendJson(res, 200, {
-    matches: matches.map(publicMatch),
+    matches: matches.map((match) => publicMatch(match, brand)),
     // Held back for "not this one" to fall through to (see matchCars).
-    alternatives: alternatives.map(publicMatch),
+    alternatives: alternatives.map((match) => publicMatch(match, brand)),
     // Whether naming a single winner is honest, and how big the tie really is
     // (it can exceed matches.length — see matchCars). The page decides between
     // "your perfect BMW is…" and "any of these would suit you" on this.
@@ -614,6 +692,9 @@ async function handleMatch(req, res, deps) {
     // evidence behind it.
     searched,
     unmet: unmetWants(scored, cars),
+    ...(brand === 'motorrad'
+      ? { stockFreshness: publicMotorradStockFreshness(deps.getMotorradStockHealth()) }
+      : {}),
   });
 }
 
@@ -694,7 +775,7 @@ async function handlePreview(req, res, deps) {
     console.warn('[preview] colour enrichment failed:', err?.message);
   }
 
-  return sendJson(res, 200, { matches: matches.map(publicMatch) });
+  return sendJson(res, 200, { matches: matches.map((match) => publicMatch(match, brand)) });
 }
 
 /**
@@ -757,7 +838,7 @@ async function handleField(req, res, deps) {
     }
   }
 
-  return sendJson(res, 200, { matches: matches.map(publicMatch) });
+  return sendJson(res, 200, { matches: matches.map((match) => publicMatch(match, brand)) });
 }
 
 /**
@@ -813,7 +894,7 @@ async function handleNearby(req, res, deps) {
     console.warn('[nearby] stock unavailable:', err?.message);
   }
 
-  return sendJson(res, 200, { nearby: nearby.map(publicMatch), unmet });
+  return sendJson(res, 200, { nearby: nearby.map((match) => publicMatch(match, brand)), unmet });
 }
 
 /**
@@ -829,6 +910,8 @@ export function buildServer(deps = {}) {
     fetchRetailerStock,
     fetchNearbyStock,
     enrichColours,
+    enrichMotorradEquipment: motorradEquipmentEnricher.enrich,
+    getMotorradStockHealth: motorradStockHealth,
     // The two location dependencies are on the same seam for the same reason as
     // the stock ones: both call a third-party host that is not ours (a 2MB
     // dealer directory, and postcodes.io), so a test that reached either would

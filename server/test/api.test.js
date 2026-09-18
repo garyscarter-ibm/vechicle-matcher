@@ -18,7 +18,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  buildServer, FIELD_MAX, PREVIEW_COUNT, clampFieldSize,
+  buildServer, FIELD_MAX, PREVIEW_COUNT, clampFieldSize, publicMotorradStockFreshness,
 } from '../index.js';
 import { TOP_MATCHES, MAX_SHOWN } from '../engine.js';
 import { StockUnavailableError, normalizeScope, DEFAULT_SCOPE } from '../stock.js';
@@ -351,6 +351,19 @@ test('POST /api/match maps StockUnavailableError → 502', async () => {
   );
 });
 
+test('Motorrad unavailable stock has a controlled freshness response with no upstream detail', async () => {
+  await withServer(
+    { fetchRetailerStock: throwingStock(new StockUnavailableError('GMB-SID=secret raw BMW response')) },
+    async (base) => {
+      const { status, json, text } = await post(base, '/api/match', { answers: FULL_BRIEF, brand: 'motorrad' });
+      assert.equal(status, 502);
+      assert.deepEqual(json.stockFreshness, { state: 'unavailable', ageMs: null, source: 'unavailable' });
+      assert.equal(json.error, 'Stock availability is temporarily unavailable');
+      assert.doesNotMatch(text, /GMB-SID|raw BMW response/);
+    },
+  );
+});
+
 test('POST /api/match maps a generic stock error → 500', async () => {
   await withServer(
     { fetchRetailerStock: throwingStock(new Error('boom')) },
@@ -359,6 +372,90 @@ test('POST /api/match maps a generic stock error → 500', async () => {
       assert.equal(status, 500);
     },
   );
+});
+
+test('Motorrad freshness is allowlisted and no collector diagnostics reach the browser', async () => {
+  const forbidden = [
+    'BMW_SESSION_SHOULD_NOT_LEAK', 'RAW_RESPONSE_SHOULD_NOT_LEAK', 'VIN_SHOULD_NOT_LEAK',
+    'REGISTRATION_SHOULD_NOT_LEAK', 'dealer@example.test', '/private/cache/path', 'internal failure',
+  ];
+  const bike = {
+    ...bmwPool(1)[0], plate: forbidden[3], firstReg: forbidden[3],
+    retailerName: forbidden[4], motorradDetailPage: 7, motorradDetailRowNumber: 8,
+  };
+  await withServer({
+    fetchRetailerStock: async () => [bike],
+    enrichColours: fakeEnrich(),
+    enrichMotorradEquipment: async (cars) => new Map(cars.map((car) => [car.id, {
+      advertisedFeatures: [
+        { id: 'heated-grips', label: forbidden[0], category: 'secret' },
+        { id: 'not-a-feature', label: forbidden[1], category: 'secret' },
+      ],
+      reasonCodes: [forbidden[6]], status: 'detail-unavailable', raw: forbidden[1],
+    }])),
+    getMotorradStockHealth: () => ({
+      state: 'stale', ageMs: 12_345.9, source: forbidden[0], error: forbidden[6],
+      session: forbidden[0], responseBody: forbidden[1], vin: forbidden[2],
+      registration: forbidden[3], dealerContact: forbidden[4], cachePath: forbidden[5],
+    }),
+  }, async (base) => {
+    const { status, json, text } = await post(base, '/api/match', { answers: FULL_BRIEF, brand: 'motorrad' });
+    assert.equal(status, 200);
+    assert.deepEqual(json.stockFreshness, { state: 'stale', ageMs: 12_345, source: 'memory' });
+    assert.deepEqual(json.matches[0].car.advertisedFeatures, [{ id: 'heated-grips', label: 'Heated grips', category: 'comfort' }]);
+    assert.ok(!('plate' in json.matches[0].car));
+    assert.ok(!('firstReg' in json.matches[0].car));
+    assert.equal(json.matches[0].car.retailerName, 'BMW Motorrad Approved Used');
+    for (const value of forbidden) assert.ok(!text.includes(value), `browser response leaked ${value}`);
+  });
+});
+
+test('freshness is Motorrad-only, and non-Motorrad card fields stay unchanged', async () => {
+  let healthCalls = 0;
+  const car = { ...bmwPool(1)[0], plate: 'AB12 CDE' };
+  await withServer({
+    fetchRetailerStock: async () => [car], enrichColours: fakeEnrich(),
+    getMotorradStockHealth: () => { healthCalls += 1; return { state: 'stale', ageMs: 1 }; },
+  }, async (base) => {
+    const { status, json } = await post(base, '/api/match', { answers: FULL_BRIEF, brand: 'bmw' });
+    assert.equal(status, 200);
+    assert.equal(json.stockFreshness, undefined);
+    assert.equal(json.matches[0].car.plate, 'AB12 CDE');
+    assert.equal(healthCalls, 0);
+  });
+});
+
+test('Motorrad equipment failure is non-blocking and cannot alter the ranked result', async () => {
+  const pool = bmwPool(6);
+  const requestBody = { answers: FULL_BRIEF, brand: 'motorrad' };
+  const baseDeps = {
+    fetchRetailerStock: async () => pool.map((car) => ({ ...car })),
+    enrichColours: fakeEnrich(),
+    getMotorradStockHealth: () => ({ state: 'fresh', ageMs: 0 }),
+  };
+  let baseline;
+  await withServer(baseDeps, async (base) => { baseline = await post(base, '/api/match', requestBody); });
+  await withServer({
+    ...baseDeps,
+    enrichMotorradEquipment: async () => { throw new Error('BMW detail transport failed'); },
+  }, async (base) => {
+    const failed = await post(base, '/api/match', requestBody);
+    assert.equal(failed.status, 200);
+    assert.deepEqual(
+      failed.json.matches.map((match) => [match.car.id, match.score, match.reasons, match.tradeOffs]),
+      baseline.json.matches.map((match) => [match.car.id, match.score, match.reasons, match.tradeOffs]),
+    );
+    assert.doesNotMatch(failed.text, /BMW detail transport failed/);
+  });
+});
+
+test('freshness public projection rejects unknown state, source and age values', () => {
+  assert.deepEqual(publicMotorradStockFreshness({ state: 'not-real', ageMs: Infinity, source: 'secret' }), {
+    state: 'unavailable', ageMs: null, source: 'unavailable',
+  });
+  assert.deepEqual(publicMotorradStockFreshness({ state: 'expired', ageMs: -1, source: 'secret' }), {
+    state: 'expired', ageMs: 0, source: 'memory',
+  });
 });
 
 /* ------------------------------------------------------------------ *

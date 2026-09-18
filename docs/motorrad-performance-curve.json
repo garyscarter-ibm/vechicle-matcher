@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-09-17",
+  "fixtureOffers": 955,
+  "sourcedMassOffers": 856,
+  "advertisedPowerOnlyOffers": 99,
+  "missingAdvertisedPowerOffers": 0,
+  "distribution": {
+    "powerToWeightKwPerKg": {
+      "p10": 0.28193832599118945,
+      "p50": 0.3807829181494662,
+      "p95": 0.7738693467336684
+    },
+    "advertisedPowerKw": {
+      "p10": 66,
+      "p50": 100,
+      "p95": 154
+    }
+  },
+  "frozenCurve": {
+    "strategy": "power-to-weight",
+    "powerToWeightKwPerKg": {
+      "low": 0.28,
+      "high": 0.78
+    },
+    "advertisedPowerKwFallback": {
+      "low": 66,
+      "high": 154
+    },
+    "shape": "linear, increasing, clamped to 0..1"
+  }
+}

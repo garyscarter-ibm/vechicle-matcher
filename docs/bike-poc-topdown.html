@@ -1,0 +1,54 @@
+<div id="bike-poc-topdown" role="img" aria-label="Top-down flow of the BMW Motorrad used-bike matcher, from visitor answers and BMW's live used-bike feed through normalisation and the shared matcher to the ranked results.">
+  <style>
+    #bike-poc-topdown { color: #1f252b; font: 14px/1.35 system-ui, sans-serif; max-width: 820px; margin: 0 auto; }
+    #bike-poc-topdown .lane { display: grid; grid-template-columns: 1fr 42px 1.25fr; align-items: stretch; margin: 10px 0; }
+    #bike-poc-topdown .box { border: 1px solid #aeb8c3; border-radius: 8px; padding: 14px; background: #fff; }
+    #bike-poc-topdown .source { background: #f2f7fb; border-color: #86a9c7; }
+    #bike-poc-topdown .core { background: #f4f7f5; border-color: #8eae9a; }
+    #bike-poc-topdown .watch { background: #fff8e8; border-color: #d3a84d; }
+    #bike-poc-topdown .arrow { display: flex; align-items: center; justify-content: center; color: #596673; font-size: 24px; }
+    #bike-poc-topdown h3 { font-size: 15px; margin: 0 0 7px; }
+    #bike-poc-topdown p { margin: 0; }
+    #bike-poc-topdown .note { color: #63501f; font-size: 13px; }
+    #bike-poc-topdown .tag { display: inline-block; margin: 3px 4px 0 0; padding: 2px 6px; border-radius: 4px; background: #e6edf3; font-size: 12px; }
+    #bike-poc-topdown .flow { margin: 12px 0; padding: 14px; border: 2px solid #0066b1; border-radius: 8px; background: #f4f9fd; text-align: center; font-weight: 650; }
+    @media (max-width: 540px) { #bike-poc-topdown .lane { grid-template-columns: 1fr; gap: 8px; } #bike-poc-topdown .arrow { transform: rotate(90deg); height: 24px; } }
+  </style>
+  <div class="lane">
+    <section class="box source">
+      <h3>Rider answers</h3>
+      <p>Budget, category, riding style, licence, fuel, use, mileage, priorities.</p>
+    </section>
+    <div class="arrow" aria-hidden="true">→</div>
+    <section class="box source">
+      <h3>BMW Motorrad live listings</h3>
+      <p>Offer ID, title, price, mileage, registration, photo, detail link, cc and kW.</p>
+    </section>
+  </div>
+  <div class="flow">Our API fetches the national approved-used pool, then parses every listing</div>
+  <div class="lane">
+    <section class="box core">
+      <h3>Normalisation</h3>
+      <p>Keep per-bike facts; turn BMW listing text into one consistent vehicle shape.</p>
+      <span class="tag">price</span><span class="tag">mileage</span><span class="tag">age</span><span class="tag">photo</span><span class="tag">cc</span><span class="tag">kW</span>
+    </section>
+    <div class="arrow" aria-hidden="true">+</div>
+    <section class="box core">
+      <h3>Local model profile</h3>
+      <p>Recognised model line supplies comparison attributes absent from the feed.</p>
+      <span class="tag">category</span><span class="tag">pillion</span><span class="tag">luggage</span><span class="tag">size band</span><span class="tag">MPG</span><span class="tag">0–62</span>
+    </section>
+  </div>
+  <div class="flow">Shared matcher: hard filters where available, then ranks fit and rider preference</div>
+  <div class="lane">
+    <section class="box core">
+      <h3>Bike results</h3>
+      <p>Ranked live bikes with reasons, prices, card details and links back to BMW Motorrad.</p>
+    </section>
+    <div class="arrow" aria-hidden="true">↔</div>
+    <section class="box watch">
+      <h3>Watch points</h3>
+      <p class="note">Unknown titles fall back to a generic profile. Optional kit does not change the standard first-match score. A1/A2 is asked, but is not currently an eligibility filter.</p>
+    </section>
+  </div>
+</div>

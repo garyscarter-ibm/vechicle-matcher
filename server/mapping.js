@@ -19,6 +19,9 @@
  */
 
 import { brandConfig } from './brands.js';
+import { MOTORRAD_RUNTIME_CATALOGUE } from './data/motorrad-runtime-catalogue.js';
+import { MOTORRAD_RUNTIME_SCORING_PROFILES } from './data/motorrad-runtime-scoring-profiles.js';
+import { createMotorradCatalogueResolver } from './motorrad-catalogue-resolver.js';
 
 /* --------------------------- model spec table -------------------------- *
  * Keyed by the normalized `line` (see lineFromTitle). Values are the specs
@@ -922,6 +925,9 @@ export function mapFordRaw(raw) {
     firstReg: raw?.firstReg || undefined,
     year: raw?.year || undefined,
     photo: raw?.image || undefined,
+    // Server-only public-detail request context; publicCar does not expose it.
+    motorradDetailPage: raw?.motorradDetailPage,
+    motorradDetailRowNumber: raw?.motorradDetailRowNumber,
     // Real per-listing facts recovered from the capture (publicCar surfaces them):
     // the car's own exterior colour, its full-service-history flag ("Yes"/"No"
     // string), and previous-owner count. Each describes THIS car, not the model,
@@ -1197,24 +1203,28 @@ export function mapFerrariRaw(raw) {
 /* Per-model bike figures the listing lacks: category, cc, pillion seats,
  * luggage litres, 0-62s, size band 1-5, mpg (or evRange for electric). Grounded
  * in the public BMW Motorrad UK range. Keyed by normalised model line. */
-const MODEL_SPECS_MOTORRAD = {
+export const MODEL_SPECS_MOTORRAD = {
   // Roadster / naked
-  'R 1300 R': { category: 'roadster', cc: 1300, seats: 2, boot: 0, zeroTo62: 3.0, sizeClass: 4, mpg: 55 },
+  'R 1300 RS': { category: 'roadster', cc: 1300, seats: 2, boot: 0, zeroTo62: 3.0, sizeClass: 4, mpg: 55, kerbMassKg: 245 },
+  'R 1300 R': { category: 'roadster', cc: 1300, seats: 2, boot: 0, zeroTo62: 3.0, sizeClass: 4, mpg: 55, kerbMassKg: 239 },
   'R 1250 R': { category: 'roadster', cc: 1254, seats: 2, boot: 0, zeroTo62: 3.2, sizeClass: 4, mpg: 55 },
   'R 1200 R': { category: 'roadster', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.4, sizeClass: 4, mpg: 55 },
-  'M 1000 R': { category: 'naked', cc: 999, seats: 2, boot: 0, zeroTo62: 3.0, sizeClass: 5, mpg: 44 },
-  'S 1000 R': { category: 'naked', cc: 999, seats: 2, boot: 0, zeroTo62: 3.1, sizeClass: 4, mpg: 45 },
-  'F 900 R': { category: 'roadster', cc: 895, seats: 2, boot: 0, zeroTo62: 3.7, sizeClass: 3, mpg: 62 },
+  'M 1000 R': { category: 'naked', cc: 999, seats: 2, boot: 0, zeroTo62: 3.0, sizeClass: 5, mpg: 44, kerbMassKg: 199 },
+  'S 1000 R': { category: 'naked', cc: 999, seats: 2, boot: 0, zeroTo62: 3.1, sizeClass: 4, mpg: 45, kerbMassKg: 199 },
+  'F 900 R': { category: 'roadster', cc: 895, seats: 2, boot: 0, zeroTo62: 3.7, sizeClass: 3, mpg: 62, kerbMassKg: 208 },
   'F 800 R': { category: 'roadster', cc: 798, seats: 2, boot: 0, zeroTo62: 4.0, sizeClass: 3, mpg: 60 },
   'G 310 R': { category: 'naked', cc: 313, seats: 2, boot: 0, zeroTo62: 7.5, sizeClass: 1, mpg: 85 },
   // Adventure / GS. The Adventure (GSA) variants carry a bigger tank and more
   // luggage than the base GS, so they get their own keys and figures.
-  'R 1300 GS Adventure': { category: 'adventure', cc: 1300, seats: 2, boot: 75, zeroTo62: 3.1, sizeClass: 5, mpg: 56 },
-  'R 1300 GS': { category: 'adventure', cc: 1300, seats: 2, boot: 68, zeroTo62: 3.0, sizeClass: 5, mpg: 57 },
-  'R 1250 GS Adventure': { category: 'adventure', cc: 1254, seats: 2, boot: 75, zeroTo62: 3.5, sizeClass: 5, mpg: 55 },
+  // BMW publishes 420cc, 35kW, 178kg and 3.8L/100km WMTC; acceleration/luggage are conservative class estimates.
+  'F 450 GS': { category: 'adventure', cc: 420, seats: 2, boot: 20, zeroTo62: 6.0, sizeClass: 2, mpg: 74, kerbMassKg: 178 },
+  'R 1300 GS Adventure': { category: 'adventure', cc: 1300, seats: 2, boot: 75, zeroTo62: 3.1, sizeClass: 5, mpg: 56, kerbMassKg: 269 },
+  'R 1300 GS': { category: 'adventure', cc: 1300, seats: 2, boot: 68, zeroTo62: 3.0, sizeClass: 5, mpg: 57, kerbMassKg: 237 },
+  'R 1250 GS Adventure': { category: 'adventure', cc: 1254, seats: 2, boot: 75, zeroTo62: 3.5, sizeClass: 5, mpg: 55, kerbMassKg: 268 },
   'R 1250 GS': { category: 'adventure', cc: 1254, seats: 2, boot: 68, zeroTo62: 3.4, sizeClass: 5, mpg: 56 },
   'R 1200 GS': { category: 'adventure', cc: 1170, seats: 2, boot: 68, zeroTo62: 3.6, sizeClass: 5, mpg: 56 },
-  'F 900 GS': { category: 'adventure', cc: 895, seats: 2, boot: 45, zeroTo62: 4.0, sizeClass: 3, mpg: 60 },
+  'F 900 GS Adventure': { category: 'adventure', cc: 895, seats: 2, boot: 45, zeroTo62: 4.0, sizeClass: 3, mpg: 60, kerbMassKg: 246 },
+  'F 900 GS': { category: 'adventure', cc: 895, seats: 2, boot: 45, zeroTo62: 4.0, sizeClass: 3, mpg: 60, kerbMassKg: 219 },
   'F 850 GS': { category: 'adventure', cc: 853, seats: 2, boot: 45, zeroTo62: 4.4, sizeClass: 3, mpg: 61 },
   // The F 750 GS shares the 853cc parallel-twin with the F 850 GS, detuned to
   // 77hp with 19"/17" road-biased wheels — a lighter, road-first middleweight
@@ -1224,43 +1234,53 @@ const MODEL_SPECS_MOTORRAD = {
   'F 800 GS': { category: 'adventure', cc: 798, seats: 2, boot: 45, zeroTo62: 4.5, sizeClass: 3, mpg: 60 },
   'G 310 GS': { category: 'adventure', cc: 313, seats: 2, boot: 20, zeroTo62: 7.7, sizeClass: 1, mpg: 83 },
   // Sport
-  'M 1000 RR': { category: 'sport', cc: 999, seats: 1, boot: 0, zeroTo62: 2.8, sizeClass: 5, mpg: 40 },
-  'S 1000 RR': { category: 'sport', cc: 999, seats: 1, boot: 0, zeroTo62: 2.9, sizeClass: 4, mpg: 42 },
-  'M 1000 XR': { category: 'sport', cc: 999, seats: 2, boot: 32, zeroTo62: 3.1, sizeClass: 5, mpg: 46 },
-  'S 1000 XR': { category: 'sport', cc: 999, seats: 2, boot: 32, zeroTo62: 3.2, sizeClass: 4, mpg: 48 },
+  'M 1000 RR': { category: 'sport', cc: 999, seats: 1, boot: 0, zeroTo62: 2.8, sizeClass: 5, mpg: 40, kerbMassKg: 194 },
+  'S 1000 RR': { category: 'sport', cc: 999, seats: 1, boot: 0, zeroTo62: 2.9, sizeClass: 4, mpg: 42, kerbMassKg: 198 },
+  'M 1000 XR': { category: 'sport', cc: 999, seats: 2, boot: 32, zeroTo62: 3.1, sizeClass: 5, mpg: 46, kerbMassKg: 223 },
+  'S 1000 XR': { category: 'sport', cc: 999, seats: 2, boot: 32, zeroTo62: 3.2, sizeClass: 4, mpg: 48, kerbMassKg: 227 },
   // Tourer
-  'K 1600 GTL': { category: 'tourer', cc: 1649, seats: 2, boot: 130, zeroTo62: 3.5, sizeClass: 5, mpg: 44 },
-  'K 1600 GT': { category: 'tourer', cc: 1649, seats: 2, boot: 110, zeroTo62: 3.4, sizeClass: 5, mpg: 44 },
+  'K 1600 GTL': { category: 'tourer', cc: 1649, seats: 2, boot: 130, zeroTo62: 3.5, sizeClass: 5, mpg: 44, kerbMassKg: 358 },
+  'K 1600 GT': { category: 'tourer', cc: 1649, seats: 2, boot: 110, zeroTo62: 3.4, sizeClass: 5, mpg: 44, kerbMassKg: 343 },
   // The K 1600 Grand America is the bagger-styled full-dress K 1600 tourer
   // (1649cc six, hard panniers + top box); present in the live pool and its own
   // model, so it doesn't read as a plain roadster via the R 1250 R fallback.
-  'K 1600 Grand America': { category: 'tourer', cc: 1649, seats: 2, boot: 130, zeroTo62: 3.5, sizeClass: 5, mpg: 44 },
-  'K 1600 B': { category: 'tourer', cc: 1649, seats: 2, boot: 60, zeroTo62: 3.4, sizeClass: 5, mpg: 44 },
+  'K 1600 Grand America': { category: 'tourer', cc: 1649, seats: 2, boot: 130, zeroTo62: 3.5, sizeClass: 5, mpg: 44, kerbMassKg: 367 },
+  'K 1600 B': { category: 'tourer', cc: 1649, seats: 2, boot: 60, zeroTo62: 3.4, sizeClass: 5, mpg: 44, kerbMassKg: 344 },
   // The K 1300 S is the discontinued (2009-2016) 1293cc inline-four sport-tourer
   // — a genuinely fast sports-touring bike, not a naked roadster. Rare in the
   // pool but real, so it keeps its own spec rather than the R 1250 R fallback.
   'K 1300 S': { category: 'sport', cc: 1293, seats: 2, boot: 0, zeroTo62: 3.0, sizeClass: 5, mpg: 42 },
-  'R 1300 RT': { category: 'tourer', cc: 1300, seats: 2, boot: 94, zeroTo62: 3.5, sizeClass: 5, mpg: 55 },
+  'R 1300 RT': { category: 'tourer', cc: 1300, seats: 2, boot: 94, zeroTo62: 3.5, sizeClass: 5, mpg: 55, kerbMassKg: 281 },
   'R 1250 RT': { category: 'tourer', cc: 1254, seats: 2, boot: 94, zeroTo62: 3.6, sizeClass: 5, mpg: 54 },
   // Heritage. The air-cooled R nineT family (1170cc, Option 719) is distinct
   // from the new-gen liquid-... no: air/oil-cooled R 12 nineT (1170cc, 2024+).
   // Both are 1170cc heritage roadsters; keep them as separate keys so a listing
   // titled "R nineT" doesn't display as the newer "R 12 nineT".
-  'R 12 nineT': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.5, sizeClass: 4, mpg: 52 },
-  'R 12': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.8, sizeClass: 4, mpg: 52 },
+  'R 12 nineT': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.5, sizeClass: 4, mpg: 52, kerbMassKg: 220 },
+  'R 12 S': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.8, sizeClass: 4, mpg: 52, kerbMassKg: 220 },
+  'R 12 G/S': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.8, sizeClass: 4, mpg: 52, kerbMassKg: 229 },
+  'R 12': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.8, sizeClass: 4, mpg: 52, kerbMassKg: 227 },
   'R nineT': { category: 'heritage', cc: 1170, seats: 2, boot: 0, zeroTo62: 3.5, sizeClass: 4, mpg: 52 },
-  'R 18 Transcontinental': { category: 'tourer', cc: 1802, seats: 2, boot: 90, zeroTo62: 4.8, sizeClass: 5, mpg: 42 },
-  'R 18': { category: 'heritage', cc: 1802, seats: 2, boot: 0, zeroTo62: 4.8, sizeClass: 5, mpg: 42 },
+  'R 18 Transcontinental': { category: 'tourer', cc: 1802, seats: 2, boot: 90, zeroTo62: 4.8, sizeClass: 5, mpg: 42, kerbMassKg: 433 },
+  'R 18 Roctane': { category: 'heritage', cc: 1802, seats: 2, boot: 0, zeroTo62: 4.8, sizeClass: 5, mpg: 42, kerbMassKg: 374 },
+  'R 18 Classic': { category: 'heritage', cc: 1802, seats: 2, boot: 0, zeroTo62: 4.8, sizeClass: 5, mpg: 42, kerbMassKg: 369 },
+  'R 18 B': { category: 'heritage', cc: 1802, seats: 2, boot: 0, zeroTo62: 4.8, sizeClass: 5, mpg: 42, kerbMassKg: 398 },
+  'R 18': { category: 'heritage', cc: 1802, seats: 2, boot: 0, zeroTo62: 4.8, sizeClass: 5, mpg: 42, kerbMassKg: 345 },
   // Roadster / sport midweight
-  'F 900 XR': { category: 'sport', cc: 895, seats: 2, boot: 32, zeroTo62: 3.9, sizeClass: 3, mpg: 60 },
+  'F 900 XR': { category: 'sport', cc: 895, seats: 2, boot: 32, zeroTo62: 3.9, sizeClass: 3, mpg: 60, kerbMassKg: 216 },
   // Electric
-  'CE 04': { category: 'scooter', cc: 0, seats: 2, boot: 30, zeroTo62: 3.5, sizeClass: 2, evRange: 80 },
-  'CE 02': { category: 'scooter', cc: 0, seats: 2, boot: 15, zeroTo62: 8.0, sizeClass: 1, evRange: 55 },
+  'CE 04': { category: 'scooter', cc: 0, seats: 2, boot: 30, zeroTo62: 3.5, sizeClass: 2, evRange: 80, kerbMassKg: 231 },
+  'CE 02': { category: 'scooter', cc: 0, seats: 2, boot: 15, zeroTo62: 8.0, sizeClass: 1, evRange: 55, kerbMassKg: 132 },
   // Mid scooters (petrol) — the C 400 GT/X are the touring/urban maxi-scooters.
-  'C 400 GT': { category: 'scooter', cc: 350, seats: 2, boot: 30, zeroTo62: 9.5, sizeClass: 2, mpg: 80 },
-  'C 400 X': { category: 'scooter', cc: 350, seats: 2, boot: 30, zeroTo62: 9.5, sizeClass: 2, mpg: 80 },
+  'C 400 GT': { category: 'scooter', cc: 350, seats: 2, boot: 30, zeroTo62: 9.5, sizeClass: 2, mpg: 80, kerbMassKg: 219 },
+  'C 400 X': { category: 'scooter', cc: 350, seats: 2, boot: 30, zeroTo62: 9.5, sizeClass: 2, mpg: 80, kerbMassKg: 206 },
 };
 const DEFAULT_SPEC_MOTORRAD = { category: 'naked', cc: 850, seats: 2, boot: 20, zeroTo62: 4.5, sizeClass: 3, mpg: 55 };
+
+const MOTORRAD_RUNTIME_BY_ID = new Map(MOTORRAD_RUNTIME_CATALOGUE.records.map((record) => [record.canonicalDerivativeId, record]));
+const MOTORRAD_SCORING_BY_ID = new Map(MOTORRAD_RUNTIME_SCORING_PROFILES.profiles.map((profile) => [profile.canonicalDerivativeId, profile]));
+const resolveMotorradCatalogueIdentity = createMotorradCatalogueResolver(MOTORRAD_RUNTIME_CATALOGUE);
+const warnedMotorradResolution = new Set();
 
 const MOTORRAD_RETAILER_ID = 'motorrad-approved';
 const MOTORRAD_RETAILER_NAME = 'BMW Motorrad Approved Used';
@@ -1278,7 +1298,8 @@ function motorradLine(title = '') {
   // bike. "R 12 G/S" and bare "R 12" are the new roadster/scrambler siblings.
   if (/\bR 12 NINET|R12 NINET/.test(s)) return 'R 12 nineT';
   if (/\bR NINET|RNINET|R NINE T\b/.test(s)) return 'R nineT';
-  if (/\bR 12 G\/?S\b|\bR12 G\/?S\b/.test(s)) return 'R 12'; // R 12 G/S scrambler → R 12 family
+  if (/\bR 12 G\/?S\b|\bR12 G\/?S\b/.test(s)) return 'R 12 G/S';
+  if (/\bR 12 S\b|\bR12 S\b/.test(s)) return 'R 12 S';
   // Exact-ish contains, ordered specific -> general so a longer code (R 1300 GS
   // Adventure, M 1000 XR) is tested before the shorter one it contains.
   // [uppercase probe tested against the title, canonical MODEL_SPECS key], most
@@ -1290,16 +1311,20 @@ function motorradLine(title = '') {
     ['R 1300 GS ADVENTURE', 'R 1300 GS Adventure'], ['R 1300 GSA', 'R 1300 GS Adventure'],
     ['R 1250 GS ADVENTURE', 'R 1250 GS Adventure'], ['R 1250 GSA', 'R 1250 GS Adventure'],
     ['R 1300 GS', 'R 1300 GS'], ['R 1250 GS', 'R 1250 GS'], ['R 1200 GS', 'R 1200 GS'],
-    ['F 900 GSA', 'F 900 GS'], ['F 900 GS', 'F 900 GS'], ['F 850 GS', 'F 850 GS'],
+    ['F 900 GS ADVENTURE', 'F 900 GS Adventure'], ['F 900 GSA', 'F 900 GS Adventure'],
+    ['F 900 GS', 'F 900 GS'], ['F 850 GS', 'F 850 GS'],
     ['F 800 GS', 'F 800 GS'], ['F 750 GS', 'F 750 GS'], ['G 310 GS', 'G 310 GS'],
+    ['F 450 GS', 'F 450 GS'], ['F450 GS', 'F 450 GS'],
     ['K 1600 GRAND AMERICA', 'K 1600 Grand America'],
     ['K 1600 GTL', 'K 1600 GTL'], ['K 1600 GT', 'K 1600 GT'], ['K 1600 B', 'K 1600 B'],
     ['K 1300 S', 'K 1300 S'],
     ['R 1300 RT', 'R 1300 RT'], ['R 1250 RT', 'R 1250 RT'],
-    ['R 1300 R', 'R 1300 R'], ['R 1250 R', 'R 1250 R'], ['R 1200 R', 'R 1200 R'],
+    ['R 1300 RS', 'R 1300 RS'], ['R 1300 R', 'R 1300 R'],
+    ['R 1250 R', 'R 1250 R'], ['R 1200 R', 'R 1200 R'],
     ['F 900 XR', 'F 900 XR'], ['F 900 R', 'F 900 R'], ['F 800 R', 'F 800 R'],
     ['G 310 R', 'G 310 R'],
-    ['R 18 TRANSCONTINENTAL', 'R 18 Transcontinental'], ['R 18', 'R 18'], ['R 12', 'R 12'],
+    ['R 18 TRANSCONTINENTAL', 'R 18 Transcontinental'], ['R 18 ROCTANE', 'R 18 Roctane'],
+    ['R 18 CLASSIC', 'R 18 Classic'], ['R 18 B', 'R 18 B'], ['R 18', 'R 18'], ['R 12', 'R 12'],
     ['C 400 GT', 'C 400 GT'], ['C 400 X', 'C 400 X'], ['CE 04', 'CE 04'], ['CE 02', 'CE 02'],
   ];
   for (const [probe, key] of KEYS) {
@@ -1395,8 +1420,7 @@ function motorradDisplayName(title, line) {
  * schema. See the Motorrad axis map in DECISIONS.md for what each field means
  * for a bike. Returns null (caller filters) if there's no price.
  */
-export function mapMotorradRaw(raw) {
-  const line = motorradLine(raw?.title);
+function mapMotorradWithCompatibility(raw, line, resolution = null) {
   const spec = MODEL_SPECS_MOTORRAD[line] || DEFAULT_SPEC_MOTORRAD;
   // Never invent a price (same honesty rule as Ford/Honda).
   const price = num(raw?.price);
@@ -1405,8 +1429,16 @@ export function mapMotorradRaw(raw) {
   const { origin } = brandConfig('motorrad');
   const fuel = motorradFuel(line, raw?.fuel);
   const evRange = fuel === 'ev' ? (num(raw?.range) || spec.evRange || 80) : undefined;
+  const rawAdvertisedCc = num(raw?.cc);
+  const rawAdvertisedPowerKw = num(raw?.powerKw);
+  const advertisedCc = Number.isFinite(rawAdvertisedCc) ? rawAdvertisedCc : undefined;
+  const advertisedPowerKw = Number.isFinite(rawAdvertisedPowerKw) ? rawAdvertisedPowerKw : undefined;
+  const kerbMassKg = spec.kerbMassKg;
+  const powerToWeightKwPerKg = advertisedPowerKw && kerbMassKg
+    ? advertisedPowerKw / kerbMassKg
+    : undefined;
 
-  return {
+  const mapped = {
     id: String(raw?.id ?? raw?.reg ?? `${line}-${price}`),
     // Keep the model + genuine trim, minus the dealer sales tail (see helper).
     name: motorradDisplayName(raw?.title, line),
@@ -1431,11 +1463,16 @@ export function mapMotorradRaw(raw) {
     // Prefer the REAL per-listing capacity the parser read off the row ("1170
     // ccm"); the generic model-spec cc is only a fallback when the listing
     // omitted it. Never let the spec value overwrite a real one.
-    cc: num(raw?.cc) || spec.cc,
+    cc: advertisedCc ?? spec.cc,
     // Real per-listing power in kW, read from the leading kW of the row's
     // "81 kW (109 HP)". Unit is kW for bikes (Honda's power field is bhp); the
     // card layer keys the unit off the brand.
-    power: num(raw?.powerKw) || undefined,
+    power: advertisedPowerKw,
+    // Kept separate from model-profile fallbacks for the advertised-spec licence screen.
+    advertisedCc,
+    advertisedPowerKw,
+    ...(kerbMassKg ? { kerbMassKg } : {}),
+    ...(powerToWeightKwPerKg ? { powerToWeightKwPerKg } : {}),
     tags: motorradTags(spec.category, spec.sizeClass, fuel),
     // No retailer name: the feed gives every bike the one synthetic identity, so
     // the only name available is the pool label, and "Approved-used BMW … from
@@ -1454,6 +1491,119 @@ export function mapMotorradRaw(raw) {
     retailerId: MOTORRAD_RETAILER_ID,
     link: raw?.link || `${origin}/`,
   };
+  // Internal-only identity diagnostics. publicCar deliberately whitelists its
+  // browser response fields, so source evidence and resolver configuration are
+  // never exposed to riders.
+  if (resolution) {
+    mapped.canonicalDerivativeId = resolution.canonicalDerivativeId;
+    mapped.identityResolutionStatus = resolution.status;
+    mapped.identityResolutionReasonCodes = resolution.reasonCodes;
+    mapped.identityResolutionCandidateDerivativeIds = resolution.candidateDerivativeIds;
+    mapped.identityResolutionConflicts = resolution.conflicts;
+  }
+  return mapped;
+}
+
+/** Legacy first-match normaliser retained only for shadow audits and rollback. */
+export function mapMotorradRawLegacy(raw) {
+  return mapMotorradWithCompatibility(raw, motorradLine(raw?.title));
+}
+
+/** Resolve the server-only scoring mode. Invalid deployment configuration fails
+ * safe to catalogue mode; it never falls through to an unreviewed profile. */
+export function motorradScoringMode(value = process.env.MOTORRAD_SCORING_MODE) {
+  const mode = String(value || 'catalogue').trim().toLowerCase();
+  if (mode === 'legacy' || mode === 'catalogue') return mode;
+  const key = `invalid-scoring-mode:${mode}`;
+  if (!warnedMotorradResolution.has(key)) {
+    warnedMotorradResolution.add(key);
+    // eslint-disable-next-line no-console
+    console.warn('[motorrad] invalid scoring mode; using catalogue', { mode });
+  }
+  return 'catalogue';
+}
+
+function mapMotorradWithCanonicalScoring(raw, line, scoringProfile, resolution) {
+  const mapped = mapMotorradWithCompatibility(raw, line, resolution);
+  if (!mapped) return null;
+  const field = (name) => scoringProfile.fields[name];
+  const value = (name) => field(name)?.value ?? null;
+  // The canonical profile supplies only reviewed values. A null is intentionally
+  // carried through as unavailable, never converted to a legacy value or zero.
+  mapped.body = value('category');
+  mapped.fuel = value('fuel');
+  mapped.sizeClass = value('sizeClass');
+  mapped.tags = value('tags');
+  mapped.cc = mapped.advertisedCc ?? value('defaultCc') ?? undefined;
+  mapped.kerbMassKg = value('kerbMassKg') ?? undefined;
+  mapped.powerToWeightKwPerKg = Number.isFinite(mapped.advertisedPowerKw) && Number.isFinite(mapped.kerbMassKg)
+    ? mapped.advertisedPowerKw / mapped.kerbMassKg : undefined;
+  mapped.zeroTo62 = value('zeroTo62') ?? undefined;
+  mapped.mpg = mapped.fuel === 'ev' ? undefined : (value('mpg') ?? undefined);
+  mapped.evRange = mapped.fuel === 'ev' ? (value('evRange') ?? undefined) : undefined;
+  mapped.seats = value('seats') ?? undefined;
+  mapped.boot = value('boot') ?? undefined;
+  mapped.blurb = motorradBlurb(line, mapped.body, mapped.fuel);
+  mapped.scoringProfileId = scoringProfile.canonicalDerivativeId;
+  mapped.scoringProfileMode = 'catalogue';
+  mapped.scoringExplanationFields = Object.fromEntries(Object.entries(scoringProfile.fields).map(([name, entry]) => [name, entry.explanationEligible]));
+  return mapped;
+}
+
+function resolveMotorradForScoring(raw) {
+  const resolution = resolveMotorradCatalogueIdentity({
+    title: raw?.title,
+    firstRegistration: raw?.firstReg,
+    year: raw?.year,
+    advertisedCc: raw?.cc,
+    advertisedPowerKw: raw?.powerKw,
+  });
+  if (resolution.status !== 'exact') {
+    const diagnosticKey = `${resolution.status}:${resolution.reasonCodes.join(',')}:${resolution.candidateDerivativeIds.join(',')}`;
+    if (!warnedMotorradResolution.has(diagnosticKey)) {
+      warnedMotorradResolution.add(diagnosticKey);
+      // No title, registration, VIN, dealer or contact data is logged.
+      // eslint-disable-next-line no-console
+      console.warn('[motorrad] catalogue identity not scoreable', { status: resolution.status, reasonCodes: resolution.reasonCodes, candidateDerivativeIds: resolution.candidateDerivativeIds });
+    }
+    return null;
+  }
+  const record = MOTORRAD_RUNTIME_BY_ID.get(resolution.canonicalDerivativeId);
+  if (!record?.compatibilityProfile || !MODEL_SPECS_MOTORRAD[record.compatibilityProfile]) {
+    // eslint-disable-next-line no-console
+    console.warn('[motorrad] catalogue compatibility profile unavailable', { canonicalDerivativeId: resolution.canonicalDerivativeId });
+    return null;
+  }
+  return { resolution, record };
+}
+
+/** Explicit mode entry point for audits and tests. Resolver identity is catalogue
+ * based in both modes; only the score/profile payload changes. */
+export function mapMotorradRawWithScoringMode(raw, requestedMode = motorradScoringMode()) {
+  const resolved = resolveMotorradForScoring(raw);
+  if (!resolved) return null;
+  const { resolution, record } = resolved;
+  if (motorradScoringMode(requestedMode) === 'legacy') {
+    const legacy = mapMotorradWithCompatibility(raw, record.compatibilityProfile, resolution);
+    legacy.scoringProfileId = record.compatibilityProfile;
+    legacy.scoringProfileMode = 'legacy';
+    return legacy;
+  }
+  const scoringProfile = MOTORRAD_SCORING_BY_ID.get(resolution.canonicalDerivativeId);
+  if (!scoringProfile) {
+    // eslint-disable-next-line no-console
+    console.warn('[motorrad] canonical scoring profile unavailable', { canonicalDerivativeId: resolution.canonicalDerivativeId });
+    return null;
+  }
+  return mapMotorradWithCanonicalScoring(raw, record.compatibilityProfile, scoringProfile, resolution);
+}
+
+/**
+ * Production Motorrad normaliser. Catalogue scoring is the default; the legacy
+ * compatibility path remains an explicit server-side rollback mode only.
+ */
+export function mapMotorradRaw(raw) {
+  return mapMotorradRawWithScoringMode(raw, motorradScoringMode());
 }
 
 /* ---------------------- per-brand derivation config -------------------- *

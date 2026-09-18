@@ -30,6 +30,7 @@ import {
   isVisible, visibleQuestions, formatSliderValue, renderRangeSlider, renderOptionList,
 } from './question-ui.js';
 import { createPreviewFeed } from './preview-feed.js';
+import { stockFreshnessNotice, renderStockFreshnessNotice } from './stock-freshness.js';
 
 const HASH_KEY = 'm';
 
@@ -1660,6 +1661,7 @@ async function renderResults(root, ctx, answers) {
   // said to the user until /api/nearby agrees (see agreedUnmet). An older API
   // that doesn't send the field leaves this empty, so it simply never fires.
   let retailerUnmet = {};
+  let stockFreshness = null;
 
   /*
    * Both searches leave together.
@@ -1681,8 +1683,20 @@ async function renderResults(root, ctx, answers) {
     ({
       matches, decisive = true, clusterSize = 1, tasteLead = false,
       alternatives = [], unmet: retailerUnmet = {}, searched = null,
+      stockFreshness = null,
     } = await apiMatch(ctx.api, answers, ctx.retailer, ctx.brand, ctx.scope));
-  } catch {
+  } catch (error) {
+    const unavailable = ctx.brand === 'motorrad' ? stockFreshnessNotice(error.stockFreshness) : null;
+    if (unavailable?.state === 'unavailable') {
+      renderStatus(root, {
+        kicker: 'Sorry',
+        title: 'Stock availability is temporarily unavailable.',
+        message: 'Please try again shortly.',
+        retryLabel: 'Try again',
+        onRetry: () => renderResults(root, ctx, answers),
+      });
+      return;
+    }
     renderStatus(root, {
       kicker: 'Sorry',
       title: 'We couldn’t reach the matcher.',
@@ -1715,6 +1729,8 @@ async function renderResults(root, ctx, answers) {
   const { name: brandName } = copy;
 
   screen.append(el('p', 'vm-kicker', 'Your results'));
+  const stockNotice = ctx.brand === 'motorrad' ? renderStockFreshnessNotice(stockFreshness) : null;
+  if (stockNotice) screen.append(stockNotice);
 
   if (matches.length === 0) {
     screen.append(

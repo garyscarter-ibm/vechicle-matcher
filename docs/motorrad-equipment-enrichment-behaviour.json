@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-09-16",
+  "scope": "Sanitised fixture simulation, not a live smoke audit.",
+  "requestedOffers": 2,
+  "returnedCardsWithAdvertisedFeatures": 2,
+  "returnedCardsWithoutAdvertisedFeatures": 0,
+  "featureIds": [
+    "abs",
+    "centre-stand",
+    "cruise-control",
+    "electronic-suspension",
+    "heated-grips",
+    "traction-control"
+  ],
+  "cache": {
+    "cacheHit": 2,
+    "cacheMiss": 2,
+    "success": 2,
+    "failed": 0,
+    "timedOut": 0,
+    "returnedWithFeatures": 2,
+    "returnedWithoutFeatures": 0
+  },
+  "config": {
+    "maxOffers": 3,
+    "concurrency": 2,
+    "requestTimeoutMs": 2500,
+    "totalTimeoutMs": 5000
+  }
+}
