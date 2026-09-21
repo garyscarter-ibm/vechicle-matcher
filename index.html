@@ -321,6 +321,7 @@ main {
         const b = BRANDS[key];
         const tile = document.createElement('a');
         tile.className = 'demo-picker-tile';
+        tile.dataset.brand = key;
         // Paint this tile's hover highlight in the brand's own spot colour,
         // resolved from the CSS tokens (see brandAccent). The hover rule in
         // demo-chrome.css reads it back as var(--tile-accent).
