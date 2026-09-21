@@ -230,6 +230,9 @@
   color: var(--vm-accent);
   border-color: #fff;
 }
+.vm-rrmc .demo-nav { min-height: 110px; background: #281432; border-bottom: none; color: #ffffff; }
+.vm-rrmc .demo-nav-links a,
+.vm-rrmc .demo-logo-text { color: #ffffff; }
 .vm-rrmc .demo-hero-title { font-size: 48px; }
 .vm-rrmc .demo-hero-sub { font-size: 16px; }
 
