@@ -183,15 +183,20 @@ function resolveMode(block) {
  * vehicle-matcher.css). Only rendered when the block is unlocked and there's
  * more than one mode to choose between — a single mode needs no switch.
  */
+const BRAND_DISABLED_MODES = { rrmc: ['swipe'] };
+const BRAND_DEFAULT_MODES = { rrmc: 'podium' };
+
 function renderSwitcher(block, stage, ctx, current) {
-  if (MODES.length < 2) return null;
+  const disabled = BRAND_DISABLED_MODES[ctx.brand] || [];
+  const modes = MODES.filter((m) => !disabled.includes(m.key));
+  if (modes.length < 2) return null;
   const bar = document.createElement('div');
   bar.className = 'vm-switcher';
 
   const select = document.createElement('select');
   select.className = 'vm-switcher-select';
   select.setAttribute('aria-label', 'Matching interface');
-  MODES.forEach((mode) => {
+  modes.forEach((mode) => {
     const option = document.createElement('option');
     option.value = mode.key;
     option.textContent = mode.label;
@@ -219,7 +224,10 @@ export default async function decorate(block) {
   const brandKey = brand(block);
   const overrides = copyOverrides(block);
   const scope = resolveScope(block);
-  const { mode, locked } = resolveMode(block);
+  const { mode: resolvedMode, locked } = resolveMode(block);
+  const mode = !locked && BRAND_DEFAULT_MODES[brandKey]
+    ? (modeByKey(BRAND_DEFAULT_MODES[brandKey]) || resolvedMode)
+    : resolvedMode;
 
   block.replaceChildren();
   // Base class + brand theme class ('vm-bmw' | 'vm-mini' | 'vm-ford' | …). Each

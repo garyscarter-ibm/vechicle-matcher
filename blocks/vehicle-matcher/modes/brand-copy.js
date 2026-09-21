@@ -502,6 +502,9 @@ BRAND_COPY.rrmc = {
   lede: () => 'Answer these simple questions to the best of your ability. '
     + "We'll shortlist options from our Provenance collection, and match you "
     + 'to the one that is best suited to you.',
+  ledeHtml: () => '<span style="letter-spacing:0.01em">Answer these simple questions to the best of your ability. '
+    + "We'll shortlist options from</span> "
+    + '<span style="letter-spacing:0.04em">our Provenance collection, and match you to the one that is best suited to you.</span>',
   unmet: ({ list, retailer }) => `No ${list} at ${retailer} or nearby right now. `
     + 'These are the closest to everything else you told us.',
   tiedTitle: ({ count }) => `${cardinal(count)} of these suit you equally well.`,

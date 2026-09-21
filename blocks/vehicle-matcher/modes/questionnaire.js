@@ -1186,9 +1186,13 @@ function renderIntro(root, ctx) {
   const title = titleOverride === undefined ? copy.title : titleOverride;
   if (kicker) intro.append(el('p', 'vm-kicker', kicker));
   if (title) intro.append(el('h1', 'vm-title', title));
-  intro.append(el('p', 'vm-lede', copy.lede({
-    questions: count, retailer: ctx.retailerLabel,
-  })));
+  const ledeEl = el('p', 'vm-lede');
+  if (copy.ledeHtml) {
+    ledeEl.innerHTML = copy.ledeHtml({ questions: count, retailer: ctx.retailerLabel });
+  } else {
+    ledeEl.textContent = copy.lede({ questions: count, retailer: ctx.retailerLabel });
+  }
+  intro.append(ledeEl);
   const start = el('button', 'vm-btn vm-btn-primary', copy.cta);
   start.addEventListener('click', () => ctx.showQuestion(0));
   intro.append(start);
