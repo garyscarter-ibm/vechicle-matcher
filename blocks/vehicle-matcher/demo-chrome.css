@@ -230,7 +230,7 @@
   color: var(--vm-accent);
   border-color: #fff;
 }
-.vm-rrmc .demo-nav { position: relative; min-height: 110px; background: #281432; border-bottom: none; color: #ffffff; }
+.vm-rrmc .demo-nav { position: sticky; top: 0; z-index: 100; min-height: 110px; background: #281432; border-bottom: none; color: #ffffff; }
 .vm-rrmc .demo-nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
 .vm-rrmc .demo-nav-logo img { width: 68px; height: 84px; }
 .vm-rrmc .demo-nav-links a,
