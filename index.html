@@ -179,10 +179,11 @@ main {
         label: 'RRMC',
         origin: 'www.rolls-roycemotorcars.com',
         navLinks: ['Models', 'Provenance', 'Bespoke', 'Find a Dealer'],
-        heroKicker: 'Rolls-Royce Provenance',
-        heroTitle: 'Find your Rolls-Royce.',
+
+        heroTitle: 'Explore Ecstasy.',
+        heroTitleHtml: '<span style="letter-spacing:0.05em">Explore</span> <span style="font-weight:300;letter-spacing:0.07em">Ecstasy</span>.',
         heroSub: 'The perfect pre-owned Rolls-Royce, matched to how you choose to travel.',
-        heroCta: 'Start matching',
+        heroCta: 'Start the search',
         footerLinks: ['Legal', 'Privacy', 'Cookies', 'Contact'],
         footerNote: 'Internal demonstration only. This is a prototype of the '
           + 'vehicle-matcher tool shown inside representative brand furniture. It '
@@ -374,8 +375,8 @@ main {
 
           <section class="demo-hero" id="demo-hero">
             <div class="demo-hero-inner">
-              <p class="demo-hero-kicker">${esc(b.heroKicker)}</p>
-              <h1 class="demo-hero-title">${esc(b.heroTitle)}</h1>
+              ${b.heroKicker ? `<p class="demo-hero-kicker">${esc(b.heroKicker)}</p>` : ''}
+              <h1 class="demo-hero-title">${b.heroTitleHtml || esc(b.heroTitle)}</h1>
               <p class="demo-hero-sub">${esc(b.heroSub)}</p>
               <a class="demo-cta" href="#demo-tool">${esc(b.heroCta)}</a>
             </div>
