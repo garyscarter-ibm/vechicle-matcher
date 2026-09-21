@@ -182,7 +182,7 @@ main {
 
         heroTitle: 'Explore Ecstasy.',
         heroTitleHtml: '<span style="letter-spacing:0.05em">Explore</span> <span style="font-weight:300;letter-spacing:0.07em">Ecstasy</span>.',
-        heroSub: 'The perfect pre-owned Rolls-Royce, matched to how you choose to travel.',
+        heroSubHtml: '<span style="letter-spacing:0.04em">Find the car that\'s waiting for you,</span><br><span style="letter-spacing:0.03em">matched to your driving style.</span>',
         heroCta: 'Start the search',
         footerLinks: ['Legal', 'Privacy', 'Cookies', 'Contact'],
         footerNote: 'Internal demonstration only. This is a prototype of the '
@@ -377,7 +377,7 @@ main {
             <div class="demo-hero-inner">
               ${b.heroKicker ? `<p class="demo-hero-kicker">${esc(b.heroKicker)}</p>` : ''}
               <h1 class="demo-hero-title">${b.heroTitleHtml || esc(b.heroTitle)}</h1>
-              <p class="demo-hero-sub">${esc(b.heroSub)}</p>
+              <p class="demo-hero-sub">${b.heroSubHtml || esc(b.heroSub)}</p>
               <a class="demo-cta" href="#demo-tool">${esc(b.heroCta)}</a>
             </div>
           </section>

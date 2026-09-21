@@ -230,6 +230,8 @@
   color: var(--vm-accent);
   border-color: #fff;
 }
+.vm-rrmc .demo-hero-sub { font-size: 16px; }
+
 .vm-rrmc .demo-cta {
   font-family: 'Riviera Nights', sans-serif;
   font-weight: 300;
