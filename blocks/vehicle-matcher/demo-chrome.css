@@ -218,8 +218,6 @@
   font-family: var(--vm-font-bold);
   font-weight: 700;
   font-size: var(--vm-text-label);
-  text-transform: var(--vm-btn-transform);
-  letter-spacing: var(--vm-btn-letter-spacing);
   text-align: center;
   text-decoration: none;
   cursor: pointer;
