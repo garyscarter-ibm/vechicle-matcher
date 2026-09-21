@@ -230,6 +230,7 @@
   color: var(--vm-accent);
   border-color: #fff;
 }
+.vm-rrmc .demo-hero-title { font-size: 48px; }
 .vm-rrmc .demo-hero-sub { font-size: 16px; }
 
 .vm-rrmc .demo-cta {
