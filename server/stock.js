@@ -27,7 +27,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { lookupDealer } from './dealers.js';
-import { mapVehicle, mapMotorradRaw, mapHondaRaw, mapFerrariRaw } from './mapping.js';
+import { mapVehicle, mapMotorradRaw, mapHondaRaw, mapFerrariRaw, mapRRMCRaw } from './mapping.js';
+import { RRMC_FEED_URL, RRMC_FEED_ORIGIN, rrmcFeedBody, parseRRMCPage, projectRRMCListing } from './rrmc-listing.js';
 import { brandConfig, normalizeBrand } from './brands.js';
 import { parseListingHtml, listingUrl } from './honda-listing.js';
 import { parseResTable } from './motorrad-listing.js';
@@ -602,6 +603,58 @@ async function ferrariLiveStock() {
   return cars;
 }
 
+/* --------------------------- live RRMC feed --------------------------- *
+ * The Rolls-Royce Provenance feed is served by MTK Connect at
+ * api.mtkconnect.io/public/v1/vehicles/rolls-royce/global. It is a public
+ * POST JSON endpoint — no token, no session, no CSRF. The response is
+ * { contents: [...], total: N } and paginates with `page` / `limit`.
+ * --------------------------------------------------------------------- */
+
+const RRMC_PAGE_LIMIT = Number(process.env.RRMC_PAGE_LIMIT) || 30;
+
+async function rrmcLiveStock() {
+  const first = await httpsPostJson(RRMC_FEED_URL, rrmcFeedBody(1), {
+    Origin: RRMC_FEED_ORIGIN,
+    Referer: `${RRMC_FEED_ORIGIN}/`,
+  });
+  if (first.status !== 200) {
+    throw new StockUnavailableError(`RRMC feed returned HTTP ${first.status}`);
+  }
+  const { total, contents: firstPage } = parseRRMCPage(first.body);
+  const seen = new Set();
+  const cars = [];
+  const addFrom = (items) => {
+    for (const v of items) {
+      const projected = projectRRMCListing(v);
+      if (!projected.id || seen.has(projected.id)) continue;
+      seen.add(projected.id);
+      const car = mapRRMCRaw(projected);
+      if (car) cars.push(car);
+    }
+  };
+  addFrom(firstPage);
+
+  const pages = Math.min(
+    Math.ceil(total / (firstPage.length || 50)),
+    RRMC_PAGE_LIMIT,
+  );
+  for (let page = 2; page <= pages; page += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    const res = await httpsPostJson(RRMC_FEED_URL, rrmcFeedBody(page), {
+      Origin: RRMC_FEED_ORIGIN,
+      Referer: `${RRMC_FEED_ORIGIN}/`,
+    });
+    if (res.status !== 200) break;
+    const { contents } = parseRRMCPage(res.body);
+    if (!contents.length) break;
+    addFrom(contents);
+  }
+  if (cars.length === 0) {
+    throw new StockUnavailableError('RRMC feed returned no usable cars');
+  }
+  return cars;
+}
+
 /* --------------------------- live Motorrad feed ----------------------- *
  * Motorrad's approved-used stock is served by a session-gated AngularJS app
  * (ng-app="GMBApp") behind POST /api/ResultOverview/ShowResults: it takes a
@@ -933,6 +986,13 @@ export async function fetchRetailerStock(brand = 'bmw', retailerSite, scope) {
     return cachedFetch(cacheByRetailer, key, () => ferrariLiveStock());
   }
 
+  // RRMC live feed (MTK Connect public JSON API, no auth required).
+  if (source === 'live-rrmc') {
+    const key = keyFor(b, site);
+    seenRetailers.set(key, { brand: b, retailerSite: site });
+    return cachedFetch(cacheByRetailer, key, () => rrmcLiveStock());
+  }
+
   /*
    * BMW/MINI are the only brands with two genuinely different pools, so they're
    * the only ones `scope` changes:
@@ -1168,7 +1228,7 @@ export async function fetchNearbyStock(brand = 'bmw', retailerSite) {
   // carry no per-car distance and no distinct dealer identity, so it can't build
   // the distance-ranked, other-dealers carousel this returns. The location filter
   // belongs on the main pool fetch instead (hondaLiveStock opts), not here.
-  if (source === 'fixtures' || source === 'live-motorrad' || source === 'live-honda') return [];
+  if (source === 'fixtures' || source === 'live-motorrad' || source === 'live-honda' || source === 'live-rrmc') return [];
 
   const key = keyFor(b, site);
   seenRetailers.set(key, { brand: b, retailerSite: site });
@@ -1429,7 +1489,7 @@ export async function enrichColours(brand, cars, budgetMs = COLOUR_BUDGET_MS) {
   // inline already; there's no separate colour PDP to fetch on this origin.
   // Honda's live listing already carries an "Exterior colour" spec per card, so
   // its cars gain colour at map time — there's no colour PDP to fetch here either.
-  if (source === 'fixtures' || source === 'live-motorrad' || source === 'live-honda') return cars;
+  if (source === 'fixtures' || source === 'live-motorrad' || source === 'live-honda' || source === 'live-rrmc') return cars;
   const queue = cars.filter((c) => c?.id);
   const deadline = Date.now() + budgetMs;
   for (let i = 0; i < queue.length; i += COLOUR_CONCURRENCY) {
@@ -1593,7 +1653,7 @@ async function colourSweep(brand) {
   // Same exclusions enrichColours makes: these brands have no PDP on this
   // origin to read paint from (fixtures point at the real brand site; Motorrad
   // and Honda already carry colour by the time they're mapped).
-  if (source === 'fixtures' || source === 'live-motorrad' || source === 'live-honda') return;
+  if (source === 'fixtures' || source === 'live-motorrad' || source === 'live-honda' || source === 'live-rrmc') return;
 
   const cars = cacheByRetailer.get(keyFor(brand, 'national'))?.cars;
   if (!cars?.length) return; // pool not walked yet — try again next tick

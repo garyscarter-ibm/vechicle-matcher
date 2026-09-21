@@ -910,10 +910,7 @@ export const BRANDS = {
     label: 'Rolls-Royce',
     origin: 'https://approved.rolls-roycemotorcars.com',
     defaultRetailer: 'rrmc-approved',
-    // Rolls-Royce Approved feed is not yet reachable from this environment,
-    // so the brand runs from a curated fixtures/rrmc-cars.json. The real adapter
-    // will replace this when the feed is accessible. See DECISIONS.md.
-    source: 'fixtures',
+    source: 'live-rrmc',
     // Rolls-Royce used stock runs £160k (Wraith) to £430k+ (Phantom).
     // Cap at £500k with a default bracket around the Ghost/Cullinan range.
     budget: { max: 500000, default: [180000, 320000] },
