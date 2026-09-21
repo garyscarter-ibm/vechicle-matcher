@@ -551,6 +551,14 @@ main {
       });
 
       decorate(block);
+
+      if (brandKey === 'rrmc') {
+        const nav = root.querySelector('.demo-nav');
+        window.addEventListener('scroll', () => {
+          const progress = Math.min(Math.max(window.scrollY - 110, 0) / 300, 1);
+          nav.style.background = `rgba(40, 20, 50, ${1 - progress * 0.67})`;
+        }, { passive: true });
+      }
     }
 
     // Whether to prompt for the password up front. A local dev backend runs
