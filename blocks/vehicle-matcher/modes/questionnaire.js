@@ -1182,7 +1182,7 @@ function renderIntro(root, ctx) {
   // how the block sits under a host page's own "FIND YOUR MINI." heading
   // without repeating it (see copyRow).
   const { title: titleOverride, kicker: kickerOverride } = ctx.overrides;
-  const kicker = kickerOverride === undefined ? 'The unofficial UK matchmaker' : kickerOverride;
+  const kicker = kickerOverride === undefined ? (copy.kicker || 'The unofficial UK matchmaker') : kickerOverride;
   const title = titleOverride === undefined ? copy.title : titleOverride;
   if (kicker) intro.append(el('p', 'vm-kicker', kicker));
   if (title) intro.append(el('h1', 'vm-title', title));

@@ -764,6 +764,14 @@
    with explicit font-weight: 700 still resolve to the Bold cut. */
 .vm.vm-rrmc { font-weight: 300; }
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
+.vm.vm-rrmc .vm-kicker {
+  font-family: var(--vm-font-heading);
+  font-size: 48px;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+}
 
 .vm-kicker {
   font-family: var(--vm-font-bold);

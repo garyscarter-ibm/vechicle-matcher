@@ -496,11 +496,12 @@ BRAND_COPY.ferrari = {
 BRAND_COPY.rrmc = {
   ...BRAND_COPY.bmw,
   name: 'Rolls-Royce',
+  kicker: "It doesn't have to take forever...",
   title: 'Find the Rolls-Royce that is yours.',
   cta: 'Begin your journey',
-  lede: ({ questions, retailer }) => `${questions} questions about how you travel, `
-    + 'where you go and what you value. We will find the '
-    + `vehicles at ${retailer} built for the way you choose to live.`,
+  lede: () => 'Answer these simple questions to the best of your ability. '
+    + "We'll shortlist options from our Provenance collection, and match you "
+    + 'to the one that is best suited to you.',
   unmet: ({ list, retailer }) => `No ${list} at ${retailer} or nearby right now. `
     + 'These are the closest to everything else you told us.',
   tiedTitle: ({ count }) => `${cardinal(count)} of these suit you equally well.`,
