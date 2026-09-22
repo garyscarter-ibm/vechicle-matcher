@@ -190,7 +190,9 @@ export function matchCard(match, {
 
   const body = el('div', 'vm-card-body');
   const head = el('div', 'vm-card-head');
-  head.append(el('h3', 'vm-card-name', car.name));
+  const baseName = car.name.replace(/^Rolls-Royce\s+/i, '').replace(/^BMW\s+/, '');
+  const displayName = (brandKey === 'rrmc' && car.year) ? `${car.year} ${baseName}` : baseName;
+  head.append(el('h3', 'vm-card-name', displayName));
   if (showScore) {
     const badge = el('span', 'vm-score', `${score}%`);
     // The number has been unexplained since fit and taste were split, and two
@@ -579,7 +581,9 @@ export function previewTile(match) {
   const head = el('div', 'vm-ptile-head');
   const badge = el('span', 'vm-score vm-ptile-score', `${score}%`);
   badge.title = 'Match score';
-  head.append(el('span', 'vm-ptile-name', car.name.replace(/^BMW /, '')), badge);
+    const ptileBase = car.name.replace(/^Rolls-Royce\s+/i, '').replace(/^BMW /, '');
+  const ptileName = (/^Rolls-Royce\s+/i.test(car.name) && car.year) ? `${car.year} ${ptileBase}` : ptileBase;
+  head.append(el('span', 'vm-ptile-name', ptileName), badge);
   const specs = el('span', 'vm-ptile-specs',
     [SPEC_LABELS[car.body], FUEL_SPEC[car.fuel], price].filter(Boolean).join(' · '));
   body.append(head, specs);
