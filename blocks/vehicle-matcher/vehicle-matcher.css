@@ -2168,6 +2168,14 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   pointer-events: none;
 }
 
+/* RRMC podium: progress bar moves into the switcher row, fills the left side. */
+.vm-switcher.has-progress { align-items: center; }
+.vm.vm-rrmc .vm-podium-progress-bar { background: #f7a177; }
+.vm-switcher.has-progress .vm-podium-progress {
+  flex: 1 1 auto;
+  margin: 0 var(--vm-space-4) 0 0;
+}
+
 /* Motorrad's switcher wears the marque's CTA signature, same as its buttons
    (see .vm.vm-motorrad .vm-btn above): UPPERCASE, tracked out. */
 .vm.vm-motorrad .vm-switcher-select {

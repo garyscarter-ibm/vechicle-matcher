@@ -593,17 +593,34 @@ function mount(root, ctx) {
     // headline and the live progress, sized to lead the whole view now that
     // the mode switcher no longer reserves that space as a tab row.
     const head = el('div', 'vm-podium-head');
-    head.append(
-      el('p', 'vm-podium-wordmark', copy.wordmark),
-      el('h2', 'vm-podium-title', copy.title),
-    );
     const progress = el('div', 'vm-podium-progress');
     progressBar = el('div', 'vm-podium-progress-bar');
     progress.append(progressBar);
-    bannerEl = el('p', 'vm-podium-banner', copy.bannerStart);
-    bannerEl.setAttribute('role', 'status');
-    head.append(progress, bannerEl);
-    stage.append(head);
+    if (ctx.brand !== 'rrmc') {
+      head.append(
+        el('p', 'vm-podium-wordmark', copy.wordmark),
+        el('h2', 'vm-podium-title', copy.title),
+      );
+      bannerEl = el('p', 'vm-podium-banner', copy.bannerStart);
+      bannerEl.setAttribute('role', 'status');
+      head.append(progress, bannerEl);
+      stage.append(head);
+    } else {
+      // Move progress bar into the switcher row so it sits inline with the dropdown.
+      const switcher = root.previousElementSibling;
+      if (switcher?.classList.contains('vm-switcher')) {
+        switcher.classList.add('has-progress');
+        switcher.prepend(progress);
+        switcher.querySelector('.vm-switcher-select')
+          ?.addEventListener('change', () => {
+            progress.remove();
+            switcher.classList.remove('has-progress');
+          }, { once: true });
+      } else {
+        head.append(progress);
+        stage.append(head);
+      }
+    }
 
     const grid = el('div', 'vm-podium-grid');
 
@@ -757,9 +774,11 @@ function mount(root, ctx) {
     const total = visible.length || 1;
     const done = visible.filter(isAnswered).length;
     progressBar.style.width = `${Math.round((done / total) * 100)}%`;
-    if (done === 0) bannerEl.textContent = copy.bannerStart;
-    else if (done >= visible.length) bannerEl.textContent = copy.bannerComplete;
-    else bannerEl.textContent = copy.bannerProgress({ done, total: visible.length });
+    if (bannerEl) {
+      if (done === 0) bannerEl.textContent = copy.bannerStart;
+      else if (done >= visible.length) bannerEl.textContent = copy.bannerComplete;
+      else bannerEl.textContent = copy.bannerProgress({ done, total: visible.length });
+    }
 
     visible.forEach((q) => {
       const badge = blocks.get(q.id)?.querySelector('.vm-podium-q-badge');

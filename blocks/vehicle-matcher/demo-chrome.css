@@ -238,6 +238,11 @@
 .vm-rrmc .demo-hero-title { font-size: 48px; }
 .vm-rrmc .demo-hero-sub { font-size: 16px; }
 
+/* Podium progress bar sits 10px below the hero — remove the tool section's
+   top padding and replace it with 10px on the block itself. */
+.vm-rrmc .demo-tool { padding-top: 0; }
+.vm-rrmc .demo-tool > .vehicle-matcher.vm { padding-top: 10px; }
+
 .vm-rrmc .demo-cta {
   font-family: 'Riviera Nights', sans-serif;
   font-weight: 300;
