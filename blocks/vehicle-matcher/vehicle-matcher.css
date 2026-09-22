@@ -2190,6 +2190,12 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   height: 40px;
   padding: 0 var(--vm-space-4);
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  border-color: rgba(40, 20, 50, 0.9);
 }
 .vm.vm-rrmc .vm-podium .vm-option-sub { display: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
