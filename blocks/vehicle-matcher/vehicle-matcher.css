@@ -2168,9 +2168,33 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   pointer-events: none;
 }
 
+/* RRMC: all gamemode content uses Riviera Nights Light, no bold, no underline. */
+.vm.vm-rrmc .vm-stage {
+  --vm-font-heading: 'Riviera Nights Light', 'Helvetica Neue', arial, sans-serif;
+  --vm-font-body:    'Riviera Nights Light', 'Helvetica Neue', arial, sans-serif;
+  --vm-font-bold:    'Riviera Nights Light', 'Helvetica Neue', arial, sans-serif;
+  font-family: 'Riviera Nights Light', 'Helvetica Neue', arial, sans-serif;
+}
+.vm.vm-rrmc .vm-stage,
+.vm.vm-rrmc .vm-stage * {
+  font-weight: 300 !important;
+  text-decoration: none !important;
+}
+
 /* RRMC podium: progress bar moves into the switcher row, fills the left side. */
 .vm-switcher.has-progress { align-items: center; }
 .vm.vm-rrmc .vm-podium-progress-bar { background: #f7a177; }
+.vm.vm-rrmc .vm-podium .vm-option {
+  border-radius: 9999px;
+  width: 260px;
+  height: 40px;
+  padding: 0 var(--vm-space-4);
+  justify-content: center;
+}
+.vm.vm-rrmc .vm-podium .vm-option-sub { display: none; }
+.vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
+.vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
+.vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
 .vm-switcher.has-progress .vm-podium-progress {
   flex: 1 1 auto;
   margin: 0 var(--vm-space-4) 0 0;

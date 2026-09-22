@@ -915,6 +915,7 @@ export const BRANDS = {
     // Cap at £500k with a default bracket around the Ghost/Cullinan range.
     budget: { max: 500000, default: [180000, 320000] },
     tuning: mergeTuning(RRMC_TUNING),
+    questions: { moveLast: ['budget'] },
   },
 };
 

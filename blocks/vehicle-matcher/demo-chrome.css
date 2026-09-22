@@ -235,6 +235,7 @@
 .vm-rrmc .demo-nav-logo img { width: 68px; height: 84px; }
 .vm-rrmc .demo-nav-links a,
 .vm-rrmc .demo-logo-text { color: #ffffff; }
+.vm-rrmc .demo-hero { padding: clamp(112px, 24vw, 264px) var(--vm-space-6); }
 .vm-rrmc .demo-hero-title { font-size: 48px; }
 .vm-rrmc .demo-hero-sub { font-size: 16px; }
 

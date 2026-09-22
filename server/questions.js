@@ -460,6 +460,11 @@ export function questionsForBrand(brand = 'bmw') {
     if (at >= 0) base.splice(at + 1, 0, clean);
     else base.push(clean);
   }
+  for (const id of brandQuestions?.moveLast || []) {
+    const idx = base.findIndex((q) => q.id === id);
+    if (idx >= 0) base.push(...base.splice(idx, 1));
+  }
+
   return base;
 }
 
