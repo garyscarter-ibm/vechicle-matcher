@@ -106,7 +106,9 @@ function canChargeAt(charging) {
  * ---------------------------------------------------------------- */
 
 function scoreBudget(car, answers) {
-  const [min, max] = budgetRange(answers);
+  const range = budgetRange(answers);
+  if (!range) return { score: 1 };
+  const [min, max] = range;
   // A slider budget has min 0, so phrase the "in budget" reason as an upper
   // limit ("up to £62k") rather than a "£0k–£62k" band.
   const budgetReason = min > 0 ? `Sits right in your ${gbp(min)}–${gbp(max)} budget` : `Comfortably within your ${gbp(max)} budget`;
@@ -584,8 +586,11 @@ function effectiveWeights(answers, tuning) {
 
 function passesHardFilters(car, answers, tuning) {
   const { crewBoot, crewSeats, familySeats } = tuning.hardFilter;
-  const [, max] = budgetRange(answers);
-  if (car.priceMin > max * tuning.stretchFactor) return false;
+  const range = budgetRange(answers);
+  if (range) {
+    const [, max] = range;
+    if (car.priceMin > max * tuning.stretchFactor) return false;
+  }
   if (answers.people === 'crew' && (car.seats < crewSeats || car.boot < crewBoot)) return false;
   if (answers.people === 'family' && car.seats < familySeats) return false;
   return true;
@@ -684,6 +689,7 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
     .sort(
       (a, b) =>
         b.score - a.score ||
+        (a.car.prestigeRank ?? Infinity) - (b.car.prestigeRank ?? Infinity) ||
         b.taste - a.taste ||
         a.car.priceMin - b.car.priceMin ||
         a.car.name.localeCompare(b.car.name),
@@ -829,7 +835,7 @@ export function groupListings(ranked) {
     groups.get(k).listings.push(match.car);
   }
   return [...groups.values()].map(({ match, listings }) => {
-    const prices = listings.map((c) => c.priceMin).filter(Number.isFinite);
+    const prices = listings.map((c) => c.priceMin).filter((p) => Number.isFinite(p) && p > 0);
     const colours = [...new Set(listings
       .map((c) => c.colour?.manufacturerColour || c.colour?.colour)
       .filter(Boolean))];

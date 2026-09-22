@@ -205,11 +205,12 @@ export function matchCard(match, {
 
   // Single used price when min === max (live stock), else the range.
   // A grouped card prices the whole group; a single listing prices itself.
-  const price = car.listingCount > 1 && car.priceFrom !== car.priceTo
-    ? `from ${gbp(car.priceFrom)}`
-    : (car.priceMin === car.priceMax
-      ? gbp(car.priceMin)
-      : `${gbp(car.priceMin)}–${gbp(car.priceMax)}`);
+  const price = (car.poa || !car.priceMin) ? 'POA'
+    : (car.listingCount > 1 && car.priceFrom && car.priceFrom !== car.priceTo
+      ? `from ${gbp(car.priceFrom)}`
+      : (car.priceMin === car.priceMax
+        ? gbp(car.priceMin)
+        : `${gbp(car.priceMin)}–${gbp(car.priceMax)}`));
   const specs = el('p', 'vm-specs');
   // Paint, by its marketing name ("Legend Grey"), when the detail lookup got
   // one. It reads as a spec, but it's carrying more weight than that: when the
@@ -301,9 +302,10 @@ export function matchCard(match, {
   // page showed four identical iX2 cards and looked like it was stuttering.
   if (car.listingCount > 1) {
     const avail = el('p', 'vm-avail');
-    const span = car.priceFrom === car.priceTo
-      ? gbp(car.priceFrom)
-      : `${gbp(car.priceFrom)}–${gbp(car.priceTo)}`;
+    const span = (car.poa || !car.priceFrom) ? 'POA'
+      : car.priceFrom === car.priceTo
+        ? gbp(car.priceFrom)
+        : `${gbp(car.priceFrom)}–${gbp(car.priceTo)}`;
     avail.append(el('span', 'vm-avail-count', `${car.listingCount} available`));
     avail.append(el('span', null, ` · ${span}`));
     if (car.colours?.length) avail.append(el('span', null, ` · ${orList(car.colours)}`));
@@ -492,7 +494,7 @@ export function matchCard(match, {
       const label = listing.colour
         || (listing.mileage != null ? `${listing.mileage.toLocaleString('en-GB')} miles` : `Option ${i + 1}`);
       opt.append(el('span', 'vm-pick-colour', label));
-      const bits = [gbp(listing.priceMin)];
+      const bits = [listing.poa ? 'POA' : gbp(listing.priceMin)];
       if (listing.colour && listing.mileage != null) {
         bits.push(`${listing.mileage.toLocaleString('en-GB')} mi`);
       }
@@ -509,7 +511,7 @@ export function matchCard(match, {
         // previous listing's values is a card describing two cars at once.
         showPhoto(listing.photo);
         renderSpecs(
-          listing.colour, listing.shade, gbp(listing.priceMin),
+          listing.colour, listing.shade, listing.poa ? 'POA' : gbp(listing.priceMin),
           listing.transmission ?? car.transmission,
         );
         renderKit(listing);
@@ -553,11 +555,12 @@ export function matchCard(match, {
 export function previewTile(match) {
   const { car, score } = match;
   // A grouped card prices the whole group; a single listing prices itself.
-  const price = car.listingCount > 1 && car.priceFrom !== car.priceTo
-    ? `from ${gbp(car.priceFrom)}`
-    : (car.priceMin === car.priceMax
-      ? gbp(car.priceMin)
-      : `${gbp(car.priceMin)}–${gbp(car.priceMax)}`);
+  const price = (car.poa || !car.priceMin) ? 'POA'
+    : (car.listingCount > 1 && car.priceFrom && car.priceFrom !== car.priceTo
+      ? `from ${gbp(car.priceFrom)}`
+      : (car.priceMin === car.priceMax
+        ? gbp(car.priceMin)
+        : `${gbp(car.priceMin)}–${gbp(car.priceMax)}`));
 
   // Whole tile is the tap target — an <a> when we have a link, else a plain
   // article (still a valid tile, just not clickable).

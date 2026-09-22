@@ -1764,16 +1764,16 @@ export function mapVehicle(v, brand = 'bmw') {
  * ====================================================================== */
 
 const MODEL_SPECS_RRMC = {
-  Ghost:      { boot: 490, seats: 5, zeroTo62: 4.8, sizeClass: 4, mpg: 19, cc: 6749 },
-  'Ghost EWB': { boot: 490, seats: 5, zeroTo62: 4.8, sizeClass: 5, mpg: 19, cc: 6749 },
-  Phantom:    { boot: 548, seats: 5, zeroTo62: 5.3, sizeClass: 5, mpg: 17, cc: 6749 },
-  'Phantom EWB': { boot: 548, seats: 5, zeroTo62: 5.3, sizeClass: 5, mpg: 17, cc: 6749 },
-  Cullinan:   { boot: 560, seats: 5, zeroTo62: 5.2, sizeClass: 5, mpg: 17, cc: 6749 },
-  Wraith:     { boot: 470, seats: 4, zeroTo62: 4.7, sizeClass: 4, mpg: 19, cc: 6592 },
-  Dawn:       { boot: 295, seats: 4, zeroTo62: 4.9, sizeClass: 4, mpg: 18, cc: 6592 },
-  Spectre:    { boot: 249, seats: 4, zeroTo62: 4.5, sizeClass: 4, mpg: 0, cc: 0, fuel: 'ev', evRange: 260 },
-  'Silver Shadow': { boot: 340, seats: 5, zeroTo62: 10.0, sizeClass: 4, mpg: 15, cc: 6750 },
-  'Silver Ghost': { boot: 200, seats: 4, zeroTo62: 20.0, sizeClass: 3, mpg: 10, cc: 7428 },
+  'Phantom EWB': { boot: 548, seats: 5, zeroTo62: 5.3, sizeClass: 5, mpg: 17, cc: 6749, prestigeRank: 1 },
+  Phantom:    { boot: 548, seats: 5, zeroTo62: 5.3, sizeClass: 5, mpg: 17, cc: 6749, prestigeRank: 2 },
+  'Ghost EWB': { boot: 490, seats: 5, zeroTo62: 4.8, sizeClass: 5, mpg: 19, cc: 6749, prestigeRank: 3 },
+  Ghost:      { boot: 490, seats: 5, zeroTo62: 4.8, sizeClass: 4, mpg: 19, cc: 6749, prestigeRank: 4 },
+  Cullinan:   { boot: 560, seats: 5, zeroTo62: 5.2, sizeClass: 5, mpg: 17, cc: 6749, prestigeRank: 5 },
+  Spectre:    { boot: 249, seats: 4, zeroTo62: 4.5, sizeClass: 4, mpg: 0, cc: 0, fuel: 'ev', evRange: 260, prestigeRank: 6 },
+  Wraith:     { boot: 470, seats: 4, zeroTo62: 4.7, sizeClass: 4, mpg: 19, cc: 6592, prestigeRank: 7 },
+  Dawn:       { boot: 295, seats: 4, zeroTo62: 4.9, sizeClass: 4, mpg: 18, cc: 6592, prestigeRank: 8 },
+  'Silver Shadow': { boot: 340, seats: 5, zeroTo62: 10.0, sizeClass: 4, mpg: 15, cc: 6750, prestigeRank: 9 },
+  'Silver Ghost': { boot: 200, seats: 4, zeroTo62: 20.0, sizeClass: 3, mpg: 10, cc: 7428, prestigeRank: 10 },
 };
 const DEFAULT_SPEC_RRMC = { boot: 450, seats: 5, zeroTo62: 5.0, sizeClass: 4, mpg: 18 };
 const RRMC_RETAILER_ID = 'rrmc-approved';
@@ -1825,8 +1825,11 @@ export function mapRRMCRaw(raw) {
     line: line || rawName,
     body,
     fuel,
-    priceMin: raw?.price || raw?.priceMin || 0,
-    priceMax: raw?.price || raw?.priceMax || 0,
+    // POA listings have no retail price; price them at the top of the RRMC
+    // slider range so they surface only for max-budget or no-budget users.
+    priceMin: raw?.poa ? 500000 : (raw?.price || raw?.priceMin || 0),
+    priceMax: raw?.poa ? 500000 : (raw?.price || raw?.priceMax || 0),
+    poa: !!raw?.poa,
     sizeClass: spec.sizeClass,
     seats: spec.seats,
     boot: spec.boot,
@@ -1847,5 +1850,6 @@ export function mapRRMCRaw(raw) {
     retailerName: raw?.dealerName || raw?.retailerName || 'Rolls-Royce Approved',
     retailerId: RRMC_RETAILER_ID,
     link: raw?.link || 'https://approved.rolls-roycemotorcars.com/',
+    ...(spec.prestigeRank != null && { prestigeRank: spec.prestigeRank }),
   };
 }

@@ -51,6 +51,7 @@ export function projectRRMCListing(v) {
     id: String(v.id || ''),
     name,
     price: v?.price?.retail || 0,
+    poa: !v?.price?.retail,
     mileage: v?.odometer?.value || 0,
     year: v?.vehicle?.registrationYear || v?.vehicle?.modelYear || 0,
     photo: cover?.url || undefined,

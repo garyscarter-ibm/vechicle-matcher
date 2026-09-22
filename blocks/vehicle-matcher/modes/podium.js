@@ -878,6 +878,7 @@ function mount(root, ctx) {
    */
   const tiedLeaders = (list) => {
     if (list.length < 2) return 1;
+    if (ctx.brand === 'rrmc') return 1;
     const exact = state.committed
       && !state.dismissedSinceCommit
       && list.length === (state.committed.matches || []).length;
