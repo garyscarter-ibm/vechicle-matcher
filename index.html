@@ -381,6 +381,7 @@ main {
               <p class="demo-hero-sub">${b.heroSubHtml || esc(b.heroSub)}</p>
               <a class="demo-cta" href="#demo-tool">${esc(b.heroCta)}</a>
             </div>
+            ${brandKey === 'rrmc' ? '<div class="demo-hero-inner demo-hero-inner--b"></div>' : ''}
           </section>
 
           <section class="demo-tool" id="demo-tool">

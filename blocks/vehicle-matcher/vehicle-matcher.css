@@ -2202,6 +2202,13 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
+@media (min-width: 720px) {
+  .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 350px) 1fr; }
+  .vm.vm-rrmc .vm-podium-results {
+    margin-right: -30px;
+    padding-right: calc(30px + var(--vm-space-1));
+  }
+}
 .vm.vm-rrmc .vm-podium .vm-podium-q-title { font-size: 32px; font-weight: 250; }
 .vm.vm-rrmc .vm-range,
 .vm.vm-rrmc .vm-slider-input { --vm-accent: #6fdbc7; }
