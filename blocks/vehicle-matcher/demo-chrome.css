@@ -248,7 +248,17 @@
   font-family: 'Riviera Nights', sans-serif;
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  font-size: 15px;
+  width: 260px;
+  height: 40px;
+  min-height: unset;
+  min-width: unset;
+  padding: 0;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ================= tool section ================= */

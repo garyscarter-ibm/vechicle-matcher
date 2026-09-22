@@ -2202,6 +2202,14 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
+.vm.vm-rrmc .vm-range,
+.vm.vm-rrmc .vm-slider-input { --vm-accent: #6fdbc7; }
+.vm.vm-rrmc .vm-range-fill,
+.vm.vm-rrmc .vm-slider-input::-webkit-slider-thumb,
+.vm.vm-rrmc .vm-slider-input::-moz-range-thumb { background: #6fdbc7; }
+.vm.vm-rrmc .vm-slider-input::-webkit-slider-thumb { box-shadow: 0 0 0 1px #6fdbc7; }
+.vm.vm-rrmc .vm-slider-input::-moz-range-thumb { box-shadow: 0 0 0 1px #6fdbc7; }
+.vm.vm-rrmc .vm-slider-input::-moz-range-progress { background: #6fdbc7; }
 .vm.vm-rrmc .vm-score { display: none; }
 .vm.vm-rrmc .vm-podium .vm-option.is-selected {
   background: #281432;
