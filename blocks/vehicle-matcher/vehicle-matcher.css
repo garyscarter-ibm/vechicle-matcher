@@ -2201,6 +2201,13 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
+.vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
+.vm.vm-rrmc .vm-score { display: none; }
+.vm.vm-rrmc .vm-podium .vm-option.is-selected {
+  background: #281432;
+  border-color: #ffffff;
+  color: #ffffff;
+}
 .vm-switcher.has-progress .vm-podium-progress {
   flex: 1 1 auto;
   margin: 0 var(--vm-space-4) 0 0;
