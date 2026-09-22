@@ -3953,12 +3953,22 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     flex-direction: row;
     height: 360px;
     overflow: hidden;
+    background: #281432;
+    color: #ffffff;
+  }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card * {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-media {
-    flex: 0 0 45%;
+    flex: 0 0 300px;
+    width: 300px;
+    height: 224px;
     max-height: unset;
     aspect-ratio: unset;
-    height: 100%;
+    align-self: center;
+    margin-left: 40px;
+    overflow: hidden;
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-body {
     flex: 1 !important;
