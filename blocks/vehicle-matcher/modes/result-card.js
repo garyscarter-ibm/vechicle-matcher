@@ -205,6 +205,13 @@ export function matchCard(match, {
   }
   body.append(head);
 
+  if (brandKey === 'rrmc') {
+    const fuel = FUEL_SPEC[car.fuel] || car.fuel || '';
+    const mileageText = car.mileage ? `${car.mileage.toLocaleString('en-GB')} miles` : '';
+    const line = [mileageText, fuel].filter(Boolean).join(' – ');
+    if (line) body.append(el('p', 'vm-rrmc-mileage', line));
+  }
+
   // Single used price when min === max (live stock), else the range.
   // A grouped card prices the whole group; a single listing prices itself.
   const price = (car.poa || !car.priceMin) ? 'POA'

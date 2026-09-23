@@ -3943,6 +3943,23 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm-podium-skeleton .vm-skel:not(.vm-skel-line) { min-height: 120px; }
 .vm-podium-skeleton .vm-skel-line:last-child { margin-bottom: 0; }
 
+/* RRMC gold tile: purple background + white text at every width */
+.vm.vm-rrmc .vm-podium-step.is-gold > .vm-podium-card > .vm-card {
+  background: #281432;
+  color: #ffffff;
+}
+.vm.vm-rrmc .vm-podium-step.is-gold > .vm-podium-card > .vm-card * {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.vm.vm-rrmc .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-media {
+  width: 300px;
+  height: 224px;
+  max-height: unset;
+  aspect-ratio: unset;
+  overflow: hidden;
+}
+
 /* RRMC: 1st place tile — fixed 860×360px, horizontal orientation */
 @media (min-width: 1080px) {
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold {
@@ -3970,6 +3987,10 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     margin-left: 40px;
     overflow: hidden;
   }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-card-name {
+    font-size: 48px;
+    letter-spacing: 0.05em;
+  }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-body {
     flex: 1 !important;
     display: flex !important;
@@ -3983,6 +4004,42 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   .vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
     flex-direction: column;
   }
+  /* Driveline and mileage sub-lines beneath the model name */
+  .vm.vm-rrmc .vm-rrmc-driveline,
+  .vm.vm-rrmc .vm-rrmc-mileage {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    margin: 0;
+  }
+  /* Top 3 tiles: name only — hide all supplementary content */
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-specs,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-blurb,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-distance,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-avail,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-why-label,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-reasons,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-usedmeta,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-pick,
+  .vm.vm-rrmc .vm-podium-step.is-gold .vm-card-link,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-specs,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-blurb,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-distance,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-avail,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-why-label,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-reasons,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-usedmeta,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-pick,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-card-link,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-specs,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-blurb,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-distance,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-avail,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-why-label,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-reasons,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-usedmeta,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-pick,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-link { display: none; }
 }
 
 /* ---------------------------- brand fit ------------------------------ */
