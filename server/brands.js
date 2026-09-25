@@ -927,8 +927,16 @@ export const BRANDS = {
             { value: 'lhd', label: 'Left Hand Drive' },
           ],
         },
+        {
+          id: 'budgetGate',
+          title: 'Lastly, is there an ideal price range?',
+          options: [
+            { value: 'yes', label: 'Yes, let me select it' },
+            { value: 'no', label: 'No parameters' },
+          ],
+        },
       ],
-      moveLast: ['budget'],
+      moveLast: ['budgetGate', 'budget'],
     },
   },
 };

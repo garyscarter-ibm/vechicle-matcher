@@ -397,6 +397,7 @@ const BRAND_COPY = {
     },
   },
   rrmc: {
+    budget: { conditional: true },
     bodyStyles: {
       title: 'Let your dreams take shape in the form of a...',
       options: {
@@ -482,6 +483,7 @@ export function questionsForBrand(brand = 'bmw') {
       const out = { ...q };
       if (c.title) out.title = c.title;
       if (c.help) out.help = c.help;
+      if (c.conditional != null) out.conditional = c.conditional;
       // Budget slider bounds from the registry (only the fields it specifies).
       if (q.id === 'budget' && budget) Object.assign(out, budget);
       // Options: drop brand-excluded ones, strip the `brands` marker, and apply

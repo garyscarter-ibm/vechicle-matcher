@@ -57,6 +57,7 @@ const gbp = (n) => `£${Math.round(n / 1000)}k`;
  * for anything unusable, which the caller turns into a 400.
  */
 export function budgetRange(answers) {
+  if (answers.budgetGate === 'no') return null;
   const b = answers.budget;
   if (Array.isArray(b) && b.length === 2) {
     const [lo, hi] = b.map(Number);

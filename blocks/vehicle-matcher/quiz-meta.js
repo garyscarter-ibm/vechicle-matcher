@@ -22,6 +22,9 @@
  * decide") is picked, or while fuel is still unanswered.
  */
 export const SHOW_IF = {
+  // Only shown when the RRMC budgetGate question is answered 'yes'. For other
+  // brands `budget` is never conditional, so this predicate is never called.
+  budget: (a) => a.budgetGate === 'yes',
   charging: (a) => {
     const f = a.fuel;
     const picks = Array.isArray(f) ? f : (f != null ? [f] : []);
@@ -70,6 +73,8 @@ export const PILL_LABEL = {
     roadtrips: 'Road trips', fun: 'Weekend fun',
   },
   people: { solo: 'Just me', family: 'Small family', crew: '5+ seats' },
+  // Bespoke RRMC-only question; harmless on other brands.
+  budgetGate: { yes: 'Budget range selected', no: 'No budget limit' },
   // Bespoke MINI-only questions (see brands.js questions.add); harmless on BMW.
   miniVibe: { classic: 'Classic', exclusive: 'Exclusive', sport: 'Sport' },
   doors: { 3: '3-door', 5: '5-door', either: 'Any doors' },
