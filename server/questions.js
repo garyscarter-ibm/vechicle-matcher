@@ -431,6 +431,16 @@ const BRAND_COPY = {
         { value: 'crew', label: 'The driver and two or more' },
       ],
     },
+    priorities: {
+      title: 'What are your top two priorities?',
+      optionsOverride: [
+        { value: 'economy', label: 'Efficiency' },
+        { value: 'performance', label: 'Performance' },
+        { value: 'tech', label: 'Technology' },
+        { value: 'comfort', label: 'Comfort' },
+        { value: 'image', label: 'Presence' },
+      ],
+    },
     style: {
       title: 'How do you prefer to drive?',
       options: {
