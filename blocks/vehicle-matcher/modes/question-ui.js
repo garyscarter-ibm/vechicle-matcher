@@ -156,6 +156,7 @@ export function renderOptionList(q, answers, { onChange, onPick } = {}) {
   q.options.forEach((opt) => {
     const btn = el('button', 'vm-option');
     btn.type = 'button';
+    btn.dataset.value = opt.value;
     btn.setAttribute('role', q.multi ? 'checkbox' : 'radio');
     btn.setAttribute('aria-checked', String(selected.has(opt.value)));
     if (selected.has(opt.value)) btn.classList.add('is-selected');

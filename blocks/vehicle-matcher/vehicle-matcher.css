@@ -4042,6 +4042,15 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   .vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-link { display: none; }
 }
 
+/* RRMC: per-value letter-spacing on the people question */
+.vm.vm-rrmc [data-qid="people"] .vm-option[data-value="solo"] .vm-option-label,
+.vm.vm-rrmc [data-qid="people"] .vm-option[data-value="family"] .vm-option-label {
+  letter-spacing: 0.08em;
+}
+.vm.vm-rrmc [data-qid="people"] .vm-option[data-value="crew"] .vm-option-label {
+  letter-spacing: 0;
+}
+
 /* ---------------------------- brand fit ------------------------------ */
 
 /* Each brand keys its headline treatment to the questionnaire class list

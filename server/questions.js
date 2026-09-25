@@ -413,7 +413,24 @@ const BRAND_COPY = {
         { value: 'ev', label: 'Electric' },
       ],
     },
-    primaryUse: { title: 'Where will you go?' },
+    primaryUse: {
+      title: 'Where will you go?',
+      optionsOverride: [
+        { value: 'commute', label: 'About My Day' },
+        { value: 'city', label: 'Around The City' },
+        { value: 'roadtrips', label: 'Through The Country' },
+        { value: 'fun', label: 'Days Out' },
+        { value: 'any', label: 'Who Cares?' },
+      ],
+    },
+    people: {
+      title: 'How many passengers are there likely to be?',
+      optionsOverride: [
+        { value: 'solo', label: 'Just me, driving myself' },
+        { value: 'family', label: 'Just me, being driven' },
+        { value: 'crew', label: 'The driver and two or more' },
+      ],
+    },
     mileage: { title: 'How far will you travel in a year?' },
   },
 };
