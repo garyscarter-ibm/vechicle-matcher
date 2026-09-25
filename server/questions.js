@@ -398,6 +398,9 @@ const BRAND_COPY = {
   },
   rrmc: {
     bodyStyles: { title: 'Let your dreams take shape in the form of a...' },
+    fuel: { title: 'How would you prefer to be powered?' },
+    primaryUse: { title: 'Where will you go?' },
+    mileage: { title: 'How far will you travel in a year?' },
   },
 };
 

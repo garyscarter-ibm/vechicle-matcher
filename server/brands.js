@@ -915,7 +915,21 @@ export const BRANDS = {
     // Cap at £500k with a default bracket around the Ghost/Cullinan range.
     budget: { max: 500000, default: [180000, 320000] },
     tuning: mergeTuning(RRMC_TUNING),
-    questions: { moveLast: ['budget'] },
+    questions: {
+      drop: ['charging'],
+      add: [
+        {
+          id: 'handDrive',
+          title: 'Which is your preferred driving configuration?',
+          insertAfter: 'primaryUse',
+          options: [
+            { value: 'rhd', label: 'Right Hand Drive' },
+            { value: 'lhd', label: 'Left Hand Drive' },
+          ],
+        },
+      ],
+      moveLast: ['budget'],
+    },
   },
 };
 

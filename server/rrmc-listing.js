@@ -47,6 +47,20 @@ export function projectRRMCListing(v) {
     .filter((m) => m.scope === 'vehicle-listing' && m.mediaType === 'IMAGE')
     .sort((a, b) => (a.position ?? 99) - (b.position ?? 99))[0];
 
+  const steeringRaw = (
+    v?.vehicle?.steeringPosition
+    || v?.vehicle?.steering_position
+    || v?.vehicle?.handDrive
+    || v?.vehicle?.hand_drive
+    || v?.vehicle?.drivingSide
+    || v?.vehicle?.driving_side
+    || ''
+  ).toLowerCase();
+  const handDrive = steeringRaw.includes('left') ? 'lhd'
+    : steeringRaw.includes('right') ? 'rhd'
+    : steeringRaw === 'lhd' || steeringRaw === 'rhd' ? steeringRaw
+    : undefined;
+
   return {
     id: String(v.id || ''),
     name,
@@ -60,5 +74,6 @@ export function projectRRMCListing(v) {
     colour: v?.vehicle?.appearanceOptions?.exteriorColour || '',
     dealerName: v?.dealer?.name || 'Rolls-Royce Approved',
     link: v.id ? `${RRMC_LISTING_BASE}/${v.id}` : RRMC_FEED_ORIGIN,
+    handDrive,
   };
 }

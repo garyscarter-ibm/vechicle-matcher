@@ -593,6 +593,8 @@ function passesHardFilters(car, answers, tuning) {
   }
   if (answers.people === 'crew' && (car.seats < crewSeats || car.boot < crewBoot)) return false;
   if (answers.people === 'family' && car.seats < familySeats) return false;
+  // Medium-hard: only filter when the car's drive side is known and conflicts.
+  if (answers.handDrive && car.handDrive && car.handDrive !== answers.handDrive) return false;
   return true;
 }
 

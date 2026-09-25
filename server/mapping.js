@@ -1850,6 +1850,7 @@ export function mapRRMCRaw(raw) {
     retailerName: raw?.dealerName || raw?.retailerName || 'Rolls-Royce Approved',
     retailerId: RRMC_RETAILER_ID,
     link: raw?.link || 'https://approved.rolls-roycemotorcars.com/',
+    ...(raw?.handDrive && { handDrive: raw.handDrive }),
     ...(spec.prestigeRank != null && { prestigeRank: spec.prestigeRank }),
   };
 }
