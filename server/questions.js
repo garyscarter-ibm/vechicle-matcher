@@ -431,6 +431,16 @@ const BRAND_COPY = {
         { value: 'crew', label: 'The driver and two or more' },
       ],
     },
+    style: {
+      title: 'How do you prefer to drive?',
+      options: {
+        1: { label: 'Relaxed' },
+        2: { label: 'Refined' },
+        3: { label: 'A combination' },
+        4: { label: 'Composed' },
+        5: { label: 'Sporting' },
+      },
+    },
     mileage: { title: 'How far will you travel in a year?' },
   },
 };
