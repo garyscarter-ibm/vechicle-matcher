@@ -45,14 +45,14 @@ export const QUESTIONS = [
     // them; Motorrad supplies its own category options below. `any` shows for all.
     options: [
       { value: 'hatchback', label: 'Hatchback', brands: ['bmw', 'mini', 'honda', 'ford'] },
-      { value: 'saloon', label: 'Saloon', brands: ['bmw'] },
+      { value: 'saloon', label: 'Saloon', brands: ['bmw', 'rrmc'] },
       { value: 'estate', label: 'Estate or Touring', brands: ['bmw', 'mini', 'honda', 'ford'] },
       // Ferrari's stock is coupé / convertible / one SUV (the Purosangue), so it
       // takes those three car bodies and none of the mainstream ones (no hatch,
       // saloon, estate or MPV Ferrari exists).
-      { value: 'suv', label: 'SUV', brands: ['bmw', 'mini', 'honda', 'ford', 'ferrari'] },
-      { value: 'coupe', label: 'Coupé', brands: ['bmw', 'ferrari'] },
-      { value: 'convertible', label: 'Convertible', brands: ['bmw', 'mini', 'ford', 'ferrari'] },
+      { value: 'suv', label: 'SUV', brands: ['bmw', 'mini', 'honda', 'ford', 'ferrari', 'rrmc'] },
+      { value: 'coupe', label: 'Coupé', brands: ['bmw', 'ferrari', 'rrmc'] },
+      { value: 'convertible', label: 'Convertible', brands: ['bmw', 'mini', 'ford', 'ferrari', 'rrmc'] },
       { value: 'mpv', label: 'Family carrier', brands: ['bmw'] },
       // Bike categories — Motorrad only. Each value matches a `body` the Motorrad
       // mapper emits (see mapMotorradRaw / MODEL_SPECS_MOTORRAD), so the engine's
@@ -397,8 +397,22 @@ const BRAND_COPY = {
     },
   },
   rrmc: {
-    bodyStyles: { title: 'Let your dreams take shape in the form of a...' },
-    fuel: { title: 'How would you prefer to be powered?' },
+    bodyStyles: {
+      title: 'Let your dreams take shape in the form of a...',
+      options: {
+        saloon: { label: 'Saloon', sub: 'Phantom or Ghost — the art of arrival' },
+        suv: { label: 'SUV', sub: 'The high-riding adventurer' },
+        coupe: { label: 'Coupé', sub: 'Wraith or Spectre — a study in power' },
+        convertible: { label: 'Drophead', sub: 'Dawn — open skies, open road' },
+      },
+    },
+    fuel: {
+      title: 'How would you prefer to be powered?',
+      optionsOverride: [
+        { value: 'petrol', label: 'Petrol' },
+        { value: 'ev', label: 'Electric' },
+      ],
+    },
     primaryUse: { title: 'Where will you go?' },
     mileage: { title: 'How far will you travel in a year?' },
   },

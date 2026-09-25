@@ -207,7 +207,7 @@ export function matchCard(match, {
 
   if (brandKey === 'rrmc') {
     const fuel = FUEL_SPEC[car.fuel] || car.fuel || '';
-    const mileageText = car.mileage ? `${car.mileage.toLocaleString('en-GB')} miles` : '';
+    const mileageText = car.mileage ? `${car.mileage.toLocaleString('en-GB')} Miles` : '';
     const line = [mileageText, fuel].filter(Boolean).join(' – ');
     if (line) body.append(el('p', 'vm-rrmc-mileage', line));
   }
