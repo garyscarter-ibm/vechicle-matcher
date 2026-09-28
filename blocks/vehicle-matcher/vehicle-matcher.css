@@ -2212,6 +2212,10 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc [data-qid="primaryUse"] .vm-podium-q-title { display: block; width: 320px; margin: 0 auto; letter-spacing: 0.1em; }
 .vm.vm-rrmc [data-qid="handDrive"] .vm-podium-q-title { display: block; width: 326px; margin: 0 auto; letter-spacing: 0.03em; }
 .vm.vm-rrmc [data-qid="handDrive"] .vm-podium-q-title::first-line { letter-spacing: 0; }
+.vm.vm-rrmc [data-qid="people"] .vm-podium-q-title { display: block; width: 346px; margin: 0 auto; letter-spacing: 0.05em; }
+.vm.vm-rrmc [data-qid="people"] .vm-podium-q-title::first-line { letter-spacing: 0.03em; }
+.vm.vm-rrmc [data-qid="mileage"] .vm-podium-q-title { display: block; width: 330px; margin: 0 auto; text-align: left; letter-spacing: 0.1em; }
+.vm.vm-rrmc [data-qid="mileage"] .vm-podium-q-title::first-line { letter-spacing: 0.02em; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
 @media (min-width: 720px) {
   .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 424px) 1fr; }
