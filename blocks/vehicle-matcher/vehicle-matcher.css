@@ -2191,6 +2191,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   height: 40px;
   padding: 0 var(--vm-space-4);
   justify-content: center;
+  justify-self: center;
+  transform: translateX(-24px);
   align-items: center;
   text-align: center;
   text-transform: uppercase;
@@ -2202,9 +2204,10 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
+.vm.vm-rrmc .vm-podium .vm-podium-q-title { text-align: center; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
 @media (min-width: 720px) {
-  .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 350px) 1fr; }
+  .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 424px) 1fr; }
 }
 @media (min-width: 1080px) {
   /* 1400px = 1300px base + 50px per side removed from outer margins. */
