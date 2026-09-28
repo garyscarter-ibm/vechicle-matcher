@@ -2202,6 +2202,18 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 }
 .vm.vm-rrmc .vm-podium .vm-option-sub { display: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
+.vm.vm-rrmc .vm-podium-q-badge { font-size: 0; }
+.vm.vm-rrmc .vm-podium-q-badge::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 9px;
+  border-right: 1.5px solid var(--vm-ink-muted);
+  border-bottom: 1.5px solid var(--vm-ink-muted);
+  transform: rotate(45deg);
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
 .vm.vm-rrmc .vm-podium .vm-podium-q-title { text-align: center; transform: translateX(-24px); }
