@@ -2204,7 +2204,9 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
-.vm.vm-rrmc .vm-podium .vm-podium-q-title { text-align: center; }
+.vm.vm-rrmc .vm-podium .vm-podium-q-title { text-align: center; transform: translateX(-24px); }
+.vm.vm-rrmc [data-qid="bodyStyles"] .vm-podium-q-title { display: block; width: 340px; margin: 0 auto; text-align: left; letter-spacing: 0.01em; }
+.vm.vm-rrmc [data-qid="bodyStyles"] .vm-podium-q-title::first-line { letter-spacing: 0.05em; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
 @media (min-width: 720px) {
   .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 424px) 1fr; }
