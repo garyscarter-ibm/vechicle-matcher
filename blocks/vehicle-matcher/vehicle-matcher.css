@@ -2231,6 +2231,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc [data-qid="style"] .vm-podium-q-title { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.12em; }
 .vm.vm-rrmc [data-qid="style"] .vm-podium-q-title::first-line { letter-spacing: 0.06em; }
 .vm.vm-rrmc [data-qid="priorities"] .vm-podium-q-title { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.08em; }
+.vm.vm-rrmc [data-qid="budgetGate"] .vm-podium-q-title { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.04em; }
+.vm.vm-rrmc [data-qid="budgetGate"] .vm-podium-q-title::first-line { letter-spacing: 0.1em; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
 @media (min-width: 720px) {
   .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 424px) 1fr; }
