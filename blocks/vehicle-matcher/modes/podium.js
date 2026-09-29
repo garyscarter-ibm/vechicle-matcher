@@ -382,6 +382,52 @@ const PODIUM_COPY = {
     errLede: 'The matching service didn’t respond. Check your connection and try again.',
     retryLabel: 'Try again',
   },
+  // RRMC: BMW register but without the live-update line and with custom rank labels.
+  rrmc: {
+    wordmark: "Your Shortlist",
+    title: "Your top three, live.",
+    bannerStart: "Nothing committed yet. The podium is already working from your budget.",
+    bannerProgress: ({ done, total }) => `${done} of ${total} answered. The order updates with each one.`,
+    bannerComplete: "That's everything answered. Confirm when you're ready.",
+    commitCta: "Find my perfect match",
+    commitBusy: "Checking the stock",
+    commitDone: "Match confirmed",
+    commitError: "We couldn't reach the matcher. Try that again.",
+    ranks: ["Your Top Pick", "Another Option", "Another Option"],
+    jointRank: "Joint 1st",
+    tailHeading: "Also worth a look",
+    liveUpdated: () => "",
+    emptyNote: "Nothing left to show. Widen the brief and we'll fill it back up.",
+    unmetNote: ({ list, retailer }) => `No ${list} at ${retailer} right now. ` +
+      "This order is the closest to everything else you asked for.",
+    weakNote: ({ retailer }) => `Nothing at ${retailer} is close to what you asked for. ` +
+      "These are the nearest we hold.",
+    rejectLabel: "Not this one",
+    popTitle: "Why not this one?",
+    popCancel: "Keep this one",
+    popBack: "Back",
+    popDone: "Remove this car",
+    reasons: {
+      price: "Price",
+      fuel: "Fuel type",
+      size: "Size",
+      mileage: "Mileage",
+      colour: "Colour",
+      just: "Just not for me",
+    },
+    prompts: {
+      price: "What would you rather spend?",
+      fuel: "Which fuel types suit you better?",
+      size: "What shape were you after?",
+      mileage: "How many miles a year, roughly?",
+      colour: "Rule that colour out?",
+    },
+    colourOption: ({ shade }) => `Nothing in ${shade}`,
+    errKicker: "Sorry",
+    errTitle: "We couldn't reach the matcher",
+    errLede: "The matching service didn't respond. Check your connection and try again.",
+    retryLabel: "Try again",
+  },
 };
 
 /* ------------------------------ helpers ------------------------------ */
@@ -648,6 +694,15 @@ function mount(root, ctx) {
     tailEl.append(el('h3', 'vm-subhead vm-podium-tail-head', copy.tailHeading), tailGrid);
     noteEl = el('p', 'vm-podium-note');
     noteEl.hidden = true;
+    if (ctx.brand === 'rrmc') {
+      const tagline = el('p', 'vm-rrmc-tagline', "It doesn't have to take forever...");
+      const sub = el('p', 'vm-rrmc-tagline-sub');
+      const sub1 = el('span', 'vm-rrmc-sub-a', "Answer these simple questions to the best of your ability.  We'll shortlist options from");
+      const sub2 = el('span', 'vm-rrmc-sub-b', "our Provenance collection, and match you to the one that is best suited to you.");
+      sub.append(sub1, document.createTextNode(' '), sub2);
+      results.prepend(sub);
+      results.prepend(tagline);
+    }
     results.append(liveEl, stepsEl, tailEl, noteEl);
 
     grid.append(ask, results);

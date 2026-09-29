@@ -3996,6 +3996,22 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 
 /* RRMC: 1st place tile — fixed 860×360px, horizontal orientation */
 @media (min-width: 1080px) {
+  .vm.vm-rrmc .vm-rrmc-tagline {
+    font-size: 48px;
+    letter-spacing: 0.05em;
+    text-align: left;
+    line-height: 1.1;
+    margin: 0 0 12px;
+  }
+  .vm.vm-rrmc .vm-rrmc-tagline-sub {
+    font-size: 16px;
+    text-align: left;
+    line-height: 1.5;
+    max-width: 612px;
+    margin: 0 0 40px;
+  }
+  .vm.vm-rrmc .vm-rrmc-sub-a { letter-spacing: 0.01em; }
+  .vm.vm-rrmc .vm-rrmc-sub-b { letter-spacing: 0.04em; }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold {
     width: 860px;
     justify-self: center;
@@ -4057,7 +4073,10 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented-location {
     text-decoration: underline !important;
   }
-  /* 2nd and 3rd: enforce vertical (column) orientation */
+  /* 2nd and 3rd: enforce vertical (column) orientation and cap width */
+  .vm.vm-rrmc .vm-podium-steps { column-gap: 84px; justify-content: center; }
+  .vm.vm-rrmc .vm-podium-step.is-silver,
+  .vm.vm-rrmc .vm-podium-step.is-bronze { width: 300px; }
   .vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
   .vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
     flex-direction: column;
