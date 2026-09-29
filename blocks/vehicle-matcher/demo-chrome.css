@@ -239,6 +239,19 @@
   padding: 0 var(--vm-space-6);
   display: grid;
   grid-template-rows: 540px 540px;
+  background-image: url('../../assets/brand-hero/Cropped Hero RR 1.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-color: #281432;
+}
+/* Gradient scrim only over the top row; ::after blocks image bleed into bottom row */
+.vm-rrmc .demo-hero::before { bottom: 50%; }
+.vm-rrmc .demo-hero::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0; right: 0; bottom: 0;
+  background: #281432;
 }
 .vm-rrmc .demo-hero-inner {
   display: flex;

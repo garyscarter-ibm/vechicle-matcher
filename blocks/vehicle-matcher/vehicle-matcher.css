@@ -762,7 +762,7 @@
 
 /* Rolls-Royce: all text in Riviera Nights; base weight 300 (Light). Elements
    with explicit font-weight: 700 still resolve to the Bold cut. */
-.vm.vm-rrmc { font-weight: 300; }
+.vm.vm-rrmc { font-weight: 300; padding-right: 0; }
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
 .vm.vm-rrmc .vm-question { font-size: 32px; }
 .vm.vm-rrmc .vm-card-line { display: none; }
@@ -2238,6 +2238,12 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
 @media (min-width: 720px) {
   .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 424px) 1fr; }
+  .vm.vm-rrmc .vm-podium-results {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    overscroll-behavior: auto;
+  }
 }
 @media (min-width: 1080px) {
   /* 1400px = 1300px base + 50px per side removed from outer margins. */
@@ -4001,7 +4007,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     letter-spacing: 0.05em;
     text-align: left;
     line-height: 1.1;
-    margin: 0 0 12px;
+    margin: 40px 0 12px;
   }
   .vm.vm-rrmc .vm-rrmc-tagline-sub {
     font-size: 16px;
