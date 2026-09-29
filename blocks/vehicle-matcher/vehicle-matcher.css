@@ -765,6 +765,7 @@
 .vm.vm-rrmc { font-weight: 300; }
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
 .vm.vm-rrmc .vm-question { font-size: 32px; }
+.vm.vm-rrmc .vm-card-line { display: none; }
 .vm.vm-rrmc .vm-podium-step .vm-rrmc-view-options { text-decoration: underline !important; }
 .vm.vm-rrmc .vm-kicker {
   font-family: var(--vm-font-heading);

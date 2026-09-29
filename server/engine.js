@@ -112,7 +112,7 @@ function scoreBudget(car, answers, tuning) {
     // When the user explicitly has no budget limit, favour higher-value cars
     // if the brand's tuning defines a price ceiling for normalisation.
     const ceiling = tuning?.noBudgetPriceCeiling;
-    if (answers.budgetGate === 'no' && ceiling) {
+    if (ceiling && (!answers.budgetGate || answers.budgetGate === 'no')) {
       return { score: Math.min((car.priceMin || 0) / ceiling, 1) };
     }
     return { score: 1 };

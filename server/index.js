@@ -523,8 +523,10 @@ async function handleMatch(req, res, deps) {
   } = await readMatchRequest(req);
   if (error) return sendJson(res, status, { error });
 
-  // Final match requires a resolved budget (preview accepts partial answers).
-  if (!budgetRange(answers) && answers.budgetGate !== 'no') {
+  // Final match requires a resolved budget unless the brand treats a missing
+  // budgetGate as "no limit" (RRMC: unanswered gate = no parameters).
+  if (!budgetRange(answers) && answers.budgetGate !== 'no'
+      && (brand !== 'rrmc' || answers.budgetGate != null)) {
     return sendJson(res, 400, { error: 'Invalid or missing budget' });
   }
 
