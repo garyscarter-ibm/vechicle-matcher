@@ -561,6 +561,9 @@ const RRMC_TUNING = {
   // Never hard-exclude a Rolls on seats/boot: the 4-seat cars are the driver's
   // choices, not a disqualification. Floors near the range floor.
   hardFilter: { crewBoot: 200, crewSeats: 4, familySeats: 4 },
+  // When the user picks 'No parameters' on budget, score by price so higher-
+  // value cars rank first. Ceiling covers the top of the current stock range.
+  noBudgetPriceCeiling: 800000,
   reasons: {
     roadtrip: () => 'A touring car built to cover a continent in silence',
     city: () => 'A presence on any street, and quieter than you would believe',

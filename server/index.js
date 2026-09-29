@@ -485,12 +485,8 @@ async function readMatchRequest(req) {
   if (!answers || typeof answers !== 'object' || Array.isArray(answers)) {
     return { error: 'Missing "answers" object', status: 400 };
   }
-  // Budget is now a continuous number from the slider, but legacy b1–b5 band
-  // keys are still honoured (old shared links). budgetRange resolves both to a
-  // [min, max]; a null means neither a valid number nor a known band.
-  if (!budgetRange(answers)) {
-    return { error: 'Invalid or missing budget', status: 400 };
-  }
+  // Budget validation is deferred to the callers that require it (/api/match).
+  // Preview works with partial answer sets, so no budget check here.
   const retailer = typeof body.retailer === 'string' && body.retailer ? body.retailer : undefined;
   // Which pool to score against: this retailer's own forecourt (default) or the
   // brand's whole national feed. normalizeScope defaults absent/garbage to
@@ -526,6 +522,11 @@ async function handleMatch(req, res, deps) {
     answers, retailer, brand, scope, error, status,
   } = await readMatchRequest(req);
   if (error) return sendJson(res, status, { error });
+
+  // Final match requires a resolved budget (preview accepts partial answers).
+  if (!budgetRange(answers) && answers.budgetGate !== 'no') {
+    return sendJson(res, 400, { error: 'Invalid or missing budget' });
+  }
 
   // Live proxy: score against the retailer's real stock, not a static file.
   // If the live feed can't be reached, return a friendly 5xx — the block's

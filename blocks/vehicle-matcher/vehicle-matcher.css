@@ -765,6 +765,7 @@
 .vm.vm-rrmc { font-weight: 300; }
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
 .vm.vm-rrmc .vm-question { font-size: 32px; }
+.vm.vm-rrmc .vm-podium-step .vm-rrmc-view-options { text-decoration: underline !important; }
 .vm.vm-rrmc .vm-kicker {
   font-family: var(--vm-font-heading);
   font-size: 48px;
@@ -2202,7 +2203,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 }
 .vm.vm-rrmc .vm-podium .vm-option-sub { display: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
-.vm.vm-rrmc .vm-podium-q-badge { font-size: 0; }
+.vm.vm-rrmc .vm-podium-q-badge { font-size: 0; width: 22px; height: 22px; padding: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 .vm.vm-rrmc .vm-podium-q-badge::before {
   content: '';
   display: inline-block;
@@ -4030,6 +4031,30 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     column-count: auto !important;
     column-width: auto !important;
     overflow-y: auto;
+    padding-top: 82px;
+    position: relative;
+  }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why {
+    position: absolute;
+    bottom: 92px;
+    left: var(--vm-space-6);
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin: 0;
+    text-decoration: underline !important;
+  }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented {
+    position: absolute;
+    bottom: 70px;
+    left: var(--vm-space-6);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    margin: 0;
+  }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented-location {
+    text-decoration: underline !important;
   }
   /* 2nd and 3rd: enforce vertical (column) orientation */
   .vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
@@ -4043,6 +4068,13 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     letter-spacing: 0.02em;
     text-align: left;
     margin: 0;
+  }
+  .vm.vm-rrmc .vm-rrmc-view-options {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    margin: 0;
+    text-decoration: underline;
   }
   /* Top 3 tiles: name only — hide all supplementary content */
   .vm.vm-rrmc .vm-podium-step.is-gold .vm-specs,

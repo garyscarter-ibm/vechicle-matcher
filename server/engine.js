@@ -106,9 +106,17 @@ function canChargeAt(charging) {
  *  Per-dimension scorers. Each returns { score: 0..1, reason? }.    *
  * ---------------------------------------------------------------- */
 
-function scoreBudget(car, answers) {
+function scoreBudget(car, answers, tuning) {
   const range = budgetRange(answers);
-  if (!range) return { score: 1 };
+  if (!range) {
+    // When the user explicitly has no budget limit, favour higher-value cars
+    // if the brand's tuning defines a price ceiling for normalisation.
+    const ceiling = tuning?.noBudgetPriceCeiling;
+    if (answers.budgetGate === 'no' && ceiling) {
+      return { score: Math.min((car.priceMin || 0) / ceiling, 1) };
+    }
+    return { score: 1 };
+  }
   const [min, max] = range;
   // A slider budget has min 0, so phrase the "in budget" reason as an upper
   // limit ("up to £62k") rather than a "£0k–£62k" band.
