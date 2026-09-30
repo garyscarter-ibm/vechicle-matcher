@@ -238,20 +238,13 @@
 .vm-rrmc .demo-hero {
   padding: 0 var(--vm-space-6);
   display: grid;
-  grid-template-rows: 540px 540px;
-  background-image: url('../../assets/brand-hero/Cropped Hero RR 1.jpg');
-  background-size: contain;
+  grid-template-rows: 540px;
+  background-image: url('../../assets/brand-hero/RRSunsetHero.jpg');
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: top center;
+  /* Fill the width; 60% crops the overflow 60/40, more off the top than the bottom. */
+  background-position: center 60%;
   background-color: #281432;
-}
-/* Gradient scrim only over the top row; ::after blocks image bleed into bottom row */
-.vm-rrmc .demo-hero::before { bottom: 50%; }
-.vm-rrmc .demo-hero::after {
-  content: '';
-  position: absolute;
-  top: 50%; left: 0; right: 0; bottom: 0;
-  background: #281432;
 }
 .vm-rrmc .demo-hero-inner {
   display: flex;
@@ -262,9 +255,6 @@
   z-index: 1;
   margin: 0;
 }
-.vm-rrmc .demo-hero-inner--b {
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
 .vm-rrmc .demo-hero-title { font-size: 48px; }
 .vm-rrmc .demo-hero-sub { font-size: 16px; }
 
@@ -272,6 +262,8 @@
    top padding and replace it with 10px on the block itself. */
 .vm-rrmc .demo-tool { padding-top: 0; }
 .vm-rrmc .demo-tool > .vehicle-matcher.vm { padding-top: 10px; }
+/* Pin the question pane below the 110px sticky nav. */
+.vm-rrmc .demo-tool > .vehicle-matcher.vm { --vm-podium-sticky-top: calc(110px + var(--vm-space-4)); }
 
 .vm-rrmc .demo-cta {
   font-family: 'Riviera Nights', sans-serif;

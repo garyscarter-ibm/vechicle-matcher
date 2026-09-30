@@ -2244,6 +2244,26 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     overflow-y: visible;
     overscroll-behavior: auto;
   }
+  /* Questions scroll on their own while results ride the page. The offset lets a
+     host with a sticky header (the demo nav) push the pane clear of it. */
+  .vm.vm-rrmc .vm-podium-ask {
+    position: sticky;
+    top: var(--vm-podium-sticky-top, var(--vm-space-4));
+    max-height: calc(100vh - var(--vm-podium-sticky-top, var(--vm-space-4)) - var(--vm-space-4));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    /* Scroll boxes clip, and the titles shift 24px left; extend the box by that, not the content. */
+    margin-left: -24px;
+    padding-left: 24px;
+  }
+  /* Chrome ignores ::-webkit-scrollbar once scrollbar-color is set, so the standard
+     props go to Firefox only (which can't size in px; "thin" is its slimmest). */
+  .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar { width: 4px; }
+  .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar-track { background: transparent; }
+  .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar-thumb { background: #f7a177; border-radius: 2px; }
+  @supports not selector(::-webkit-scrollbar) {
+    .vm.vm-rrmc .vm-podium-ask { scrollbar-width: thin; scrollbar-color: #f7a177 transparent; }
+  }
 }
 @media (min-width: 1080px) {
   /* 1400px = 1300px base + 50px per side removed from outer margins. */
@@ -4019,8 +4039,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   .vm.vm-rrmc .vm-rrmc-sub-a { letter-spacing: 0.01em; }
   .vm.vm-rrmc .vm-rrmc-sub-b { letter-spacing: 0.04em; }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold {
-    width: 860px;
-    justify-self: center;
+    width: 100%;
+    max-width: 860px;
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card {
     flex-direction: row;
@@ -4034,7 +4054,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     border-color: rgba(255, 255, 255, 0.2);
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-media {
-    flex: 0 0 300px;
+    flex: 0 1 300px;
+    min-width: 120px;
     width: 300px;
     height: 224px;
     max-height: unset;
