@@ -4101,7 +4101,11 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     text-decoration: underline !important;
   }
   /* 2nd and 3rd: enforce vertical (column) orientation and cap width */
-  .vm.vm-rrmc .vm-podium-steps { column-gap: 84px; justify-content: center; }
+  .vm.vm-rrmc .vm-podium-steps { column-gap: 60px; justify-content: center; }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) { row-gap: 60px; }
+  /* Tracks are 1fr but the tiles are 300px; hug the seam so the visible gap is the 60px. */
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-silver { justify-self: end; }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze { justify-self: start; }
   .vm.vm-rrmc .vm-podium-step.is-silver,
   .vm.vm-rrmc .vm-podium-step.is-bronze { width: 300px; }
   .vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,

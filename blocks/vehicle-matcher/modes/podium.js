@@ -710,8 +710,30 @@ function mount(root, ctx) {
     stage.append(buildPopover());
     root.append(stage);
 
+    linkAskScroll(ask, grid);
     syncQuestions();
     scheduleRefresh();
+  };
+
+  // When the brief is a sticky scroll pane (RRMC), page scroll moves it 1:1; once the
+  // page bottoms out its own scroll takes over. Detaches when the stage is replaced.
+  const linkAskScroll = (ask, grid) => {
+    let frame = 0;
+    const sync = () => {
+      frame = 0;
+      const style = getComputedStyle(ask);
+      if (style.position !== 'sticky' || ask.scrollHeight <= ask.clientHeight) return;
+      const start = grid.getBoundingClientRect().top + window.scrollY - parseFloat(style.top || 0);
+      ask.scrollTop = Math.max(0, window.scrollY - start);
+    };
+    const onScroll = () => {
+      if (!ask.isConnected) {
+        window.removeEventListener('scroll', onScroll);
+        return;
+      }
+      if (!frame) frame = requestAnimationFrame(sync);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
   };
 
   /* --------------------------- the questions --------------------------- */
