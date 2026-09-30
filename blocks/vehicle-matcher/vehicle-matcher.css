@@ -4097,7 +4097,11 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     color: #ffffff;
     margin: 0;
   }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented-location {
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented-location,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-why,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-why,
+  .vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-presented-location,
+  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-presented-location {
     text-decoration: underline !important;
   }
   /* 2nd and 3rd: enforce vertical (column) orientation and cap width */
