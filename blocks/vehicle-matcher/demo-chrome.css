@@ -230,27 +230,32 @@
   color: var(--vm-accent);
   border-color: #fff;
 }
-.vm-rrmc .demo-nav { position: sticky; top: 0; z-index: 100; min-height: 110px; background: #281432; border-bottom: none; color: #ffffff; }
-/* --nav-shrink (0 to 1, set on scroll) halves the bar; margin hands the lost height
-   back so the page below doesn't jump as it shrinks. */
+.vm-rrmc .demo-nav { min-height: 110px; background: transparent; border-bottom: none; color: #ffffff; }
+/* Fixed, so it overlays the hero and takes no flow space; --nav-shrink (0 to 1, set on
+   scroll) halves the bar without moving the page below. */
 .vm-rrmc .demo-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   --nav-shrink: 0;
   min-height: calc(110px - 55px * var(--nav-shrink));
-  margin-bottom: calc(55px * var(--nav-shrink));
   padding-block: calc(var(--vm-space-4) * (1 - 0.5 * var(--nav-shrink)));
 }
 .vm-rrmc .demo-nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
 .vm-rrmc .demo-nav-logo img {
   width: 68px;
   height: 84px;
-  transform: scale(calc(1 - 0.5 * var(--nav-shrink)));
+  transform: scale(calc(0.95 * (1 - 0.5 * var(--nav-shrink))));
 }
 .vm-rrmc .demo-nav-links a,
 .vm-rrmc .demo-logo-text { color: #ffffff; }
 .vm-rrmc .demo-hero {
-  padding: 0 var(--vm-space-6);
+  /* Top padding clears the 110px nav overlay; total height stays 540px. */
+  padding: 110px var(--vm-space-6) 0;
   display: grid;
-  grid-template-rows: 540px;
+  grid-template-rows: 430px;
   background-image: url('../../assets/brand-hero/RRSunsetHero.jpg');
   background-size: cover;
   background-repeat: no-repeat;
