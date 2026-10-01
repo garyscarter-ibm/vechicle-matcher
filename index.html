@@ -556,6 +556,7 @@ main {
         window.addEventListener('scroll', () => {
           const progress = Math.min(Math.max(window.scrollY - 110, 0) / 300, 1);
           nav.style.background = `rgba(40, 20, 50, ${1 - progress * 0.67})`;
+          nav.style.setProperty('--nav-shrink', progress);
         }, { passive: true });
       }
     }
