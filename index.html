@@ -553,11 +553,17 @@ main {
 
       if (brandKey === 'rrmc') {
         const nav = root.querySelector('.demo-nav');
+        // The Spirit of Ecstasy cross-fades in over the RR mark as the bar shrinks.
+        const soe = document.createElement('img');
+        soe.src = 'assets/brand-logos/SoE.svg';
+        soe.alt = '';
+        soe.className = 'demo-nav-logo-soe';
+        nav.querySelector('.demo-nav-logo').append(soe);
         window.addEventListener('scroll', () => {
           const progress = Math.min(Math.max(window.scrollY - 110, 0) / 300, 1);
           nav.style.background = `rgba(40, 20, 50, ${progress * 0.33})`;
           nav.style.setProperty('--nav-shrink', progress);
-        }, { passive: true });
+          nav.style.setProperty('--nav-swap', Math.min(Math.max((progress - 0.25) * 2, 0), 1));        }, { passive: true });
       }
     }
 

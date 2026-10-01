@@ -248,6 +248,17 @@
   width: 68px;
   height: 84px;
   transform: scale(calc(0.95 * (1 - 0.5 * var(--nav-shrink))));
+  opacity: calc(1 - var(--nav-swap, 0));
+}
+/* Same height as the RR mark (width follows its shape), stacked on it; --nav-swap fades it in. */
+.vm-rrmc .demo-nav-logo .demo-nav-logo-soe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: 84px;
+  transform: translate(-50%, -50%) scale(calc(0.95 * (1 - 0.5 * var(--nav-shrink))));
+  opacity: var(--nav-swap, 0);
 }
 .vm-rrmc .demo-nav-links a,
 .vm-rrmc .demo-logo-text { color: #ffffff; }
