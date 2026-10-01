@@ -2219,7 +2219,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   margin-bottom: 2px;
 }
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
-.vm.vm-rrmc .vm-podium .vm-podium-ask { border-right-color: rgba(247, 161, 119, 0.9); }
+.vm.vm-rrmc .vm-podium .vm-podium-ask { border-right: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-title { text-align: center; transform: translateX(-24px); }
 .vm.vm-rrmc [data-qid="bodyStyles"] .vm-podium-q-title { display: block; width: 340px; margin: 0 auto; text-align: left; letter-spacing: 0.01em; }
 .vm.vm-rrmc [data-qid="bodyStyles"] .vm-podium-q-title::first-line { letter-spacing: 0.05em; }
@@ -2261,10 +2261,10 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   /* Chrome ignores ::-webkit-scrollbar once scrollbar-color is set, so the standard
      props go to Firefox only (which can't size in px; "thin" is its slimmest). */
   .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar { width: 4px; }
-  .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar-track { background: transparent; }
+  .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar-track { background: rgba(247, 161, 119, 0.2); border-radius: 2px; }
   .vm.vm-rrmc .vm-podium-ask::-webkit-scrollbar-thumb { background: #f7a177; border-radius: 2px; }
   @supports not selector(::-webkit-scrollbar) {
-    .vm.vm-rrmc .vm-podium-ask { scrollbar-width: thin; scrollbar-color: #f7a177 transparent; }
+    .vm.vm-rrmc .vm-podium-ask { scrollbar-width: thin; scrollbar-color: #f7a177 rgba(247, 161, 119, 0.2); }
   }
 }
 @media (min-width: 1080px) {
