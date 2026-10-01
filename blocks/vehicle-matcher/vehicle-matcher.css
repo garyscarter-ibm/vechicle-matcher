@@ -2194,7 +2194,9 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   padding: 0 var(--vm-space-4);
   justify-content: center;
   justify-self: center;
-  transform: translateX(-24px);
+  /* Titles centre in the toggle minus badge + chevron (22 + 9 + 2 x 12 gap = 55px),
+     so the pills shift half that further left to sit under them. */
+  transform: translateX(calc(-24px - 55px / 2));
   align-items: center;
   text-align: center;
   text-transform: uppercase;

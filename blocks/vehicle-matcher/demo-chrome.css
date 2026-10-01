@@ -262,8 +262,8 @@
    top padding and replace it with 10px on the block itself. */
 .vm-rrmc .demo-tool { padding-top: 0; }
 .vm-rrmc .demo-tool > .vehicle-matcher.vm { padding-top: 10px; }
-/* Pin the question pane below the 110px sticky nav. */
-.vm-rrmc .demo-tool > .vehicle-matcher.vm { --vm-podium-sticky-top: calc(110px + var(--vm-space-4)); }
+/* Pin the question pane to the window top so it slides under the sticky nav (z-index 100). */
+.vm-rrmc .demo-tool > .vehicle-matcher.vm { --vm-podium-sticky-top: 0px; }
 
 .vm-rrmc .demo-cta {
   font-family: 'Riviera Nights', sans-serif;
