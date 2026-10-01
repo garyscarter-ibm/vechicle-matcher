@@ -2239,7 +2239,9 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc [data-qid="budgetGate"] .vm-podium-q-title::first-line { letter-spacing: 0.1em; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
 @media (min-width: 720px) {
-  .vm.vm-rrmc .vm-podium-grid { grid-template-columns: minmax(280px, 424px) 1fr; }
+  /* Results shrink first; once both halves reach equal width they shrink together.
+     (100% - gap) / 2 is half the track, so the gap token must match the base rule's. */
+  .vm.vm-rrmc .vm-podium-grid { grid-template-columns: min(424px, calc((100% - var(--vm-space-8)) / 2)) minmax(0, 1fr); }
   .vm.vm-rrmc .vm-podium-results {
     position: static;
     max-height: none;
@@ -2270,6 +2272,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 @media (min-width: 1080px) {
   /* 1400px = 1300px base + 50px per side removed from outer margins. */
   .vm.vm-rrmc { max-width: 1400px; }
+  .vm.vm-rrmc .vm-podium-grid { grid-template-columns: min(424px, calc((100% - var(--vm-space-10)) / 2)) minmax(0, 1fr); }
 }
 .vm.vm-rrmc .vm-podium .vm-podium-q-title { font-size: 32px; font-weight: 250; }
 .vm.vm-rrmc .vm-range,
@@ -4010,6 +4013,12 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   background: #281432;
   color: #ffffff;
 }
+/* Silver and bronze: one shared backing, no lift, so both sit flat on the page. */
+.vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
+.vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
+  background: #ffffff;
+  box-shadow: none;
+}
 .vm.vm-rrmc .vm-podium-step.is-gold > .vm-podium-card > .vm-card * {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.2);
@@ -4120,6 +4129,13 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze { justify-self: start; }
   .vm.vm-rrmc .vm-podium-step.is-silver,
   .vm.vm-rrmc .vm-podium-step.is-bronze { width: 300px; }
+  /* Two 300px tiles + the 60px gap need 660px; any narrower and they stack, silver first. */
+  .vm.vm-rrmc .vm-podium-results { container-type: inline-size; }
+  @container (max-width: 659px) {
+    .vm.vm-rrmc .vm-podium-steps:not(.is-tied) { grid-template-columns: minmax(0, 1fr); }
+    .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-silver,
+    .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze { justify-self: center; }
+  }
   .vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
   .vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
     flex-direction: column;
