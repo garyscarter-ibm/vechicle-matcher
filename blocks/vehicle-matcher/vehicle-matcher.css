@@ -4032,159 +4032,212 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   overflow: hidden;
 }
 
-/* RRMC: 1st place tile — fixed 860×360px, horizontal orientation */
-@media (min-width: 1080px) {
-  .vm.vm-rrmc .vm-rrmc-tagline {
-    font-size: 48px;
-    letter-spacing: 0.05em;
-    text-align: left;
-    line-height: 1.1;
-    margin: 40px 0 12px;
+/* RRMC tagline above the tiles; zooms with them (--vm-podium-zoom, set by podium.js). */
+.vm.vm-rrmc .vm-rrmc-tagline {
+  font-size: 48px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  line-height: 1.1;
+  margin: 40px 0 12px;
+  zoom: var(--vm-podium-zoom, 1);
+}
+.vm.vm-rrmc .vm-rrmc-tagline-sub {
+  font-size: 16px;
+  text-align: left;
+  line-height: 1.5;
+  max-width: 612px;
+  margin: 0 0 40px;
+  zoom: var(--vm-podium-zoom, 1);
+}
+.vm.vm-rrmc .vm-rrmc-sub-a { letter-spacing: 0.01em; }
+.vm.vm-rrmc .vm-rrmc-sub-b { letter-spacing: 0.04em; }
+
+/* RRMC tiles keep the full-window scheme at every width; podium.js sets --vm-podium-zoom
+   (results width / the 860px gold tile, capped at 1) so narrower windows get a miniature. */
+.vm.vm-rrmc .vm-podium-results { container-type: inline-size; }
+.vm.vm-rrmc .vm-podium-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  zoom: var(--vm-podium-zoom, 1);
+}
+.vm.vm-rrmc .vm-podium-step.is-silver,
+.vm.vm-rrmc .vm-podium-step.is-bronze { margin-inline: 0; }
+/* 1st place: fixed 860x360px, horizontal orientation, spanning the row. */
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 860px;
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card {
+  flex-direction: row;
+  height: 360px;
+  overflow: hidden;
+  background: #281432;
+  color: #ffffff;
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card * {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-media {
+  flex: 0 1 300px;
+  min-width: 120px;
+  width: 300px;
+  height: 224px;
+  max-height: unset;
+  aspect-ratio: unset;
+  align-self: center;
+  margin-left: 40px;
+  overflow: hidden;
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-card-name {
+  font-size: 36px;
+  letter-spacing: 0.05em;
+}
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-card-name,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-name {
+  font-size: 32px;
+  letter-spacing: 0.05em;
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-body {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  column-count: auto !important;
+  column-width: auto !important;
+  overflow-y: auto;
+  /* 82px at the old 48px title, scaled by 3/4 with it. */
+  padding-top: 62px;
+  position: relative;
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why {
+  position: absolute;
+  bottom: 92px;
+  left: var(--vm-space-6);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  margin: 0;
+  text-decoration: underline !important;
+}
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented {
+  position: absolute;
+  bottom: 70px;
+  left: var(--vm-space-6);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  margin: 0;
+}
+/* "Presented by RRMC <Location>" on every tile (gold already matches above). */
+.vm.vm-rrmc .vm-podium-step .vm-rrmc-presented {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+/* Every tile: 24px after "View options", then "Presented by" sits straight under "Why". */
+.vm.vm-rrmc .vm-podium-step .vm-rrmc-why { margin: 24px 0 0; }
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented-location,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-why,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-why,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-presented-location,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-presented-location {
+  text-decoration: underline !important;
+}
+/* 2nd and 3rd: enforce vertical (column) orientation and cap width */
+.vm.vm-rrmc .vm-podium-steps { column-gap: 60px; justify-content: center; }
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) { row-gap: 60px; }
+/* Tracks are 1fr but the tiles are 300px; hug the seam so the visible gap is the 60px. */
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-silver { justify-self: end; }
+.vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze { justify-self: start; }
+.vm.vm-rrmc .vm-podium-step.is-silver,
+.vm.vm-rrmc .vm-podium-step.is-bronze { width: 300px; }
+/* Two 300px tiles + the 60px gap need 660px; any narrower and they stack, silver first,
+   zoomed back up to fit the column (--vm-podium-zoom-stack, set by podium.js). */
+@container (max-width: 659px) {
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) { grid-template-columns: minmax(0, 1fr); }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-silver,
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze {
+    justify-self: center;
+    zoom: var(--vm-podium-zoom-stack, 1);
   }
-  .vm.vm-rrmc .vm-rrmc-tagline-sub {
-    font-size: 16px;
-    text-align: left;
-    line-height: 1.5;
-    max-width: 612px;
-    margin: 0 0 40px;
-  }
-  .vm.vm-rrmc .vm-rrmc-sub-a { letter-spacing: 0.01em; }
-  .vm.vm-rrmc .vm-rrmc-sub-b { letter-spacing: 0.04em; }
+  /* Gold turns portrait with the silver/bronze anatomy, 360px wide so it still leads. */
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold {
-    width: 100%;
-    max-width: 860px;
+    justify-self: center;
+    width: 360px;
+    zoom: var(--vm-podium-zoom-gold, 1);
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card {
-    flex-direction: row;
-    height: 360px;
-    overflow: hidden;
-    background: #281432;
-    color: #ffffff;
-  }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card * {
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+    flex-direction: column;
+    height: auto;
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-media {
-    flex: 0 1 300px;
-    min-width: 120px;
-    width: 300px;
-    height: 224px;
-    max-height: unset;
-    aspect-ratio: unset;
-    align-self: center;
-    margin-left: 40px;
-    overflow: hidden;
-  }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-card-name {
-    font-size: 36px;
-    letter-spacing: 0.05em;
-  }
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-card-name,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-name {
-    font-size: 32px;
-    letter-spacing: 0.05em;
+    flex: none;
+    width: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    align-self: stretch;
+    /* 24px purple cushion on top and sides, matching the body's 24px padding below. */
+    margin: 24px 24px 0;
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-body {
-    flex: 1 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    column-count: auto !important;
-    column-width: auto !important;
-    overflow-y: auto;
-    /* 82px at the old 48px title, scaled by 3/4 with it. */
-    padding-top: 62px;
-    position: relative;
+    padding-top: var(--vm-space-6);
+    overflow-y: visible;
   }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why {
-    position: absolute;
-    bottom: 92px;
-    left: var(--vm-space-6);
-    font-size: 16px;
-    letter-spacing: 0.02em;
-    color: #ffffff;
-    margin: 0;
-    text-decoration: underline !important;
-  }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why,
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented {
-    position: absolute;
-    bottom: 70px;
-    left: var(--vm-space-6);
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    color: #ffffff;
-    margin: 0;
+    position: static;
   }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented-location,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-why,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-why,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-presented-location,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-presented-location {
-    text-decoration: underline !important;
-  }
-  /* 2nd and 3rd: enforce vertical (column) orientation and cap width */
-  .vm.vm-rrmc .vm-podium-steps { column-gap: 60px; justify-content: center; }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) { row-gap: 60px; }
-  /* Tracks are 1fr but the tiles are 300px; hug the seam so the visible gap is the 60px. */
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-silver { justify-self: end; }
-  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze { justify-self: start; }
-  .vm.vm-rrmc .vm-podium-step.is-silver,
-  .vm.vm-rrmc .vm-podium-step.is-bronze { width: 300px; }
-  /* Two 300px tiles + the 60px gap need 660px; any narrower and they stack, silver first. */
-  .vm.vm-rrmc .vm-podium-results { container-type: inline-size; }
-  @container (max-width: 659px) {
-    .vm.vm-rrmc .vm-podium-steps:not(.is-tied) { grid-template-columns: minmax(0, 1fr); }
-    .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-silver,
-    .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-bronze { justify-self: center; }
-  }
-  .vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
-  .vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
-    flex-direction: column;
-  }
-  /* Driveline and mileage sub-lines beneath the model name */
-  .vm.vm-rrmc .vm-rrmc-driveline,
-  .vm.vm-rrmc .vm-rrmc-mileage {
-    font-size: 16px;
-    letter-spacing: 0.02em;
-    text-align: left;
-    margin: 0;
-  }
-  .vm.vm-rrmc .vm-rrmc-view-options {
-    font-size: 16px;
-    letter-spacing: 0.02em;
-    text-align: left;
-    margin: 0;
-    text-decoration: underline;
-  }
-  /* Top 3 tiles: name only — hide all supplementary content */
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-specs,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-blurb,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-distance,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-avail,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-why-label,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-reasons,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-usedmeta,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-pick,
-  .vm.vm-rrmc .vm-podium-step.is-gold .vm-card-link,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-specs,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-blurb,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-distance,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-avail,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-why-label,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-reasons,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-usedmeta,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-pick,
-  .vm.vm-rrmc .vm-podium-step.is-silver .vm-card-link,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-specs,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-blurb,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-distance,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-avail,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-why-label,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-reasons,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-usedmeta,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-pick,
-  .vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-link { display: none; }
+  .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why { margin-top: 24px; }
 }
+.vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
+.vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
+  flex-direction: column;
+}
+/* Driveline and mileage sub-lines beneath the model name */
+.vm.vm-rrmc .vm-rrmc-driveline,
+.vm.vm-rrmc .vm-rrmc-mileage {
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  margin: 0;
+}
+.vm.vm-rrmc .vm-rrmc-view-options {
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-align: left;
+  margin: 0;
+  text-decoration: underline;
+}
+/* Top 3 tiles: name only — hide all supplementary content */
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-specs,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-blurb,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-distance,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-avail,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-why-label,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-reasons,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-usedmeta,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-pick,
+.vm.vm-rrmc .vm-podium-step.is-gold .vm-card-link,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-specs,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-blurb,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-distance,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-avail,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-why-label,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-reasons,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-usedmeta,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-pick,
+.vm.vm-rrmc .vm-podium-step.is-silver .vm-card-link,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-specs,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-blurb,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-distance,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-avail,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-why-label,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-reasons,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-usedmeta,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-pick,
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-link { display: none; }
 
 /* RRMC: per-value letter-spacing on the people question */
 .vm.vm-rrmc [data-qid="people"] .vm-option[data-value="solo"] .vm-option-label,
