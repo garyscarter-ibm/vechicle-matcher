@@ -2255,7 +2255,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     top: var(--vm-podium-sticky-top, var(--vm-space-4));
     max-height: calc(100vh - var(--vm-podium-sticky-top, var(--vm-space-4)) - var(--vm-space-4));
     overflow-y: auto;
-    overscroll-behavior: contain;
+    /* No containment: at either end the wheel carries on into the page, which drags the pane with it. */
+    overscroll-behavior: auto;
     /* Scroll boxes clip, and the titles shift 24px left; extend the box by that, not the content. */
     margin-left: -24px;
     padding-left: 24px;

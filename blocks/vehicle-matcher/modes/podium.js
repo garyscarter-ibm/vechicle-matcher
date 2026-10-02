@@ -715,16 +715,34 @@ function mount(root, ctx) {
     scheduleRefresh();
   };
 
-  // When the brief is a sticky scroll pane (RRMC), page scroll moves it 1:1; once the
-  // page bottoms out its own scroll takes over. Detaches when the stage is replaced.
+  // When the brief is a sticky scroll pane (RRMC), page scroll moves it 1:1. Scrolling the
+  // pane itself shifts `offset`, so the link resumes from there instead of snapping back.
   const linkAskScroll = (ask, grid) => {
     let frame = 0;
+    let offset = 0;
+    let written = null;
+    const pageTravel = () => {
+      const style = getComputedStyle(ask);
+      if (style.position !== 'sticky' || ask.scrollHeight <= ask.clientHeight) return null;
+      const start = grid.getBoundingClientRect().top + window.scrollY - parseFloat(style.top || 0);
+      return window.scrollY - start;
+    };
     const sync = () => {
       frame = 0;
-      const style = getComputedStyle(ask);
-      if (style.position !== 'sticky' || ask.scrollHeight <= ask.clientHeight) return;
-      const start = grid.getBoundingClientRect().top + window.scrollY - parseFloat(style.top || 0);
-      ask.scrollTop = Math.max(0, window.scrollY - start);
+      const travel = pageTravel();
+      if (travel === null) return;
+      const max = ask.scrollHeight - ask.clientHeight;
+      // Pinned at an end, re-anchor so reversing the page moves the pane straight away.
+      if (travel + offset > max) offset = max - travel;
+      if (travel + offset < 0 && offset < 0) offset = Math.min(0, -travel);
+      ask.scrollTop = Math.max(0, travel + offset);
+      written = ask.scrollTop;
+    };
+    const onAskScroll = () => {
+      if (written !== null && Math.abs(ask.scrollTop - written) < 1) return;
+      const travel = pageTravel();
+      if (travel !== null) offset = ask.scrollTop - travel;
+      written = null;
     };
     const onScroll = () => {
       if (!ask.isConnected) {
@@ -733,6 +751,7 @@ function mount(root, ctx) {
       }
       if (!frame) frame = requestAnimationFrame(sync);
     };
+    ask.addEventListener('scroll', onAskScroll, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
   };
 
