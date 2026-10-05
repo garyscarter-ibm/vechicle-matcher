@@ -1089,6 +1089,7 @@ function mount(root, ctx) {
         big: Boolean(state.committed) && gold,
         compact: !gold,
         brand: ctx.brand,
+        fitName: true,
       }),
       rejectTrigger(m, step),
     );

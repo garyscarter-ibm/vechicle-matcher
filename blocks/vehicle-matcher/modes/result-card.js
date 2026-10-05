@@ -162,6 +162,40 @@ export function mediaWell(car, extraClass = '') {
   return { media, showPhoto };
 }
 
+const EXTENDED = /\bExtended\b/i;
+// Tracking floor for the squeeze: tighter than this and the name stops reading.
+const MIN_TRACKING_EM = -0.05;
+
+/** True when the element's text runs past its first line (rect tops vary with font size). */
+function wraps(node) {
+  const range = document.createRange();
+  range.selectNodeContents(node);
+  const rects = [...range.getClientRects()];
+  return rects.some((r) => r.top >= rects[0].bottom - 1);
+}
+
+/** RRMC: a name that wraps sets "Extended" at 16px, then tightens the whole name's
+ *  tracking until it fits one line. Re-run on resize so a wider tile relaxes it. */
+function fitExtended(nameEl, full) {
+  const hit = full.match(EXTENDED);
+  if (!hit || typeof ResizeObserver === 'undefined') return;
+  const before = full.slice(0, hit.index);
+  const after = full.slice(hit.index + hit[0].length);
+  new ResizeObserver(() => {
+    if (!nameEl.isConnected) return;
+    nameEl.style.letterSpacing = '';
+    nameEl.textContent = full;
+    if (!wraps(nameEl)) return;
+    nameEl.replaceChildren(before, el('span', 'vm-rrmc-extended', hit[0]), after);
+    const size = parseFloat(getComputedStyle(nameEl).fontSize);
+    let em = (parseFloat(getComputedStyle(nameEl).letterSpacing) || 0) / size;
+    while (wraps(nameEl) && em > MIN_TRACKING_EM) {
+      em = Math.max(MIN_TRACKING_EM, em - 0.005);
+      nameEl.style.letterSpacing = `${em}em`;
+    }
+  }).observe(nameEl.parentElement || nameEl);
+}
+
 /**
  * One result card.
  * `big` adds the "why it suits you" reasons; `compact` is the carousel tile —
@@ -178,7 +212,7 @@ export function mediaWell(car, extraClass = '') {
  */
 export function matchCard(match, {
   big = false, compact = false, brand: brandKey = 'bmw',
-  showScore = true, showPaint = false,
+  showScore = true, showPaint = false, fitName = false,
   rejectOptions, rejectLabel, rejectPrompt,
 } = {}) {
   const { car, score, reasons } = match;
@@ -192,7 +226,9 @@ export function matchCard(match, {
   const head = el('div', 'vm-card-head');
   const baseName = car.name.replace(/^Rolls-Royce\s+/i, '').replace(/^BMW\s+/, '');
   const displayName = (brandKey === 'rrmc' && car.year) ? `${car.year} ${baseName}` : baseName;
-  head.append(el('h3', 'vm-card-name', displayName));
+  const nameEl = el('h3', 'vm-card-name', displayName);
+  head.append(nameEl);
+  if (brandKey === 'rrmc' && fitName) fitExtended(nameEl, displayName);
   if (showScore) {
     const badge = el('span', 'vm-score', `${score}%`);
     // The number has been unexplained since fit and taste were split, and two
