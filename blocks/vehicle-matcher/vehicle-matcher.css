@@ -4133,14 +4133,16 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   column-count: auto !important;
   column-width: auto !important;
   overflow-y: auto;
-  /* 82px at the old 48px title, scaled by 3/4 with it. */
-  padding-top: 62px;
+  /* 62px (82px at the old 48px title, scaled by 3/4), plus a 16px inset. */
+  padding-top: 78px;
+  /* 40px sides, the photo's own inset, so the copy sits in from the tile edge. */
+  padding-inline: 40px;
   position: relative;
 }
 .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why {
   position: absolute;
-  bottom: 92px;
-  left: var(--vm-space-6);
+  bottom: 108px;
+  left: 40px;
   font-size: 16px;
   letter-spacing: 0.02em;
   color: #ffffff;
@@ -4149,8 +4151,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 }
 .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-presented {
   position: absolute;
-  bottom: 70px;
-  left: var(--vm-space-6);
+  bottom: 86px;
+  left: 40px;
   font-size: 12px;
   letter-spacing: 0.02em;
   color: #ffffff;
@@ -4242,6 +4244,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-body {
     padding-top: var(--vm-space-6);
+    padding-inline: var(--vm-space-6);
     overflow-y: visible;
   }
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why,
