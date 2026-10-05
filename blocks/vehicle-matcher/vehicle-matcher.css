@@ -766,8 +766,9 @@
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
 .vm.vm-rrmc .vm-question { font-size: 32px; }
 .vm.vm-rrmc .vm-card-line { display: none; }
-.vm.vm-rrmc .vm-podium-step .vm-rrmc-view-options,
-.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-view-options { text-decoration: underline !important; }
+/* Every mode's "View Options", out-ranking the stage-wide no-underline rule further down. */
+.vm.vm-rrmc .vm-rrmc-view-options,
+.vm.vm-rrmc .vm-stage .vm-rrmc-view-options { text-decoration: underline !important; }
 .vm.vm-rrmc .vm-kicker {
   font-family: var(--vm-font-heading);
   font-size: 48px;
@@ -2188,16 +2189,14 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 /* RRMC podium: progress bar moves into the switcher row, fills the left side. */
 .vm-switcher.has-progress { align-items: center; }
 .vm.vm-rrmc .vm-podium-progress-bar { background: #f7a177; }
-.vm.vm-rrmc .vm-podium .vm-option {
+/* Question pills in every mode that asks: podium, questionnaire screens, guess-who popovers. */
+.vm.vm-rrmc :is(.vm-podium, .vm-screen[data-qid], .vm-gw-pop-body) .vm-option {
   border-radius: 9999px;
   width: 260px;
   height: 40px;
   padding: 0 var(--vm-space-4);
   justify-content: center;
   justify-self: center;
-  /* Titles centre in the toggle minus badge + chevron (22 + 9 + 2 x 12 gap = 55px),
-     so the pills shift half that further left to sit under them. */
-  transform: translateX(calc(-24px - 55px / 2));
   align-items: center;
   text-align: center;
   text-transform: uppercase;
@@ -2205,8 +2204,29 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   letter-spacing: 0.08em;
   border-color: rgba(40, 20, 50, 0.9);
 }
-.vm.vm-rrmc .vm-podium .vm-option-sub { display: none; }
-.vm.vm-rrmc .vm-podium .vm-podium-q-label { display: none; }
+/* Titles centre in the toggle minus badge + chevron (22 + 9 + 2 x 12 gap = 55px),
+   so the pills shift half that further left to sit under them. */
+.vm.vm-rrmc .vm-podium .vm-option { transform: translateX(calc(-24px - 55px / 2)); }
+/* Pills two abreast, capped at two widths so an odd last pill wraps and centres beneath. */
+.vm.vm-rrmc .vm-screen[data-qid] .vm-options:not(.vm-slider) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: calc(2 * 260px + var(--vm-space-2));
+  margin-inline: auto;
+}
+/* Sliders take the same centred two-pill width, readout centred over the track. */
+.vm.vm-rrmc .vm-screen[data-qid] .vm-options.vm-slider {
+  max-width: calc(2 * 260px + var(--vm-space-2));
+  margin-inline: auto;
+}
+.vm.vm-rrmc .vm-screen[data-qid] .vm-slider-value { text-align: center; }
+/* Questionnaire titles hold one line at a flat 8%, outranking the per-question widths and first-line tracking below. */
+.vm.vm-rrmc .vm-screen[data-qid] .vm-question { width: auto; text-align: center; white-space: nowrap; letter-spacing: 0.08em; }
+.vm.vm-rrmc .vm-screen[data-qid] .vm-question::first-line { letter-spacing: 0.08em; }
+.vm.vm-rrmc :is(.vm-podium, .vm-screen[data-qid], .vm-gw-pop-body) .vm-option-sub { display: none; }
+.vm.vm-rrmc .vm-podium .vm-podium-q-label,
+.vm.vm-rrmc .vm-screen[data-qid] .vm-step { display: none; }
 .vm.vm-rrmc .vm-podium-q-badge { font-size: 0; width: 22px; height: 22px; padding: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
 .vm.vm-rrmc .vm-podium-q-badge::before {
   content: '';
@@ -2222,26 +2242,27 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium .vm-podium-q + .vm-podium-q { border-top: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-ask { border-right: none; }
 .vm.vm-rrmc .vm-podium .vm-podium-q-title { text-align: center; transform: translateX(-24px); }
-.vm.vm-rrmc [data-qid="bodyStyles"] .vm-podium-q-title { display: block; width: 340px; margin: 0 auto; text-align: left; letter-spacing: 0.01em; }
-.vm.vm-rrmc [data-qid="bodyStyles"] .vm-podium-q-title::first-line { letter-spacing: 0.05em; }
-.vm.vm-rrmc [data-qid="fuel"] .vm-podium-q-title { display: block; width: 312px; margin: 0 auto; text-align: left; letter-spacing: 0.06em; }
-.vm.vm-rrmc [data-qid="fuel"] .vm-podium-q-title::first-line { letter-spacing: 0; }
-.vm.vm-rrmc [data-qid="primaryUse"] .vm-podium-q-title { display: block; width: 320px; margin: 0 auto; letter-spacing: 0.1em; }
+.vm.vm-rrmc [data-qid="bodyStyles"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 340px; margin: 0 auto; text-align: left; letter-spacing: 0.01em; }
+.vm.vm-rrmc [data-qid="bodyStyles"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0.05em; }
+.vm.vm-rrmc [data-qid="fuel"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 312px; margin: 0 auto; text-align: left; letter-spacing: 0.06em; }
+.vm.vm-rrmc [data-qid="fuel"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0; }
+.vm.vm-rrmc [data-qid="primaryUse"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 320px; margin: 0 auto; letter-spacing: 0.1em; }
 /* The title's \n sets the break; pre-line honours it so each line keeps its own tracking. */
-.vm.vm-rrmc [data-qid="regions"] .vm-podium-q-title { display: block; width: fit-content; margin: 0 auto; text-align: left; white-space: pre-line; letter-spacing: 0.08em; }
-.vm.vm-rrmc [data-qid="regions"] .vm-podium-q-title::first-line { letter-spacing: 0.04em; }
-.vm.vm-rrmc [data-qid="handDrive"] .vm-podium-q-title { display: block; width: 326px; margin: 0 auto; letter-spacing: 0.03em; }
-.vm.vm-rrmc [data-qid="handDrive"] .vm-podium-q-title::first-line { letter-spacing: 0; }
-.vm.vm-rrmc [data-qid="people"] .vm-podium-q-title { display: block; width: 346px; margin: 0 auto; letter-spacing: 0.05em; }
-.vm.vm-rrmc [data-qid="people"] .vm-podium-q-title::first-line { letter-spacing: 0.03em; }
-.vm.vm-rrmc [data-qid="mileage"] .vm-podium-q-title { display: block; width: 330px; margin: 0 auto; text-align: left; letter-spacing: 0.1em; }
-.vm.vm-rrmc [data-qid="mileage"] .vm-podium-q-title::first-line { letter-spacing: 0.02em; }
-.vm.vm-rrmc [data-qid="style"] .vm-podium-q-title { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.12em; }
-.vm.vm-rrmc [data-qid="style"] .vm-podium-q-title::first-line { letter-spacing: 0.06em; }
-.vm.vm-rrmc [data-qid="priorities"] .vm-podium-q-title { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.08em; }
-.vm.vm-rrmc [data-qid="budgetGate"] .vm-podium-q-title { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.04em; }
-.vm.vm-rrmc [data-qid="budgetGate"] .vm-podium-q-title::first-line { letter-spacing: 0.1em; }
-.vm.vm-rrmc .vm-podium .vm-podium-q-help { display: none; }
+.vm.vm-rrmc [data-qid="regions"] :is(.vm-podium-q-title, .vm-question) { display: block; width: fit-content; margin: 0 auto; text-align: left; white-space: pre-line; letter-spacing: 0.08em; }
+.vm.vm-rrmc [data-qid="regions"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0.04em; }
+.vm.vm-rrmc [data-qid="handDrive"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 326px; margin: 0 auto; letter-spacing: 0.03em; }
+.vm.vm-rrmc [data-qid="handDrive"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0; }
+.vm.vm-rrmc [data-qid="people"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 346px; margin: 0 auto; letter-spacing: 0.05em; }
+.vm.vm-rrmc [data-qid="people"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0.03em; }
+.vm.vm-rrmc [data-qid="mileage"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 330px; margin: 0 auto; text-align: left; letter-spacing: 0.1em; }
+.vm.vm-rrmc [data-qid="mileage"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0.02em; }
+.vm.vm-rrmc [data-qid="style"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.12em; }
+.vm.vm-rrmc [data-qid="style"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0.06em; }
+.vm.vm-rrmc [data-qid="priorities"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.08em; }
+.vm.vm-rrmc [data-qid="budgetGate"] :is(.vm-podium-q-title, .vm-question) { display: block; width: 300px; margin: 0 auto; text-align: left; letter-spacing: 0.04em; }
+.vm.vm-rrmc [data-qid="budgetGate"] :is(.vm-podium-q-title, .vm-question)::first-line { letter-spacing: 0.1em; }
+.vm.vm-rrmc .vm-podium .vm-podium-q-help,
+.vm.vm-rrmc .vm-screen[data-qid] .vm-help { display: none; }
 @media (min-width: 720px) {
   /* Results shrink first; once both halves reach equal width they shrink together.
      (100% - gap) / 2 is half the track, so the gap token must match the base rule's. */
@@ -2289,7 +2310,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-slider-input::-moz-range-thumb { box-shadow: 0 0 0 1px #6fdbc7; }
 .vm.vm-rrmc .vm-slider-input::-moz-range-progress { background: #6fdbc7; }
 .vm.vm-rrmc .vm-score { display: none; }
-.vm.vm-rrmc .vm-podium .vm-option.is-selected {
+.vm.vm-rrmc :is(.vm-podium, .vm-screen[data-qid], .vm-gw-pop-body) .vm-option.is-selected {
   background: #281432;
   border-color: #ffffff;
   color: #ffffff;
@@ -4321,6 +4342,192 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 }
 .vm.vm-rrmc [data-qid="people"] .vm-option[data-value="crew"] .vm-option-label {
   letter-spacing: 0;
+}
+
+/* RRMC questionnaire results wear the podium tiles: a lone lead card is the wide gold,
+   a tie's first card the portrait gold, its others silver/bronze, compact tiles the tail. */
+.vm.vm-rrmc .vm-results { container-type: inline-size; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:first-child {
+  background: #281432;
+  color: #ffffff;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:first-child * {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:first-child > .vm-card-media {
+  width: 300px;
+  height: auto;
+  max-height: unset;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) {
+  background: #ffffff;
+  box-shadow: none;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card { flex-direction: column; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid-tied {
+  grid-template-columns: repeat(2, 300px);
+  gap: 60px;
+  justify-content: center;
+  align-items: start;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-card-name {
+  font-size: 32px;
+  letter-spacing: 0.05em;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid .vm-rrmc-why { margin: 24px 0 0; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid .vm-rrmc-presented {
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid .vm-rrmc-presented-location,
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-rrmc-why,
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-presented-location {
+  text-decoration: underline !important;
+}
+/* Lone lead: the podium's fixed 860x360 horizontal gold, copy inset 40px. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card {
+  flex-direction: row;
+  width: 100%;
+  max-width: min(860px, calc(100% - 140px - var(--vm-space-4)));
+  height: 360px;
+  overflow: visible;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card > .vm-card-media {
+  flex: 0 1 300px;
+  min-width: 120px;
+  align-self: center;
+  margin-left: 40px;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-card-name {
+  font-size: 36px;
+  letter-spacing: 0.05em;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card > .vm-card-body {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  column-count: auto !important;
+  column-width: auto !important;
+  overflow-y: auto;
+  padding-top: 78px;
+  padding-inline: 40px;
+  position: relative;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-why {
+  position: absolute;
+  bottom: 108px;
+  left: 40px;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-decoration: underline !important;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-presented {
+  position: absolute;
+  bottom: 86px;
+  left: 40px;
+}
+/* "Not this one" hangs outside the tile's right edge (questionnaire.js lifts it out of the
+   body); the card stops clipping so it can, and tied columns part wide enough to hold it. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card {
+  position: relative;
+  overflow: visible;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject {
+  position: absolute;
+  top: 0;
+  left: calc(100% + var(--vm-space-4));
+  width: 140px;
+  margin: 0;
+  z-index: 2;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject * { color: var(--vm-ink); }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject .vm-reject-open { border-color: var(--vm-line); }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject .vm-reject-menu { width: 260px; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid-tied {
+  column-gap: calc(140px + 2 * var(--vm-space-4));
+  padding-right: calc(140px + var(--vm-space-4));
+}
+/* Same 659px breakpoint as the podium: tiles stack, and the wide gold turns portrait. */
+@container (max-width: 659px) {
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid-tied { grid-template-columns: 300px; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) { justify-items: center; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card {
+    flex-direction: column;
+    width: 360px;
+    max-width: 100%;
+    height: auto;
+  }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card > .vm-card-media {
+    flex: none;
+    width: auto;
+    align-self: stretch;
+    margin: 24px 24px 0;
+  }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card > .vm-card-body {
+    padding-top: var(--vm-space-6);
+    padding-inline: var(--vm-space-6);
+    overflow-y: visible;
+  }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-why,
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-presented { position: static; }
+  /* No room beside a stacked tile, so the control drops just below its right corner. */
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid-tied { column-gap: 0; padding-right: 0; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card { margin-bottom: 64px; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject {
+    top: calc(100% + var(--vm-space-2));
+    left: auto;
+    right: 0;
+    width: max-content;
+    max-width: 100%;
+  }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-why { margin-top: 24px; }
+}
+/* Tail tiles, as the podium's extra tiles. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid > .vm-card {
+  flex-direction: column;
+  box-shadow: none;
+  border: none;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-card-name {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-card-body { padding-bottom: var(--vm-space-2); }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-presented {
+  font-size: 10px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-why { display: none; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-mileage { margin-bottom: 24px; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-view-options { margin-top: auto; }
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-mileage,
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-view-options { font-size: 14px; }
+@media (min-width: 1080px) {
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid {
+    background: #281432;
+    border-radius: var(--vm-radius);
+    padding: var(--vm-space-6);
+  }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid > * { background: transparent; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid > *,
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid > * * {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+/* Nothing past "Presented by", as on the podium, nor the trade-off line; white tiles also drop kit. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid, .vm-tail-grid) :is(
+  .vm-specs, .vm-blurb, .vm-distance, .vm-avail, .vm-why-label, .vm-reasons, .vm-usedmeta, .vm-pick, .vm-card-link,
+  .vm-trade-text
+),
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-kit {
+  display: none;
 }
 
 /* ---------------------------- brand fit ------------------------------ */

@@ -856,13 +856,19 @@ function renderRefine(
     // It keeps its reject menu: the answer still has to survive being looked
     // at, and "actually, not that one either" is a real thing to want to say.
     const single = shown.length === 1;
-    const full = (m, big = false) => matchCard(m, {
-      big,
-      brand: ctx.brand,
-      rejectOptions,
-      rejectLabel: copy.rejectOpen,
-      rejectPrompt: copy.rejectPrompt,
-    });
+    const full = (m, big = false) => {
+      const card = matchCard(m, {
+        big,
+        brand: ctx.brand,
+        rejectOptions,
+        rejectLabel: copy.rejectOpen,
+        rejectPrompt: copy.rejectPrompt,
+      });
+      // RRMC hangs "Not this one" beside the tile, so it leaves the body for the card itself.
+      const reject = ctx.brand === 'rrmc' && card.querySelector(':scope > .vm-card-body > .vm-reject');
+      if (reject) card.append(reject);
+      return card;
+    };
     const tile = (m) => matchCard(m, { compact: true, brand: ctx.brand });
     // The grid holding the LEAD goes full width for a single car; the other
     // group's stays two-up whatever it holds, so it never competes for hero.
@@ -1362,6 +1368,8 @@ function renderQuestion(root, ctx, index) {
 
   root.replaceChildren();
   const screen = el('div', 'vm-screen');
+  // Same per-question hook as the podium's blocks, so brand CSS keyed by data-qid reaches both.
+  screen.dataset.qid = q.id;
 
   const progress = el('div', 'vm-progress');
   const bar = el('div', 'vm-progress-bar');
