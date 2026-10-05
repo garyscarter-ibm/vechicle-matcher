@@ -62,6 +62,9 @@ export const BUDGET_BANDS = {
  * pillFor — so this map only needs the single-select questions.
  */
 export const PILL_LABEL = {
+  regions: {
+    europe: 'UK & Europe', mea: 'Africa & Middle East', apac: 'Asia & Pacific', americas: 'Americas',
+  },
   fuel: {
     petrol: 'Petrol', diesel: 'Diesel', phev: 'Plug-in hybrid', ev: 'Electric', open: 'Any fuel',
   },

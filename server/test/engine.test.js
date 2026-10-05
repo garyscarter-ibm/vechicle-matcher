@@ -5,6 +5,7 @@ import {
   matchCars, rankCars, budgetRange, unmetWants, tradeOffs, STRETCH_FACTOR, MAX_SHOWN,
 } from '../engine.js';
 import { CARS } from '../data.js';
+import { rrmcRegion } from '../rrmc-listing.js';
 import { BUDGET_BANDS, QUESTIONS } from '../questions.js';
 
 function run(answers) {
@@ -471,4 +472,23 @@ test('quiz answer keys line up with what the engine reads', () => {
   // And nothing the engine no longer reads is still on screen: `boot` was cut
   // (its need is derived from people + primaryUse — see bootNeedKey).
   assert.ok(!ids.includes('boot'), 'the boot question was folded into people/primaryUse');
+});
+
+test('regions filter drops cars from unchosen regions but keeps ones of unknown region', () => {
+  const [a, b, c] = CARS;
+  const pool = [{ ...a, region: 'europe' }, { ...b, region: 'apac' }, { ...c }];
+  const ids = (answers) => rankCars({ ...base, budget: 'any', ...answers }, pool).map((r) => r.car.id);
+  assert.deepEqual(ids({ regions: ['europe'] }).sort(), [a.id, c.id].sort());
+  assert.equal(ids({ regions: ['europe', 'apac'] }).length, ids({}).length);
+  assert.deepEqual(ids({ regions: [] }).sort(), ids({}).sort());
+});
+
+test('rrmcRegion reads the retailer country in its common shapes', () => {
+  assert.equal(rrmcRegion({ dealer: { address: { countryCode: 'gb' } } }), 'europe');
+  assert.equal(rrmcRegion({ dealer: { country: 'UK' } }), 'europe');
+  assert.equal(rrmcRegion({ dealer: { country: 'United Arab Emirates' } }), 'mea');
+  assert.equal(rrmcRegion({ dealer: { address: { country: { code: 'HK' } } } }), 'apac');
+  assert.equal(rrmcRegion({ location: { country: 'United States' } }), 'americas');
+  assert.equal(rrmcRegion({ dealer: {} }), undefined);
+  assert.equal(rrmcRegion({ dealer: { country: 'Atlantis' } }), undefined);
 });

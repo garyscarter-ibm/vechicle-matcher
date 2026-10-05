@@ -1851,6 +1851,7 @@ export function mapRRMCRaw(raw) {
     retailerId: RRMC_RETAILER_ID,
     link: raw?.link || 'https://approved.rolls-roycemotorcars.com/',
     ...(raw?.handDrive && { handDrive: raw.handDrive }),
+    ...(raw?.region && { region: raw.region }),
     ...(spec.prestigeRank != null && { prestigeRank: spec.prestigeRank }),
   };
 }

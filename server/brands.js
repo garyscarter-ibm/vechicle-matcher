@@ -922,9 +922,23 @@ export const BRANDS = {
       drop: ['charging'],
       add: [
         {
+          // Filters on the retailer's region (rrmc-listing.js). The \n splits the
+          // title's two tracked lines; anywhere else it collapses to a space.
+          id: 'regions',
+          title: 'Which regions shall\nwe include?',
+          insertAfter: 'primaryUse',
+          multi: true,
+          options: [
+            { value: 'europe', label: 'The UK & Europe' },
+            { value: 'mea', label: 'Africa & The Middle East' },
+            { value: 'apac', label: 'Asia & The Pacific' },
+            { value: 'americas', label: 'The Americas' },
+          ],
+        },
+        {
           id: 'handDrive',
           title: 'Which is your preferred driving configuration?',
-          insertAfter: 'primaryUse',
+          insertAfter: 'regions',
           options: [
             { value: 'rhd', label: 'Right Hand Drive' },
             { value: 'lhd', label: 'Left Hand Drive' },
