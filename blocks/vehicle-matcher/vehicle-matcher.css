@@ -4028,11 +4028,12 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.2);
 }
+/* 16:9, the photo itself: a 4:3 frame showed the white canvas feed images sit on. */
 .vm.vm-rrmc .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-media {
   width: 300px;
-  height: 224px;
+  height: auto;
   max-height: unset;
-  aspect-ratio: unset;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -4088,9 +4089,9 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   flex: 0 1 300px;
   min-width: 120px;
   width: 300px;
-  height: 224px;
+  height: auto;
   max-height: unset;
-  aspect-ratio: unset;
+  aspect-ratio: 16 / 9;
   align-self: center;
   margin-left: 40px;
   overflow: hidden;
