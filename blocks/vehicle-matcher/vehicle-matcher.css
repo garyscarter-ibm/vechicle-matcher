@@ -766,7 +766,8 @@
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
 .vm.vm-rrmc .vm-question { font-size: 32px; }
 .vm.vm-rrmc .vm-card-line { display: none; }
-.vm.vm-rrmc .vm-podium-step .vm-rrmc-view-options { text-decoration: underline !important; }
+.vm.vm-rrmc .vm-podium-step .vm-rrmc-view-options,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-view-options { text-decoration: underline !important; }
 .vm.vm-rrmc .vm-kicker {
   font-family: var(--vm-font-heading);
   font-size: 48px;
@@ -4096,10 +4097,13 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   letter-spacing: 0.05em;
 }
 .vm.vm-rrmc .vm-podium-step.is-silver .vm-card-name,
-.vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-name {
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-name,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-card-name {
   font-size: 32px;
   letter-spacing: 0.05em;
 }
+/* Tail tiles share a row, so the name steps down to fit the narrower track. */
+.vm.vm-rrmc .vm-podium-tail-grid .vm-card-name { font-size: 18px; }
 .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold > .vm-podium-card > .vm-card > .vm-card-body {
   flex: 1 !important;
   display: flex !important;
@@ -4131,10 +4135,41 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   margin: 0;
 }
 /* "Presented by RRMC <Location>" on every tile (gold already matches above). */
-.vm.vm-rrmc .vm-podium-step .vm-rrmc-presented {
+.vm.vm-rrmc .vm-podium-step .vm-rrmc-presented,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-presented {
   font-size: 12px;
   letter-spacing: 0.02em;
   margin: 0;
+}
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-presented { font-size: 10px; }
+.vm.vm-rrmc .vm-podium-tail-grid .vm-card-body { padding-bottom: var(--vm-space-2); }
+/* No "Why" on tail tiles: "View Options" takes its slot, pinned with "Presented by" to
+   the tile foot. The 24px floor sits on the mileage line since an auto margin can hit 0. */
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-why { display: none; }
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-mileage { margin-bottom: 24px; }
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-view-options { margin-top: auto; }
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-mileage,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-view-options { font-size: 14px; }
+/* Tail heading wears the answer-pill register: uppercase, small, tracked out. */
+.vm.vm-rrmc .vm-podium-tail-head {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+/* Full width: the tail cards sit on the gold tile's purple, heading above it. */
+@media (min-width: 1080px) {
+  .vm.vm-rrmc .vm-podium-tail-grid {
+    background: #281432;
+    border-radius: var(--vm-radius);
+    padding: var(--vm-space-6);
+  }
+  /* Cards go see-through so the purple reads behind white text, as on the gold tile. */
+  .vm.vm-rrmc .vm-podium-tail-grid > * { background: transparent; }
+  .vm.vm-rrmc .vm-podium-tail-grid > *,
+  .vm.vm-rrmc .vm-podium-tail-grid > * * {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
 }
 /* Every tile: 24px after "View options", then "Presented by" sits straight under "Why". */
 .vm.vm-rrmc .vm-podium-step .vm-rrmc-why { margin: 24px 0 0; }
@@ -4142,7 +4177,8 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-why,
 .vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-why,
 .vm.vm-rrmc .vm-podium-step.is-silver .vm-rrmc-presented-location,
-.vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-presented-location {
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-rrmc-presented-location,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-rrmc-presented-location {
   text-decoration: underline !important;
 }
 /* 2nd and 3rd: enforce vertical (column) orientation and cap width */
@@ -4192,9 +4228,12 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   .vm.vm-rrmc .vm-podium-steps:not(.is-tied) .vm-podium-step.is-gold .vm-rrmc-why { margin-top: 24px; }
 }
 .vm.vm-rrmc .vm-podium-step.is-silver > .vm-podium-card > .vm-card,
-.vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card {
+.vm.vm-rrmc .vm-podium-step.is-bronze > .vm-podium-card > .vm-card,
+.vm.vm-rrmc .vm-podium-tail-grid > .vm-card {
   flex-direction: column;
 }
+/* Tail tiles sit flat like silver and bronze; background is left to the purple tile rule. */
+.vm.vm-rrmc .vm-podium-tail-grid > .vm-card { box-shadow: none; }
 /* Driveline and mileage sub-lines beneath the model name */
 .vm.vm-rrmc .vm-rrmc-driveline,
 .vm.vm-rrmc .vm-rrmc-mileage {
@@ -4237,7 +4276,17 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-podium-step.is-bronze .vm-reasons,
 .vm.vm-rrmc .vm-podium-step.is-bronze .vm-usedmeta,
 .vm.vm-rrmc .vm-podium-step.is-bronze .vm-pick,
-.vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-link { display: none; }
+.vm.vm-rrmc .vm-podium-step.is-bronze .vm-card-link,
+/* Tail tiles: likewise, nothing past "Presented by". */
+.vm.vm-rrmc .vm-podium-tail-grid .vm-specs,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-blurb,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-distance,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-avail,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-why-label,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-reasons,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-usedmeta,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-pick,
+.vm.vm-rrmc .vm-podium-tail-grid .vm-card-link { display: none; }
 
 /* RRMC: per-value letter-spacing on the people question */
 .vm.vm-rrmc [data-qid="people"] .vm-option[data-value="solo"] .vm-option-label,

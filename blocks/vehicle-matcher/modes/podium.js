@@ -395,7 +395,7 @@ const PODIUM_COPY = {
     commitError: "We couldn't reach the matcher. Try that again.",
     ranks: ["Your Top Pick", "Another Option", "Another Option"],
     jointRank: "Joint 1st",
-    tailHeading: "Also worth a look",
+    tailHeading: "Explore the full range of Rolls-Royce provenance",
     liveUpdated: () => "",
     emptyNote: "Nothing left to show. Widen the brief and we'll fill it back up.",
     unmetNote: ({ list, retailer }) => `No ${list} at ${retailer} right now. ` +
