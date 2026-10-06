@@ -250,7 +250,13 @@ export function matchCard(match, {
     body.append(el('p', 'vm-rrmc-why', 'Why this one?'));
     const location = (car.retailerName || 'RRMC').replace(/Rolls-Royce Motor Cars\s*/i, 'RRMC ').trim();
     const presented = el('p', 'vm-rrmc-presented');
-    const locationSpan = el('span', 'vm-rrmc-presented-location', location);
+    // Links to the retailer's homepage when the feed names one; plain text otherwise.
+    const locationSpan = el(car.retailerUrl ? 'a' : 'span', 'vm-rrmc-presented-location', location);
+    if (car.retailerUrl) {
+      locationSpan.href = car.retailerUrl;
+      locationSpan.target = '_blank';
+      locationSpan.rel = 'noopener noreferrer';
+    }
     presented.append('Presented by ', locationSpan);
     body.append(presented);
   }

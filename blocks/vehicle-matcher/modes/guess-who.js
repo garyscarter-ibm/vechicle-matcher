@@ -619,6 +619,7 @@ function matchAt(pool, i, big) {
       fuel: pool.fuels[pool.fuel[i]],
       transmission: pool.transmissions[pool.transmission[i]],
       retailerName: pool.retailers[pool.retailer[i]],
+      retailerUrl: pool.retailerUrls?.[pool.retailer[i]] || undefined,
       colour: shade ? { colour: shade, manufacturerColour: paint || shade } : null,
       priceMin: price,
       priceMax: price,

@@ -69,6 +69,19 @@ export function rrmcRegion(v) {
   return CODE_REGION[code];
 }
 
+/** The retailer's own homepage, or undefined. The feed sends `dealer.website`; the rest are fallbacks. */
+export function rrmcDealerUrl(v) {
+  const d = v?.dealer || {};
+  const raw = d.website || d.websiteUrl || d.websiteURL || d.webSite || d.url || d.homepage
+    || d.homepageUrl || d.webUrl || d.links?.website || d.contact?.website || d.contactDetails?.website || '';
+  const s = String(typeof raw === 'object' ? raw.url || raw.href || '' : raw).trim();
+  if (!s) return undefined;
+  try {
+    const u = new URL(/^https?:\/\//i.test(s) ? s : `https://${s}`);
+    return /^https?:$/.test(u.protocol) ? u.href : undefined;
+  } catch { return undefined; }
+}
+
 /**
  * Project one MTK Connect listing into the flat shape mapRRMCRaw consumes.
  * Colour is already available in appearanceOptions, so no separate PDP needed.
@@ -108,6 +121,7 @@ export function projectRRMCListing(v) {
     fuel,
     colour: v?.vehicle?.appearanceOptions?.exteriorColour || '',
     dealerName: v?.dealer?.name || 'Rolls-Royce Approved',
+    dealerUrl: rrmcDealerUrl(v),
     link: v.id ? `${RRMC_LISTING_BASE}/${v.id}` : RRMC_FEED_ORIGIN,
     handDrive,
     region: rrmcRegion(v),

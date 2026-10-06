@@ -766,6 +766,8 @@
 .vm.vm-rrmc .vm-btn { font-weight: 300; }
 .vm.vm-rrmc .vm-question { font-size: 32px; }
 .vm.vm-rrmc .vm-card-line { display: none; }
+/* "Presented by" location, when it links to the retailer: the line's own colour, not link blue. */
+.vm.vm-rrmc a.vm-rrmc-presented-location { color: inherit; }
 /* Every mode's "View Options", out-ranking the stage-wide no-underline rule further down. */
 .vm.vm-rrmc .vm-rrmc-view-options,
 .vm.vm-rrmc .vm-stage .vm-rrmc-view-options { text-decoration: underline !important; }

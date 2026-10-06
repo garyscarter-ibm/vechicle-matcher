@@ -226,6 +226,8 @@ function publicCar(car) {
     priceTo: car.priceTo,
     colours: car.colours,
     retailerName: car.retailerName,
+    // The retailer's own homepage (RRMC only today), for the "Presented by" link.
+    retailerUrl: car.retailerUrl,
     link: car.link,
     // Miles from the configured retailer. Only set on `nearby` cars — the
     // hero matches are the configured retailer's own stock.
@@ -376,6 +378,8 @@ function publicPool(brand, cars, directory = null) {
     // Dictionaries. Each pairs with the same-named column below.
     names, lines, bodies, fuels, transmissions, retailers, shades, paints,
     featureKeys,
+    // Pairs with `retailers`: each retailer's homepage, or null where the feed has none.
+    retailerUrls: retailers.map((r) => cars.find((c) => c.retailerName === r && c.retailerUrl)?.retailerUrl ?? null),
     // The one table that is not per-car: it pairs with `retailers` above, not
     // with a column. See siteCoords.
     sites: siteCoords(cars, retailers, retailer, directory),
