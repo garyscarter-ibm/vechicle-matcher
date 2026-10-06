@@ -242,12 +242,30 @@
   --nav-shrink: 0;
   min-height: calc(110px - 55px * var(--nav-shrink));
   padding-block: calc(var(--vm-space-4) * (1 - 0.5 * var(--nav-shrink)));
+  transition: backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+}
+/* 1px rule under the bar, inset 80px; --nav-rule (1 to 0) fades it over the hero's first half. */
+.vm-rrmc .demo-nav::after {
+  content: '';
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  bottom: 0;
+  height: 1px;
+  background: #ffffff;
+  opacity: var(--nav-rule, 1);
+  pointer-events: none;
+}
+/* Set by index.html once the hero has scrolled out from under the bar. */
+.vm-rrmc .demo-nav.is-past-hero {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 .vm-rrmc .demo-nav-logo { position: absolute; left: 50%; transform: translateX(-50%); }
 .vm-rrmc .demo-nav-logo img {
   width: 68px;
   height: 84px;
-  transform: scale(calc(0.95 * (1 - 0.5 * var(--nav-shrink))));
+  transform: scale(calc(0.855 * (1 - 0.5 * var(--nav-shrink))));
   opacity: calc(1 - var(--nav-swap, 0));
 }
 /* Same height as the RR mark (width follows its shape), stacked on it; --nav-swap fades it in. */
@@ -257,7 +275,7 @@
   left: 50%;
   width: auto;
   height: 84px;
-  transform: translate(-50%, -50%) scale(calc(0.95 * (1 - 0.5 * var(--nav-shrink))));
+  transform: translate(-50%, -50%) scale(calc(0.855 * (1 - 0.5 * var(--nav-shrink))));
   opacity: var(--nav-swap, 0);
 }
 .vm-rrmc .demo-nav-links a,
