@@ -24,7 +24,7 @@ import {
   BRAND_COPY, UNMET_PHRASES, TRADE_COPY, orList, andList, tradeLines,
 } from './brand-copy.js';
 import {
-  CONCEPT_LABELS, listingsOf, distanceLabel, matchCard, previewTile,
+  CONCEPT_LABELS, listingsOf, distanceLabel, matchCard, previewTile, rrmcTaglines,
 } from './result-card.js';
 import {
   isVisible, visibleQuestions, formatSliderValue, renderRangeSlider, renderOptionList,
@@ -363,6 +363,8 @@ function renderRefine(
   // Set by renderResults; see `noteShown` below for why it matters.
   let notedCarId = null;
   hereGroup.append(hereLabel, grid, hereRestGrid);
+  // RRMC: the podium's taglines stand above the top three in place of the "AT …" heading.
+  if (ctx.brand === 'rrmc') grid.before(...rrmcTaglines());
   awayGroup.append(awayLabel, awayPending, awayGrid, awayRestGrid);
   /*
    * The working, under the cars.
@@ -910,7 +912,7 @@ function renderRefine(
       drop(here, hereLead).forEach((m) => hereRestGrid.append(tile(m)));
     }
     hereLabel.textContent = copy.hereHeading({ retailer: ctx.retailerLabel });
-    hereLabel.hidden = !here.length;
+    hereLabel.hidden = !here.length || ctx.brand === 'rrmc';
     hereGroup.hidden = !here.length;
 
     awayLead.forEach((m) => awayGrid.append(full(m, leadIsHere ? false : single)));
@@ -1500,6 +1502,11 @@ function renderQuestion(root, ctx, index) {
       },
       onPick: waitForNext ? undefined : advance,
     }));
+  }
+  // RRMC: "A combination" is the odd fifth pill, centred beneath the two pairs either side of it.
+  if (ctx.brand === 'rrmc' && q.id === 'style') {
+    const middle = list.querySelector(':scope > .vm-option[data-value="3"]');
+    if (middle) list.append(middle);
   }
   screen.append(list);
 

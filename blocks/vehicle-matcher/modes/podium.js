@@ -47,7 +47,7 @@ import {
   visibleQuestions, renderRangeSlider, renderOptionList, formatSliderValue,
 } from './question-ui.js';
 import { createPreviewFeed } from './preview-feed.js';
-import { matchCard } from './result-card.js';
+import { matchCard, rrmcTaglines } from './result-card.js';
 import {
   WEAK_SCORE, celebrate, shadeOf, cap, idOf,
 } from './match-signal.js';
@@ -694,15 +694,7 @@ function mount(root, ctx) {
     tailEl.append(el('h3', 'vm-subhead vm-podium-tail-head', copy.tailHeading), tailGrid);
     noteEl = el('p', 'vm-podium-note');
     noteEl.hidden = true;
-    if (ctx.brand === 'rrmc') {
-      const tagline = el('p', 'vm-rrmc-tagline', "It doesn't have to take forever...");
-      const sub = el('p', 'vm-rrmc-tagline-sub');
-      const sub1 = el('span', 'vm-rrmc-sub-a', "Answer these simple questions to the best of your ability.  We'll shortlist options from");
-      const sub2 = el('span', 'vm-rrmc-sub-b', "our Provenance collection, and match you to the one that is best suited to you.");
-      sub.append(sub1, document.createTextNode(' '), sub2);
-      results.prepend(sub);
-      results.prepend(tagline);
-    }
+    if (ctx.brand === 'rrmc') results.prepend(...rrmcTaglines());
     results.append(liveEl, stepsEl, tailEl, noteEl);
 
     grid.append(ask, results);
