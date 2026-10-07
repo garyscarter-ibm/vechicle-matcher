@@ -4371,7 +4371,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid > .vm-card:not(:first-child), .vm-rrmc-podium-side > .vm-card) {
   background: #ffffff;
   box-shadow: none;
 }
@@ -4382,7 +4382,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   justify-content: center;
   align-items: start;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-card-name {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid > .vm-card:not(:first-child), .vm-rrmc-podium-side > .vm-card) .vm-card-name {
   font-size: 32px;
   letter-spacing: 0.05em;
 }
@@ -4393,7 +4393,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   margin: 0;
 }
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid .vm-rrmc-presented-location,
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-rrmc-why,
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid > .vm-card:not(:first-child), .vm-rrmc-podium-side > .vm-card) .vm-rrmc-why,
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid .vm-rrmc-presented-location {
   text-decoration: underline !important;
 }
@@ -4401,7 +4401,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card {
   flex-direction: row;
   width: 100%;
-  max-width: min(860px, calc(100% - 140px - var(--vm-space-4)));
+  max-width: 860px;
   height: 360px;
   overflow: visible;
 }
@@ -4411,7 +4411,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   align-self: center;
   margin-left: 40px;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-card-name {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card .vm-card-name {
   font-size: 36px;
   letter-spacing: 0.05em;
 }
@@ -4426,7 +4426,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   padding-inline: 40px;
   position: relative;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-why {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card .vm-rrmc-why {
   position: absolute;
   bottom: 108px;
   left: 40px;
@@ -4435,31 +4435,72 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
   margin: 0;
   text-decoration: underline !important;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-presented {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card .vm-rrmc-presented {
   position: absolute;
   bottom: 86px;
   left: 40px;
 }
-/* "Not this one" hangs outside the tile's right edge (questionnaire.js lifts it out of the
-   body); the card stops clipping so it can, and tied columns part wide enough to hold it. */
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card {
+/* "Not this one" is the podium's ✕ chip in the tile's top-right corner (questionnaire.js
+   lifts it out of the body); cards stop clipping so its reasons menu can drop below. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid, .vm-rrmc-podium-side) > .vm-card {
   position: relative;
   overflow: visible;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid, .vm-rrmc-podium-side) > .vm-card > .vm-reject {
   position: absolute;
-  top: 0;
-  left: calc(100% + var(--vm-space-4));
-  width: 140px;
+  top: var(--vm-space-2);
+  right: var(--vm-space-2);
   margin: 0;
   z-index: 2;
 }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject * { color: var(--vm-ink); }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject .vm-reject-open { border-color: var(--vm-line); }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject .vm-reject-menu { width: 260px; }
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid-tied {
-  column-gap: calc(140px + 2 * var(--vm-space-4));
-  padding-right: calc(140px + var(--vm-space-4));
+/* Dark ink on the chip and menu, even inside the purple gold card's white-text rule. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid, .vm-rrmc-podium-side) > .vm-card > .vm-reject * { color: var(--vm-ink); }
+/* The shared button's column layout and full width give way to the chip's own. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-card > .vm-reject .vm-reject-open.vm-podium-reject {
+  position: static;
+  width: auto;
+  flex-direction: row;
+  font-weight: 400;
+  color: var(--vm-ink-muted);
+  border-color: var(--vm-line);
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-card > .vm-reject .vm-reject-open.vm-podium-reject:hover {
+  background: var(--vm-surface);
+  color: var(--vm-ink);
+  border-color: var(--vm-ink-muted);
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-card > .vm-reject .vm-reject-menu {
+  position: absolute;
+  top: calc(100% + var(--vm-space-1));
+  right: 0;
+  width: 260px;
+  margin: 0;
+}
+/* Podium: gold on the left, silver and bronze stacked down the right. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid.vm-rrmc-podium {
+  /* Podium's gap from the silver/bronze tiles down to the tiles that follow. */
+  margin-bottom: var(--vm-space-8);
+  grid-template-columns: minmax(0, 860px) 300px;
+  column-gap: 60px;
+  row-gap: 60px;
+  justify-content: center;
+  align-items: start;
+}
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-rrmc-podium-side {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+/* Compact cards, as podium's silver/bronze; drop the carousel's flex basis, which would set height here. */
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-rrmc-podium-side > .vm-card { flex: none; width: 100%; }
+/* Too narrow for a side column: gold spans the top, silver and bronze sit side by side beneath. */
+@container (max-width: 1099px) {
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid.vm-rrmc-podium { grid-template-columns: minmax(0, 860px); }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-rrmc-podium-side {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-rrmc-podium-side > .vm-card { flex: 0 1 300px; }
 }
 /* Same 659px breakpoint as the podium: tiles stack, and the wide gold turns portrait. */
 @container (max-width: 659px) {
@@ -4482,19 +4523,14 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     padding-inline: var(--vm-space-6);
     overflow-y: visible;
   }
-  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-why,
-  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-presented { position: static; }
-  /* No room beside a stacked tile, so the control drops just below its right corner. */
-  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid-tied { column-gap: 0; padding-right: 0; }
-  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card { margin-bottom: 64px; }
-  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card > .vm-reject {
-    top: calc(100% + var(--vm-space-2));
-    left: auto;
-    right: 0;
-    width: max-content;
-    max-width: 100%;
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card .vm-rrmc-why,
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card .vm-rrmc-presented { position: static; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-rrmc-podium-side {
+    flex-direction: column;
+    align-items: center;
   }
-  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) .vm-rrmc-why { margin-top: 24px; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-rrmc-podium-side > .vm-card { flex: none; width: 300px; max-width: 100%; }
+  .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid:not(.vm-grid-tied) > .vm-card .vm-rrmc-why { margin-top: 24px; }
 }
 /* Tail tiles, as the podium's extra tiles. */
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-tail-grid > .vm-card {
@@ -4534,7 +4570,7 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid, .vm-tail-grid) :is(
   .vm-specs, .vm-blurb, .vm-distance, .vm-avail, .vm-why-label, .vm-reasons, .vm-usedmeta, .vm-pick, .vm-card-link
 ),
-.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-kit {
+.vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid > .vm-card:not(:first-child), .vm-rrmc-podium-side > .vm-card) .vm-kit {
   display: none;
 }
 

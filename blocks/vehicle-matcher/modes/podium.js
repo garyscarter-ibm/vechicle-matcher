@@ -1089,7 +1089,8 @@ function mount(root, ctx) {
         big: Boolean(state.committed) && gold,
         compact: !gold,
         brand: ctx.brand,
-        fitName: true,
+        // Silver and bronze hold their names to one line; gold only fits "Extended".
+        fitName: gold ? true : 'line',
       }),
       rejectTrigger(m, step),
     );

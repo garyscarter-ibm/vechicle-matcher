@@ -174,24 +174,34 @@ function wraps(node) {
   return rects.some((r) => r.top >= rects[0].bottom - 1);
 }
 
-/** RRMC: a name that wraps sets "Extended" at 16px, then tightens the whole name's
- *  tracking until it fits one line. Re-run on resize so a wider tile relaxes it. */
-function fitExtended(nameEl, full) {
+// Smallest size a 'line' fit will step a name down to (the tail tiles' own size).
+const MIN_FIT_PX = 18;
+
+/** RRMC: a name that wraps sets "Extended" at 16px, then tightens the whole name's tracking
+ *  until it fits one line; `line` mode then steps the size down too, for any name. Re-run on
+ *  resize so a wider tile relaxes it. */
+function fitExtended(nameEl, full, line = false) {
   const hit = full.match(EXTENDED);
-  if (!hit || typeof ResizeObserver === 'undefined') return;
-  const before = full.slice(0, hit.index);
-  const after = full.slice(hit.index + hit[0].length);
+  if ((!hit && !line) || typeof ResizeObserver === 'undefined') return;
   new ResizeObserver(() => {
     if (!nameEl.isConnected) return;
     nameEl.style.letterSpacing = '';
+    nameEl.style.fontSize = '';
     nameEl.textContent = full;
     if (!wraps(nameEl)) return;
-    nameEl.replaceChildren(before, el('span', 'vm-rrmc-extended', hit[0]), after);
-    const size = parseFloat(getComputedStyle(nameEl).fontSize);
+    if (hit) {
+      nameEl.replaceChildren(full.slice(0, hit.index), el('span', 'vm-rrmc-extended', hit[0]),
+        full.slice(hit.index + hit[0].length));
+    }
+    let size = parseFloat(getComputedStyle(nameEl).fontSize);
     let em = (parseFloat(getComputedStyle(nameEl).letterSpacing) || 0) / size;
     while (wraps(nameEl) && em > MIN_TRACKING_EM) {
       em = Math.max(MIN_TRACKING_EM, em - 0.005);
       nameEl.style.letterSpacing = `${em}em`;
+    }
+    while (line && wraps(nameEl) && size > MIN_FIT_PX) {
+      size = Math.max(MIN_FIT_PX, size - 1);
+      nameEl.style.fontSize = `${size}px`;
     }
   }).observe(nameEl.parentElement || nameEl);
 }
@@ -245,7 +255,8 @@ export function matchCard(match, {
     photoLink.setAttribute('aria-hidden', 'true');
     media.append(photoLink);
   }
-  if (brandKey === 'rrmc' && fitName) fitExtended(nameLink || nameEl, displayName);
+  // fitName: true fits "Extended" names only; 'line' fits every name to one line.
+  if (brandKey === 'rrmc' && fitName) fitExtended(nameLink || nameEl, displayName, fitName === 'line');
   if (showScore) {
     const badge = el('span', 'vm-score', `${score}%`);
     // The number has been unexplained since fit and taste were split, and two

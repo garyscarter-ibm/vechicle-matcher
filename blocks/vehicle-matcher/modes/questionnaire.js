@@ -344,6 +344,8 @@ function renderRefine(
    */
   const refineBlock = el('div', 'vm-refine-tools');
   const briefBlock = el('div', 'vm-brief-block');
+  // RRMC leaves out the "What we have learned" panel; the cards speak for themselves.
+  if (ctx.brand === 'rrmc') briefBlock.hidden = true;
   /*
    * The other half of a scoped headline: the car elsewhere that beat the best
    * one here, named, with where it is.
@@ -856,18 +858,43 @@ function renderRefine(
     // It keeps its reject menu: the answer still has to survive being looked
     // at, and "actually, not that one either" is a real thing to want to say.
     const single = shown.length === 1;
-    const full = (m, big = false) => {
+    // `fit` is matchCard's fitName: the podium below fits gold's "Extended", silver/bronze's every name.
+    // `compact` builds silver/bronze from the same compact card the podium mode uses for them.
+    const full = (m, big = false, fit = false, compact = false) => {
       const card = matchCard(m, {
         big,
+        compact,
+        fitName: fit,
         brand: ctx.brand,
         rejectOptions,
         rejectLabel: copy.rejectOpen,
         rejectPrompt: copy.rejectPrompt,
       });
-      // RRMC hangs "Not this one" beside the tile, so it leaves the body for the card itself.
+      // RRMC pins "Not this one" to the tile's corner as the podium's ✕ chip, without the hint.
       const reject = ctx.brand === 'rrmc' && card.querySelector(':scope > .vm-card-body > .vm-reject');
-      if (reject) card.append(reject);
+      if (reject) {
+        const open = reject.querySelector('.vm-reject-open');
+        open.classList.add('vm-podium-reject');
+        open.replaceChildren(
+          el('span', 'vm-podium-reject-icon', '✕'),
+          el('span', 'vm-podium-reject-label', copy.rejectOpen),
+        );
+        card.append(reject);
+      }
       return card;
+    };
+    // RRMC lays the leading group out as a podium: gold on the left, silver and bronze down the right.
+    const podium = (into, rest, list) => {
+      const top = list.slice(0, 3);
+      into.classList.remove('vm-grid-tied');
+      into.classList.add('vm-rrmc-podium');
+      into.append(full(top[0], true, true));
+      if (top.length > 1) {
+        const side = el('div', 'vm-rrmc-podium-side');
+        top.slice(1).forEach((m) => side.append(full(m, false, 'line', true)));
+        into.append(side);
+      }
+      drop(list, top).forEach((m) => rest.append(tile(m)));
     };
     const tile = (m) => matchCard(m, { compact: true, brand: ctx.brand });
     // The grid holding the LEAD goes full width for a single car; the other
@@ -875,8 +902,13 @@ function renderRefine(
     grid.classList.toggle('vm-grid-tied', !(leadIsHere && single));
     awayGrid.classList.toggle('vm-grid-tied', !(!leadIsHere && single));
 
-    hereLead.forEach((m) => grid.append(full(m, single)));
-    drop(here, hereLead).forEach((m) => hereRestGrid.append(tile(m)));
+    grid.classList.remove('vm-rrmc-podium');
+    if (ctx.brand === 'rrmc' && leadIsHere) {
+      podium(grid, hereRestGrid, here);
+    } else {
+      hereLead.forEach((m) => grid.append(full(m, single)));
+      drop(here, hereLead).forEach((m) => hereRestGrid.append(tile(m)));
+    }
     hereLabel.textContent = copy.hereHeading({ retailer: ctx.retailerLabel });
     hereLabel.hidden = !here.length;
     hereGroup.hidden = !here.length;
@@ -1403,6 +1435,8 @@ function renderQuestion(root, ctx, index) {
   };
 
   const isSlider = q.type === 'slider';
+  // RRMC never moves on by itself: every question, single-select included, waits for Next.
+  const waitForNext = q.multi || isSlider || ctx.brand === 'rrmc';
   // A slider is a single labelled input (its own role), not a radio/checkbox
   // group, so it gets a bare container; an option list builds its own and
   // arrives with the group role already on it (see question-ui.js).
@@ -1456,15 +1490,15 @@ function renderQuestion(root, ctx, index) {
   } else {
     ({ list, selected } = renderOptionList(q, ctx.answers, {
       onChange: () => {
-        // Multi-select commits via Next, so the button tracks the selection.
-        if (q.multi) next.disabled = selected.size === 0;
+        // Option lists that commit via Next keep the button in step with the selection.
+        if (waitForNext) next.disabled = selected.size === 0;
         // Refresh before advancing: the debounced fetch belongs to the mode
         // rather than to this screen, so the next question's freshly-built
         // drawer picks up the result (via the feed's latest-wins guard) even
         // though this screen is about to be replaced.
         schedulePreviewRefresh(ctx);
       },
-      onPick: advance,
+      onPick: waitForNext ? undefined : advance,
     }));
   }
   screen.append(list);
@@ -1478,10 +1512,10 @@ function renderQuestion(root, ctx, index) {
 
   const next = el('button', 'vm-btn vm-btn-primary', index + 1 === questions.length ? 'Explore my matches' : 'Next');
   next.type = 'button';
-  // Multi-select and sliders both commit via Next (a slider always has a value,
-  // so it's enabled from the off); single-select auto-advances on tap.
-  if (q.multi || isSlider) {
-    next.disabled = q.multi ? selected.size === 0 : false;
+  // Multi-select, sliders and every RRMC question commit via Next (a slider always has
+  // a value, so it's enabled from the off); other single-selects auto-advance on tap.
+  if (waitForNext) {
+    next.disabled = isSlider ? false : selected.size === 0;
     next.addEventListener('click', advance);
     nav.append(next);
   }
@@ -1726,7 +1760,9 @@ async function renderResults(root, ctx, answers) {
   const copy = BRAND_COPY[ctx.brand] || BRAND_COPY.bmw;
   const { name: brandName } = copy;
 
-  screen.append(el('p', 'vm-kicker', 'Your results'));
+  // RRMC opens straight on the cars: no "Your results" kicker and (below) no headline.
+  const rrmc = ctx.brand === 'rrmc';
+  if (!rrmc) screen.append(el('p', 'vm-kicker', 'Your results'));
 
   if (matches.length === 0) {
     screen.append(
@@ -1818,6 +1854,8 @@ async function renderResults(root, ctx, answers) {
 
     const title = el('h2', 'vm-title', '');
     const lede = el('p', 'vm-lede', '');
+    // Still built and rewritten on every redraw, just not shown for RRMC.
+    title.hidden = rrmc;
     screen.append(title, lede);
 
     /*
