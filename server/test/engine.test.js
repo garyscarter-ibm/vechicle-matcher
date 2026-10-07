@@ -5,7 +5,7 @@ import {
   matchCars, rankCars, budgetRange, unmetWants, tradeOffs, STRETCH_FACTOR, MAX_SHOWN,
 } from '../engine.js';
 import { CARS } from '../data.js';
-import { rrmcRegion } from '../rrmc-listing.js';
+import { rrmcRegion, rrmcListingUrl, rrmcHandDrive } from '../rrmc-listing.js';
 import { BUDGET_BANDS, QUESTIONS } from '../questions.js';
 
 function run(answers) {
@@ -491,4 +491,44 @@ test('rrmcRegion reads the retailer country in its common shapes', () => {
   assert.equal(rrmcRegion({ location: { country: 'United States' } }), 'americas');
   assert.equal(rrmcRegion({ dealer: {} }), undefined);
   assert.equal(rrmcRegion({ dealer: { country: 'Atlantis' } }), undefined);
+});
+
+test('rrmcListingUrl builds the site\'s own vdp address', () => {
+  const v = (id, modelYear, name, interiorColour, exteriorColour) => ({
+    id, vehicle: { modelYear, registrationYear: modelYear - 1, model: { name }, appearanceOptions: { interiorColour, exteriorColour } },
+  });
+  const base = 'https://pre-owned.rolls-roycemotorcars.com/en_gb/vdp/';
+  assert.equal(rrmcListingUrl(v(30006990, 2024, 'Spectre', 'Grace White', 'Tempest grey')),
+    `${base}30006990-2024-Spectre-Grace-White-Tempest-grey`);
+  assert.equal(rrmcListingUrl(v(30001613, 2011, 'Ghost', 'Crème Light', 'Jubilee Silver')),
+    `${base}30001613-2011-Ghost-Cr%C3%A8me-Light-Jubilee-Silver`);
+  assert.equal(rrmcListingUrl({}), 'https://pre-owned.rolls-roycemotorcars.com');
+});
+
+test('rrmcHandDrive takes the car\'s own steering first, else the retailer country\'s side', () => {
+  const at = (countryCode, vehicle = {}) => ({ vehicle, dealer: { countryCode, structuredAddress: { countryCode } } });
+  assert.equal(rrmcHandDrive(at('GB')), 'rhd');
+  assert.equal(rrmcHandDrive(at('JP')), 'rhd');
+  assert.equal(rrmcHandDrive(at('SA')), 'lhd');
+  assert.equal(rrmcHandDrive(at('US')), 'lhd');
+  assert.equal(rrmcHandDrive(at('GB', { steeringPosition: 'Left' })), 'lhd');
+  assert.equal(rrmcHandDrive(at('AE', { handDrive: 'R' })), 'rhd');
+  assert.equal(rrmcHandDrive(at('GB', { handDrive: 'L' })), 'lhd');
+  assert.equal(rrmcHandDrive({ dealer: { country: 'United Kingdom' } }), 'rhd');
+  assert.equal(rrmcHandDrive({ dealer: {} }), undefined);
+});
+
+test('drive side is a hard filter only when the regions answer is not specific', () => {
+  const [a, b] = CARS;
+  const pool = [{ ...a, region: 'europe', handDrive: 'rhd' }, { ...b, region: 'europe', handDrive: 'lhd' }];
+  const run = (answers) => rankCars({ ...base, budget: 'any', handDrive: 'rhd', ...answers }, pool);
+  // No regions, or all four: the wrong side is dropped.
+  assert.deepEqual(run({}).map((r) => r.car.id), [a.id]);
+  assert.deepEqual(run({ regions: ['europe', 'mea', 'apac', 'americas'] }).map((r) => r.car.id), [a.id]);
+  // Specific regions: the wrong side stays, scored below what it would be on the right side.
+  const soft = run({ regions: ['europe'] });
+  assert.equal(soft.length, 2);
+  const lhd = soft.find((r) => r.car.id === b.id).score;
+  const unpenalised = rankCars({ ...base, budget: 'any', regions: ['europe'] }, pool).find((r) => r.car.id === b.id).score;
+  assert.ok(lhd < unpenalised, `${lhd} should be below ${unpenalised}`);
 });

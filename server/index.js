@@ -370,11 +370,15 @@ function publicPool(brand, cars, directory = null) {
   // `link` is always the same prefix plus the advert id, for every car of a
   // brand, so send the prefix once instead of 12,000 near-identical URLs.
   const linkPrefix = cars.find((c) => c.link)?.link?.replace(/[^/]+$/, '') || null;
+  // RRMC's addresses carry a slug after the id, so they ship whole; prefix+id brands send none.
+  const links = cars.some((c) => c.link && c.link !== `${linkPrefix}${c.id}`)
+    ? cars.map((c) => c.link ?? null) : undefined;
 
   return {
     brand,
     n: cars.length,
     linkPrefix,
+    ...(links && { links }),
     // Dictionaries. Each pairs with the same-named column below.
     names, lines, bodies, fuels, transmissions, retailers, shades, paints,
     featureKeys,

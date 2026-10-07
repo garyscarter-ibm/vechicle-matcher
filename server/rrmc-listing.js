@@ -7,7 +7,18 @@
 
 export const RRMC_FEED_URL = 'https://api.mtkconnect.io/public/v1/vehicles/rolls-royce/global';
 export const RRMC_FEED_ORIGIN = 'https://pre-owned.rolls-roycemotorcars.com';
-const RRMC_LISTING_BASE = `${RRMC_FEED_ORIGIN}/en_gb/listing`;
+const RRMC_LISTING_BASE = `${RRMC_FEED_ORIGIN}/en_gb/vdp`;
+
+/** The car's page: vdp/<id>-<model year>-<model>-<interior>-<exterior>, as the site's own sitemap writes it. */
+export function rrmcListingUrl(v) {
+  if (!v?.id) return RRMC_FEED_ORIGIN;
+  const veh = v.vehicle || {};
+  const look = veh.appearanceOptions || {};
+  const slug = [v.id, veh.modelYear || veh.registrationYear, veh.model?.name || veh.model?.groupName,
+    look.interiorColour, look.exteriorColour]
+    .filter(Boolean).join(' ').trim().replace(/\s+/g, '-');
+  return `${RRMC_LISTING_BASE}/${encodeURI(slug)}`;
+}
 
 export const RRMC_PAGE_SIZE = 50;
 
@@ -57,16 +68,38 @@ const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
 const NAME_CODE = Object.fromEntries(Object.keys(CODE_REGION)
   .map((c) => [regionNames.of(c).toLowerCase(), c]));
 
-/** The listing's retailer region, or undefined when the feed names no known country. */
-export function rrmcRegion(v) {
+/** The retailer's country as ISO alpha-2 (upper case), or '' when the feed names none. */
+export function rrmcCountry(v) {
   const d = v?.dealer || {};
-  let raw = d.address?.countryCode || d.countryCode || d.address?.country || d.country
+  let raw = d.structuredAddress?.countryCode || d.address?.countryCode || d.countryCode
+    || d.structuredAddress?.countryName || d.address?.country || d.country
     || v?.location?.countryCode || v?.location?.country || '';
   if (raw && typeof raw === 'object') raw = raw.code || raw.isoCode || raw.name || '';
   const s = String(raw).trim();
   const key = s.toLowerCase();
-  const code = COUNTRY_ALIASES[key] || NAME_CODE[key] || s.toUpperCase();
-  return CODE_REGION[code];
+  return COUNTRY_ALIASES[key] || NAME_CODE[key] || s.toUpperCase();
+}
+
+/** The listing's retailer region, or undefined when the feed names no known country. */
+export function rrmcRegion(v) {
+  return CODE_REGION[rrmcCountry(v)];
+}
+
+/* Countries that drive on the left, so sell right-hand-drive cars; every other is LHD. */
+const RHD_COUNTRIES = new Set(('GB IE MT CY JE GG IM ZA KE TZ UG ZM ZW BW NA MZ MW LS SZ MU SC '
+  + 'IN PK BD LK NP BT MV JP HK MO SG MY TH ID BN TL AU NZ FJ PG '
+  + 'JM BS BB TT KY BM AG VG GY SR').split(' '));
+
+/** 'lhd'/'rhd' from the listing's own vehicle.handDrive ('L'/'R'), else the retailer country's side. */
+export function rrmcHandDrive(v) {
+  const veh = v?.vehicle || {};
+  const own = String(veh.steeringPosition || veh.steering_position || veh.handDrive || veh.hand_drive
+    || veh.drivingSide || veh.driving_side || '').trim().toLowerCase();
+  if (own.includes('left') || own === 'lhd' || own === 'l') return 'lhd';
+  if (own.includes('right') || own === 'rhd' || own === 'r') return 'rhd';
+  const country = rrmcCountry(v);
+  if (country) return RHD_COUNTRIES.has(country) ? 'rhd' : 'lhd';
+  return undefined;
 }
 
 /** The retailer's own homepage, or undefined. The feed sends `dealer.website`; the rest are fallbacks. */
@@ -95,20 +128,6 @@ export function projectRRMCListing(v) {
     .filter((m) => m.scope === 'vehicle-listing' && m.mediaType === 'IMAGE')
     .sort((a, b) => (a.position ?? 99) - (b.position ?? 99))[0];
 
-  const steeringRaw = (
-    v?.vehicle?.steeringPosition
-    || v?.vehicle?.steering_position
-    || v?.vehicle?.handDrive
-    || v?.vehicle?.hand_drive
-    || v?.vehicle?.drivingSide
-    || v?.vehicle?.driving_side
-    || ''
-  ).toLowerCase();
-  const handDrive = steeringRaw.includes('left') ? 'lhd'
-    : steeringRaw.includes('right') ? 'rhd'
-    : steeringRaw === 'lhd' || steeringRaw === 'rhd' ? steeringRaw
-    : undefined;
-
   return {
     id: String(v.id || ''),
     name,
@@ -122,8 +141,8 @@ export function projectRRMCListing(v) {
     colour: v?.vehicle?.appearanceOptions?.exteriorColour || '',
     dealerName: v?.dealer?.name || 'Rolls-Royce Approved',
     dealerUrl: rrmcDealerUrl(v),
-    link: v.id ? `${RRMC_LISTING_BASE}/${v.id}` : RRMC_FEED_ORIGIN,
-    handDrive,
+    link: rrmcListingUrl(v),
+    handDrive: rrmcHandDrive(v),
     region: rrmcRegion(v),
   };
 }

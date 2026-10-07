@@ -768,6 +768,13 @@
 .vm.vm-rrmc .vm-card-line { display: none; }
 /* "Presented by" location, when it links to the retailer: the line's own colour, not link blue. */
 .vm.vm-rrmc a.vm-rrmc-presented-location { color: inherit; }
+/* Year-and-name and photo open the listing; the name reads as the heading, not a link. */
+.vm.vm-rrmc a.vm-rrmc-listing-name { color: inherit; text-decoration: none; }
+.vm.vm-rrmc .vm-rrmc-listing-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
 /* Every mode's "View Options", out-ranking the stage-wide no-underline rule further down. */
 .vm.vm-rrmc .vm-rrmc-view-options,
 .vm.vm-rrmc .vm-stage .vm-rrmc-view-options { text-decoration: underline !important; }

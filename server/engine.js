@@ -593,6 +593,19 @@ function effectiveWeights(answers, tuning) {
   return w;
 }
 
+const ALL_REGIONS = ['europe', 'mea', 'apac', 'americas'];
+
+/** True when the regions answer narrows the search: some regions picked, not all four. */
+function specificRegions(answers) {
+  const regions = Array.isArray(answers.regions) ? answers.regions : [];
+  return regions.length > 0 && !ALL_REGIONS.every((r) => regions.includes(r));
+}
+
+/** A known drive side that isn't the one asked for. */
+function wrongHandDrive(car, answers) {
+  return Boolean(answers.handDrive && car.handDrive && car.handDrive !== answers.handDrive);
+}
+
 function passesHardFilters(car, answers, tuning) {
   const { crewBoot, crewSeats, familySeats } = tuning.hardFilter;
   const range = budgetRange(answers);
@@ -602,8 +615,8 @@ function passesHardFilters(car, answers, tuning) {
   }
   if (answers.people === 'crew' && (car.seats < crewSeats || car.boot < crewBoot)) return false;
   if (answers.people === 'family' && car.seats < familySeats) return false;
-  // Medium-hard: only filter when the car's drive side is known and conflicts.
-  if (answers.handDrive && car.handDrive && car.handDrive !== answers.handDrive) return false;
+  // Drive side binds hard only when location doesn't: with specific regions it's a score penalty.
+  if (!specificRegions(answers) && wrongHandDrive(car, answers)) return false;
   // Same rule for region: a car whose retailer region is unknown is never dropped.
   const regions = Array.isArray(answers.regions) ? answers.regions : [];
   if (regions.length && car.region && !regions.includes(car.region)) return false;
@@ -677,6 +690,10 @@ export function rankCars(answers, cars, tuning = DEFAULT_TUNING) {
       // win when no 7-seater exists) — so it's stock-safe, not a hard filter.
       if (answers.people === 'crew' && car.seats < tuning.practicality.crewBonusSeats) {
         ratio *= tuning.crewSeatShortfall ?? 1;
+      }
+      // Wrong drive side within the regions asked for: ranks below the right side, never hidden.
+      if (specificRegions(answers) && wrongHandDrive(car, answers)) {
+        ratio *= tuning.handDriveShortfall ?? 0.8;
       }
       const tasteRatio = tasteTotal ? tasteWeighted / tasteTotal : 0;
       return {

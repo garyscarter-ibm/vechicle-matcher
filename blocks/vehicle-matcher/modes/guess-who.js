@@ -635,7 +635,7 @@ function matchAt(pool, i, big) {
       // server/index.js). A card-sized card deserves the bigger variant, so it
       // is reconstructed here rather than sent for all 12,000.
       photo: big ? fullPhoto(photo) : photo,
-      link: pool.linkPrefix && pool.id[i] ? `${pool.linkPrefix}${pool.id[i]}` : null,
+      link: pool.links?.[i] || (pool.linkPrefix && pool.id[i] ? `${pool.linkPrefix}${pool.id[i]}` : null),
     },
   };
 }

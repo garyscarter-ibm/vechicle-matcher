@@ -226,9 +226,26 @@ export function matchCard(match, {
   const head = el('div', 'vm-card-head');
   const baseName = car.name.replace(/^Rolls-Royce\s+/i, '').replace(/^BMW\s+/, '');
   const displayName = (brandKey === 'rrmc' && car.year) ? `${car.year} ${baseName}` : baseName;
-  const nameEl = el('h3', 'vm-card-name', displayName);
+  const nameEl = el('h3', 'vm-card-name');
   head.append(nameEl);
-  if (brandKey === 'rrmc' && fitName) fitExtended(nameEl, displayName);
+  // RRMC: the photo and the year-and-name both open the car's listing.
+  const listingLink = (cls, text) => {
+    const a = el('a', cls, text);
+    a.href = car.link;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    return a;
+  };
+  const nameLink = brandKey === 'rrmc' && car.link ? listingLink('vm-rrmc-listing-name', displayName) : null;
+  nameEl.append(nameLink || displayName);
+  if (nameLink) {
+    // One tab stop per card: the name carries the link for keyboards and screen readers.
+    const photoLink = listingLink('vm-rrmc-listing-photo');
+    photoLink.tabIndex = -1;
+    photoLink.setAttribute('aria-hidden', 'true');
+    media.append(photoLink);
+  }
+  if (brandKey === 'rrmc' && fitName) fitExtended(nameLink || nameEl, displayName);
   if (showScore) {
     const badge = el('span', 'vm-score', `${score}%`);
     // The number has been unexplained since fit and taste were split, and two
@@ -581,8 +598,10 @@ export function matchCard(match, {
           }
           usedMeta.textContent = bits.join('  ·  ');
         }
-        const cta = card.querySelector('.vm-card-link');
-        if (cta && listing.link) cta.href = listing.link;
+        if (listing.link) {
+          card.querySelectorAll('.vm-card-link, .vm-rrmc-listing-name, .vm-rrmc-listing-photo')
+            .forEach((a) => { a.href = listing.link; });
+        }
         // Re-offer reasons about the car now being shown.
         onPick?.(listing);
       });
