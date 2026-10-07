@@ -464,7 +464,8 @@ export function matchCard(match, {
   // offered to someone who asked for a convertible should say so on each of
   // them, not go quiet because none of them is a "hero". Only the compact
   // carousel tiles skip it, and they already state the shape in their specs.
-  if (!compact && match.tradeOffs?.length) {
+  // RRMC tiles leave it out ("Petrol, where you asked for…"); the page headline still owns up.
+  if (!compact && match.tradeOffs?.length && brandKey !== 'rrmc') {
     const { label } = TRADE_COPY[brandKey] || TRADE_COPY.bmw;
     body.append(
       el('p', 'vm-why-label vm-trade-label', label),

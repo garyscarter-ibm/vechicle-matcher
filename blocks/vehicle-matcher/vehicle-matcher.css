@@ -4530,10 +4530,9 @@ a.vm-ptile:focus-visible { outline: 2px solid var(--vm-accent); outline-offset: 
     border-color: rgba(255, 255, 255, 0.2);
   }
 }
-/* Nothing past "Presented by", as on the podium, nor the trade-off line; white tiles also drop kit. */
+/* Nothing past "Presented by", as on the podium; white tiles also drop kit. */
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) :is(.vm-grid, .vm-tail-grid) :is(
-  .vm-specs, .vm-blurb, .vm-distance, .vm-avail, .vm-why-label, .vm-reasons, .vm-usedmeta, .vm-pick, .vm-card-link,
-  .vm-trade-text
+  .vm-specs, .vm-blurb, .vm-distance, .vm-avail, .vm-why-label, .vm-reasons, .vm-usedmeta, .vm-pick, .vm-card-link
 ),
 .vm.vm-rrmc .vm-results:not(.vm-results-skeleton) .vm-grid > .vm-card:not(:first-child) .vm-kit {
   display: none;
